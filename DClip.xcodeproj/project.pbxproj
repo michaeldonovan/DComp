@@ -115,27 +115,52 @@
 		4C1A86471CA98A6400D94C89 /* libcairo-trace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1A86131CA98A6300D94C89 /* libcairo-trace.dylib */; };
 		4C1A86481CA98A6400D94C89 /* libcairo-trace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1A86131CA98A6300D94C89 /* libcairo-trace.dylib */; };
 		4C1A86491CA98A6400D94C89 /* libcairo-trace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1A86131CA98A6300D94C89 /* libcairo-trace.dylib */; };
-		4C1A864B1CA98B3F00D94C89 /* MyCairoControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C1A864A1CA98B3F00D94C89 /* MyCairoControl.h */; };
-		4C1A864C1CA98B3F00D94C89 /* MyCairoControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C1A864A1CA98B3F00D94C89 /* MyCairoControl.h */; };
 		4C1A864E1CA98DB500D94C89 /* libcairo.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1A864D1CA98DB500D94C89 /* libcairo.dylib */; };
 		4C2380471CAC519E00324CA4 /* CairoBlur.c in Headers */ = {isa = PBXBuildFile; fileRef = 4C2380451CAC519E00324CA4 /* CairoBlur.c */; };
 		4C23804A1CAC535200324CA4 /* CairoBlur.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C2380451CAC519E00324CA4 /* CairoBlur.c */; };
+		4C75CE2B1CAC78A900DA81A8 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE291CAC78A900DA81A8 /* Background.png */; };
+		4C75CE2C1CAC78A900DA81A8 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE291CAC78A900DA81A8 /* Background.png */; };
+		4C75CE2D1CAC78A900DA81A8 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE291CAC78A900DA81A8 /* Background.png */; };
+		4C75CE2E1CAC78A900DA81A8 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE291CAC78A900DA81A8 /* Background.png */; };
+		4C75CE2F1CAC78A900DA81A8 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE291CAC78A900DA81A8 /* Background.png */; };
+		4C75CE301CAC78A900DA81A8 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE291CAC78A900DA81A8 /* Background.png */; };
+		4C75CE311CAC78A900DA81A8 /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE2A1CAC78A900DA81A8 /* Background@2x.png */; };
+		4C75CE321CAC78A900DA81A8 /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE2A1CAC78A900DA81A8 /* Background@2x.png */; };
+		4C75CE331CAC78A900DA81A8 /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE2A1CAC78A900DA81A8 /* Background@2x.png */; };
+		4C75CE341CAC78A900DA81A8 /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE2A1CAC78A900DA81A8 /* Background@2x.png */; };
+		4C75CE351CAC78A900DA81A8 /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE2A1CAC78A900DA81A8 /* Background@2x.png */; };
+		4C75CE361CAC78A900DA81A8 /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE2A1CAC78A900DA81A8 /* Background@2x.png */; };
+		4C75CE391CAC813B00DA81A8 /* Slider.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE371CAC813B00DA81A8 /* Slider.png */; };
+		4C75CE3A1CAC813B00DA81A8 /* Slider.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE371CAC813B00DA81A8 /* Slider.png */; };
+		4C75CE3B1CAC813B00DA81A8 /* Slider.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE371CAC813B00DA81A8 /* Slider.png */; };
+		4C75CE3C1CAC813B00DA81A8 /* Slider.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE371CAC813B00DA81A8 /* Slider.png */; };
+		4C75CE3D1CAC813B00DA81A8 /* Slider.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE371CAC813B00DA81A8 /* Slider.png */; };
+		4C75CE3E1CAC813B00DA81A8 /* Slider.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE371CAC813B00DA81A8 /* Slider.png */; };
+		4C75CE3F1CAC813B00DA81A8 /* Slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE381CAC813B00DA81A8 /* Slider@2x.png */; };
+		4C75CE401CAC813B00DA81A8 /* Slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE381CAC813B00DA81A8 /* Slider@2x.png */; };
+		4C75CE411CAC813B00DA81A8 /* Slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE381CAC813B00DA81A8 /* Slider@2x.png */; };
+		4C75CE421CAC813B00DA81A8 /* Slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE381CAC813B00DA81A8 /* Slider@2x.png */; };
+		4C75CE431CAC813B00DA81A8 /* Slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE381CAC813B00DA81A8 /* Slider@2x.png */; };
+		4C75CE441CAC813B00DA81A8 /* Slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE381CAC813B00DA81A8 /* Slider@2x.png */; };
+		4C75CE551CAC854400DA81A8 /* SliderHandles.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE531CAC854400DA81A8 /* SliderHandles.png */; };
+		4C75CE561CAC854400DA81A8 /* SliderHandles.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE531CAC854400DA81A8 /* SliderHandles.png */; };
+		4C75CE571CAC854400DA81A8 /* SliderHandles.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE531CAC854400DA81A8 /* SliderHandles.png */; };
+		4C75CE581CAC854400DA81A8 /* SliderHandles.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE531CAC854400DA81A8 /* SliderHandles.png */; };
+		4C75CE591CAC854400DA81A8 /* SliderHandles.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE531CAC854400DA81A8 /* SliderHandles.png */; };
+		4C75CE5A1CAC854400DA81A8 /* SliderHandles.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE531CAC854400DA81A8 /* SliderHandles.png */; };
+		4C75CE5B1CAC854400DA81A8 /* SliderHandles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE541CAC854400DA81A8 /* SliderHandles@2x.png */; };
+		4C75CE5C1CAC854400DA81A8 /* SliderHandles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE541CAC854400DA81A8 /* SliderHandles@2x.png */; };
+		4C75CE5D1CAC854400DA81A8 /* SliderHandles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE541CAC854400DA81A8 /* SliderHandles@2x.png */; };
+		4C75CE5E1CAC854400DA81A8 /* SliderHandles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE541CAC854400DA81A8 /* SliderHandles@2x.png */; };
+		4C75CE5F1CAC854400DA81A8 /* SliderHandles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE541CAC854400DA81A8 /* SliderHandles@2x.png */; };
+		4C75CE601CAC854400DA81A8 /* SliderHandles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE541CAC854400DA81A8 /* SliderHandles@2x.png */; };
 		4C7708721CAA1A950085AFBA /* ICairoControls.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7708711CAA1A950085AFBA /* ICairoControls.h */; };
 		4C7708731CAA1A950085AFBA /* ICairoControls.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7708711CAA1A950085AFBA /* ICairoControls.h */; };
-		4CC21A5F1CA26DCF00297E95 /* IDClip.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CC21A5E1CA26DCF00297E95 /* IDClip.h */; };
-		4CC21A601CA26DCF00297E95 /* IDClip.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CC21A5E1CA26DCF00297E95 /* IDClip.h */; };
-		4CC21A641CA26DDA00297E95 /* FFTRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CC21A631CA26DDA00297E95 /* FFTRect.h */; };
-		4CC21A651CA26DDA00297E95 /* FFTRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CC21A631CA26DDA00297E95 /* FFTRect.h */; };
-		4CE0F6F91CA99182000FF82F /* OpenGLIncludes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CE0F6F81CA99182000FF82F /* OpenGLIncludes.h */; };
-		4CE0F6FA1CA99182000FF82F /* OpenGLIncludes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CE0F6F81CA99182000FF82F /* OpenGLIncludes.h */; };
 		4CE67F271CA9F5C100419118 /* libcairo.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE67F261CA9F5C100419118 /* libcairo.dylib */; };
 		4F1F1BEA135B1F60003A5BB2 /* wdlendian.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F1F1BE9135B1F60003A5BB2 /* wdlendian.h */; };
 		4F20EECB132C69FE0030E34C /* DClip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52FBBED00D0CF139001C8B8A /* DClip.cpp */; };
 		4F20EF2D132C69FE0030E34C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 		4F20EF2E132C69FE0030E34C /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C4DB180D0E51270007A920 /* Carbon.framework */; };
-		4F23B9F313B647A00097A67E /* knob.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F23B9E413B647A00097A67E /* knob.png */; };
-		4F23B9FD13B647A00097A67E /* knob.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F23B9E413B647A00097A67E /* knob.png */; };
-		4F23BA0C13B647A00097A67E /* knob.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F23B9E413B647A00097A67E /* knob.png */; };
 		4F296BDA1678E6C800C0F5C2 /* dfx-au-utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 4FA88B901444E4C4006CB8DA /* dfx-au-utilities.c */; };
 		4F3AE17B12C0E5E2001FD7A4 /* resource.h in Headers */ = {isa = PBXBuildFile; fileRef = 52FBBED30D0CF143001C8B8A /* resource.h */; };
 		4F3AE17C12C0E5E2001FD7A4 /* DClip.h in Headers */ = {isa = PBXBuildFile; fileRef = 52FBBED20D0CF13D001C8B8A /* DClip.h */; };
@@ -257,7 +282,6 @@
 		4F78DABA13B640530032E0F3 /* RtMidi.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F78D8C313B63A700032E0F3 /* RtMidi.h */; };
 		4F78DABB13B640620032E0F3 /* IPlugStandalone.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F78D9EA13B63BE90032E0F3 /* IPlugStandalone.h */; };
 		4F79A34E146304CD00744AED /* IPlugProcessAS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F79A34C146304CD00744AED /* IPlugProcessAS.cpp */; };
-		4F7F5C4613E95EC8002918FD /* knob.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F23B9E413B647A00097A67E /* knob.png */; };
 		4F7F5C4913E95EC8002918FD /* DClip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52FBBED00D0CF139001C8B8A /* DClip.cpp */; };
 		4F7F5C5013E95EC8002918FD /* swell-gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FD16D0B13B634BF001D0217 /* swell-gdi.mm */; };
 		4F7F5C5113E95EC8002918FD /* IPlugBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F78D8ED13B63BA40032E0F3 /* IPlugBase.cpp */; };
@@ -288,7 +312,6 @@
 		4F8D4C2813E9778D004F7633 /* lice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F8D4BCC13E97664004F7633 /* lice.a */; };
 		4F8D4C2913E97794004F7633 /* lice32.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F8D4C1713E976A7004F7633 /* lice32.a */; };
 		4F8D4C2F13E97806004F7633 /* lice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F8D4BCC13E97664004F7633 /* lice.a */; };
-		4F9828B1140A9EB700F3FCC1 /* knob.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F23B9E413B647A00097A67E /* knob.png */; };
 		4F9828B6140A9EB700F3FCC1 /* DClip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52FBBED00D0CF139001C8B8A /* DClip.cpp */; };
 		4F9828B7140A9EB700F3FCC1 /* swell-gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FD16D0B13B634BF001D0217 /* swell-gdi.mm */; };
 		4F9828B8140A9EB700F3FCC1 /* IPlugBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F78D8ED13B63BA40032E0F3 /* IPlugBase.cpp */; };
@@ -327,7 +350,6 @@
 		4F9828F6140A9EEE00F3FCC1 /* lice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F8D4BCC13E97664004F7633 /* lice.a */; };
 		4FA88B931444E4C4006CB8DA /* dfx-au-utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FA88B911444E4C4006CB8DA /* dfx-au-utilities.h */; };
 		4FB3624F13B648FE00DB6B76 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FB3624E13B648FE00DB6B76 /* main.mm */; };
-		4FB600161567CB0A0020189A /* knob.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F23B9E413B647A00097A67E /* knob.png */; };
 		4FB600181567CB0A0020189A /* DClip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52FBBED00D0CF139001C8B8A /* DClip.cpp */; };
 		4FB600191567CB0A0020189A /* swell-gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FD16D0B13B634BF001D0217 /* swell-gdi.mm */; };
 		4FB6001A1567CB0A0020189A /* IPlugBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F78D8ED13B63BA40032E0F3 /* IPlugBase.cpp */; };
@@ -569,19 +591,20 @@
 		4C1A86111CA98A6300D94C89 /* cairo-fdr.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; name = "cairo-fdr.so"; path = "../../../../../../opt/local/lib/cairo/cairo-fdr.so"; sourceTree = "<group>"; };
 		4C1A86121CA98A6300D94C89 /* cairo-sphinx.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; name = "cairo-sphinx.so"; path = "../../../../../../opt/local/lib/cairo/cairo-sphinx.so"; sourceTree = "<group>"; };
 		4C1A86131CA98A6300D94C89 /* libcairo-trace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libcairo-trace.dylib"; path = "../../../../../../opt/local/lib/cairo/libcairo-trace.dylib"; sourceTree = "<group>"; };
-		4C1A864A1CA98B3F00D94C89 /* MyCairoControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCairoControl.h; sourceTree = "<group>"; };
 		4C1A864D1CA98DB500D94C89 /* libcairo.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcairo.dylib; path = "Library/Frameworks/cairo-1.14.6_0+quartz+x11.darwin_15.x86_64/opt/local/lib/libcairo.dylib"; sourceTree = SDKROOT; };
 		4C2380451CAC519E00324CA4 /* CairoBlur.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CairoBlur.c; sourceTree = "<group>"; };
+		4C75CE291CAC78A900DA81A8 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Background.png; path = resources/img/Background.png; sourceTree = "<group>"; };
+		4C75CE2A1CAC78A900DA81A8 /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Background@2x.png"; path = "resources/img/Background@2x.png"; sourceTree = "<group>"; };
+		4C75CE371CAC813B00DA81A8 /* Slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Slider.png; path = resources/img/Slider.png; sourceTree = "<group>"; };
+		4C75CE381CAC813B00DA81A8 /* Slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Slider@2x.png"; path = "resources/img/Slider@2x.png"; sourceTree = "<group>"; };
+		4C75CE531CAC854400DA81A8 /* SliderHandles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SliderHandles.png; path = resources/img/SliderHandles.png; sourceTree = "<group>"; };
+		4C75CE541CAC854400DA81A8 /* SliderHandles@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SliderHandles@2x.png"; path = "resources/img/SliderHandles@2x.png"; sourceTree = "<group>"; };
 		4C7708711CAA1A950085AFBA /* ICairoControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICairoControls.h; sourceTree = "<group>"; };
-		4CC21A5E1CA26DCF00297E95 /* IDClip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDClip.h; sourceTree = "<group>"; };
-		4CC21A631CA26DDA00297E95 /* FFTRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFTRect.h; sourceTree = "<group>"; };
-		4CE0F6F81CA99182000FF82F /* OpenGLIncludes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenGLIncludes.h; path = ../../NanoVGDemo/Source/Common/CPlusPlus/NanoVGDemo/OpenGLIncludes.h; sourceTree = "<group>"; };
 		4CE67F261CA9F5C100419118 /* libcairo.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcairo.dylib; path = usr/local/lib/libcairo.dylib; sourceTree = SDKROOT; };
 		4F017360154D4BFC0034BE1A /* AAX_CIPlugParameters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AAX_CIPlugParameters.cpp; path = ../../WDL/IPlug/AAX/AAX_CIPlugParameters.cpp; sourceTree = SOURCE_ROOT; };
 		4F017361154D4BFC0034BE1A /* AAX_CIPlugParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAX_CIPlugParameters.h; path = ../../WDL/IPlug/AAX/AAX_CIPlugParameters.h; sourceTree = SOURCE_ROOT; };
 		4F1F1BE9135B1F60003A5BB2 /* wdlendian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wdlendian.h; path = ../../WDL/wdlendian.h; sourceTree = SOURCE_ROOT; };
 		4F20EF33132C69FE0030E34C /* DClip.vst */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DClip.vst; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F23B9E413B647A00097A67E /* knob.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = knob.png; path = resources/img/knob.png; sourceTree = "<group>"; };
 		4F23BA1313B647E50097A67E /* DClip-AU-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "DClip-AU-Info.plist"; path = "resources/DClip-AU-Info.plist"; sourceTree = "<group>"; };
 		4F23BA1413B647E50097A67E /* DClip-OSXAPP-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "DClip-OSXAPP-Info.plist"; path = "resources/DClip-OSXAPP-Info.plist"; sourceTree = "<group>"; };
 		4F23BA1513B647E50097A67E /* DClip-VST2-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "DClip-VST2-Info.plist"; path = "resources/DClip-VST2-Info.plist"; sourceTree = "<group>"; };
@@ -903,12 +926,8 @@
 				52FBBED30D0CF143001C8B8A /* resource.h */,
 				52FBBED20D0CF13D001C8B8A /* DClip.h */,
 				52FBBED00D0CF139001C8B8A /* DClip.cpp */,
-				4CC21A5E1CA26DCF00297E95 /* IDClip.h */,
 				4C7708711CAA1A950085AFBA /* ICairoControls.h */,
-				4C1A864A1CA98B3F00D94C89 /* MyCairoControl.h */,
 				4C2380451CAC519E00324CA4 /* CairoBlur.c */,
-				4CC21A631CA26DDA00297E95 /* FFTRect.h */,
-				4CE0F6F81CA99182000FF82F /* OpenGLIncludes.h */,
 				089C167CFE841241C02AAC07 /* Resources */,
 				32C88E010371C26100C91783 /* Other Sources */,
 				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
@@ -1480,7 +1499,12 @@
 		4FD16A0213B6303B001D0217 /* img */ = {
 			isa = PBXGroup;
 			children = (
-				4F23B9E413B647A00097A67E /* knob.png */,
+				4C75CE291CAC78A900DA81A8 /* Background.png */,
+				4C75CE2A1CAC78A900DA81A8 /* Background@2x.png */,
+				4C75CE371CAC813B00DA81A8 /* Slider.png */,
+				4C75CE381CAC813B00DA81A8 /* Slider@2x.png */,
+				4C75CE531CAC854400DA81A8 /* SliderHandles.png */,
+				4C75CE541CAC854400DA81A8 /* SliderHandles@2x.png */,
 			);
 			name = img;
 			sourceTree = "<group>";
@@ -1562,7 +1586,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CE0F6FA1CA99182000FF82F /* OpenGLIncludes.h in Headers */,
 				4C1A85E91CA98A3600D94C89 /* cairo-features.h in Headers */,
 				4F3AE17B12C0E5E2001FD7A4 /* resource.h in Headers */,
 				4C1A85F11CA98A3600D94C89 /* cairo-ps.h in Headers */,
@@ -1596,7 +1619,6 @@
 				4F78D94013B63BA50032E0F3 /* IPlug_include_in_plug_src.h in Headers */,
 				4F78D94113B63BA50032E0F3 /* IControl.h in Headers */,
 				4F78D94213B63BA50032E0F3 /* IKeyboardControl.h in Headers */,
-				4CC21A651CA26DDA00297E95 /* FFTRect.h in Headers */,
 				4F78D94413B63BA50032E0F3 /* IPlugBase.h in Headers */,
 				4C1A85FF1CA98A3600D94C89 /* cairo-version.h in Headers */,
 				4F78D94613B63BA50032E0F3 /* IGraphicsMac.h in Headers */,
@@ -1618,8 +1640,6 @@
 				4F3EE94913B65A350097B791 /* IPlugOSDetect.h in Headers */,
 				4FDA440913F3E4F2000B4551 /* IBitmapMonoText.h in Headers */,
 				4C1A86011CA98A3600D94C89 /* cairo-xcb.h in Headers */,
-				4C1A864C1CA98B3F00D94C89 /* MyCairoControl.h in Headers */,
-				4CC21A601CA26DCF00297E95 /* IDClip.h in Headers */,
 				4FA88B931444E4C4006CB8DA /* dfx-au-utilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1641,7 +1661,6 @@
 				4C1A86041CA98A3600D94C89 /* cairo-xlib.h in Headers */,
 				4C1A85F61CA98A3600D94C89 /* cairo-script-interpreter.h in Headers */,
 				4F78DA7713B640050032E0F3 /* resource.h in Headers */,
-				4CC21A641CA26DDA00297E95 /* FFTRect.h in Headers */,
 				4C1A85E81CA98A3600D94C89 /* cairo-features.h in Headers */,
 				4F78DA7813B640050032E0F3 /* DClip.h in Headers */,
 				4F78DA8A13B640050032E0F3 /* mutex.h in Headers */,
@@ -1653,11 +1672,9 @@
 				4F78DA8F13B640050032E0F3 /* swell.h in Headers */,
 				4F78DA9013B640050032E0F3 /* swell-functions.h in Headers */,
 				4F78DA9113B640050032E0F3 /* swell-internal.h in Headers */,
-				4CE0F6F91CA99182000FF82F /* OpenGLIncludes.h in Headers */,
 				4C1A85F01CA98A3600D94C89 /* cairo-ps.h in Headers */,
 				4C1A86001CA98A3600D94C89 /* cairo-xcb.h in Headers */,
 				4F78DA9213B640050032E0F3 /* swell-types.h in Headers */,
-				4CC21A5F1CA26DCF00297E95 /* IDClip.h in Headers */,
 				4C1A86021CA98A3600D94C89 /* cairo-xlib-xrender.h in Headers */,
 				4F78DA9313B640050032E0F3 /* aeffect.h in Headers */,
 				4F78DA9413B640050032E0F3 /* aeffectx.h in Headers */,
@@ -1690,7 +1707,6 @@
 				4C7708721CAA1A950085AFBA /* ICairoControls.h in Headers */,
 				4C1A85FC1CA98A3600D94C89 /* cairo-tee.h in Headers */,
 				4FDA440F13F3E4F2000B4551 /* IBitmapMonoText.h in Headers */,
-				4C1A864B1CA98B3F00D94C89 /* MyCairoControl.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1926,11 +1942,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C75CE321CAC78A900DA81A8 /* Background@2x.png in Resources */,
+				4C75CE561CAC854400DA81A8 /* SliderHandles.png in Resources */,
 				4C1A86391CA98A6400D94C89 /* cairo-fdr.so in Resources */,
+				4C75CE5C1CAC854400DA81A8 /* SliderHandles@2x.png in Resources */,
 				4C1A86211CA98A6400D94C89 /* cairo-sphinx.0.so in Resources */,
-				4F23B9F313B647A00097A67E /* knob.png in Resources */,
+				4C75CE2C1CAC78A900DA81A8 /* Background.png in Resources */,
 				4C1A86151CA98A6300D94C89 /* cairo-fdr.0.so in Resources */,
+				4C75CE401CAC813B00DA81A8 /* Slider@2x.png in Resources */,
 				4C1A863F1CA98A6400D94C89 /* cairo-sphinx.so in Resources */,
+				4C75CE3A1CAC813B00DA81A8 /* Slider.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1938,11 +1959,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C75CE341CAC78A900DA81A8 /* Background@2x.png in Resources */,
+				4C75CE581CAC854400DA81A8 /* SliderHandles.png in Resources */,
 				4C1A863B1CA98A6400D94C89 /* cairo-fdr.so in Resources */,
+				4C75CE5E1CAC854400DA81A8 /* SliderHandles@2x.png in Resources */,
 				4C1A86231CA98A6400D94C89 /* cairo-sphinx.0.so in Resources */,
-				4F23BA0C13B647A00097A67E /* knob.png in Resources */,
+				4C75CE2E1CAC78A900DA81A8 /* Background.png in Resources */,
 				4C1A86171CA98A6300D94C89 /* cairo-fdr.0.so in Resources */,
+				4C75CE421CAC813B00DA81A8 /* Slider@2x.png in Resources */,
 				4C1A86411CA98A6400D94C89 /* cairo-sphinx.so in Resources */,
+				4C75CE3C1CAC813B00DA81A8 /* Slider.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1950,11 +1976,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C75CE351CAC78A900DA81A8 /* Background@2x.png in Resources */,
+				4C75CE591CAC854400DA81A8 /* SliderHandles.png in Resources */,
 				4C1A863C1CA98A6400D94C89 /* cairo-fdr.so in Resources */,
+				4C75CE5F1CAC854400DA81A8 /* SliderHandles@2x.png in Resources */,
 				4C1A86241CA98A6400D94C89 /* cairo-sphinx.0.so in Resources */,
-				4F7F5C4613E95EC8002918FD /* knob.png in Resources */,
+				4C75CE2F1CAC78A900DA81A8 /* Background.png in Resources */,
 				4C1A86181CA98A6300D94C89 /* cairo-fdr.0.so in Resources */,
+				4C75CE431CAC813B00DA81A8 /* Slider@2x.png in Resources */,
 				4C1A86421CA98A6400D94C89 /* cairo-sphinx.so in Resources */,
+				4C75CE3D1CAC813B00DA81A8 /* Slider.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1962,11 +1993,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C75CE331CAC78A900DA81A8 /* Background@2x.png in Resources */,
+				4C75CE571CAC854400DA81A8 /* SliderHandles.png in Resources */,
 				4C1A863A1CA98A6400D94C89 /* cairo-fdr.so in Resources */,
+				4C75CE5D1CAC854400DA81A8 /* SliderHandles@2x.png in Resources */,
 				4C1A86221CA98A6400D94C89 /* cairo-sphinx.0.so in Resources */,
-				4F9828B1140A9EB700F3FCC1 /* knob.png in Resources */,
+				4C75CE2D1CAC78A900DA81A8 /* Background.png in Resources */,
 				4C1A86161CA98A6300D94C89 /* cairo-fdr.0.so in Resources */,
+				4C75CE411CAC813B00DA81A8 /* Slider@2x.png in Resources */,
 				4C1A86401CA98A6400D94C89 /* cairo-sphinx.so in Resources */,
+				4C75CE3B1CAC813B00DA81A8 /* Slider.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1974,11 +2010,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C75CE361CAC78A900DA81A8 /* Background@2x.png in Resources */,
+				4C75CE5A1CAC854400DA81A8 /* SliderHandles.png in Resources */,
 				4C1A863D1CA98A6400D94C89 /* cairo-fdr.so in Resources */,
+				4C75CE601CAC854400DA81A8 /* SliderHandles@2x.png in Resources */,
 				4C1A86251CA98A6400D94C89 /* cairo-sphinx.0.so in Resources */,
-				4FB600161567CB0A0020189A /* knob.png in Resources */,
+				4C75CE301CAC78A900DA81A8 /* Background.png in Resources */,
 				4C1A86191CA98A6300D94C89 /* cairo-fdr.0.so in Resources */,
+				4C75CE441CAC813B00DA81A8 /* Slider@2x.png in Resources */,
 				4C1A86431CA98A6400D94C89 /* cairo-sphinx.so in Resources */,
+				4C75CE3E1CAC813B00DA81A8 /* Slider.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1987,12 +2028,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F78D88613B6382B0032E0F3 /* DClip.icns in Resources */,
+				4C75CE2B1CAC78A900DA81A8 /* Background.png in Resources */,
+				4C75CE5B1CAC854400DA81A8 /* SliderHandles@2x.png in Resources */,
 				4C1A86141CA98A6300D94C89 /* cairo-fdr.0.so in Resources */,
+				4C75CE3F1CAC813B00DA81A8 /* Slider@2x.png in Resources */,
+				4C75CE311CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4F78D89913B639100032E0F3 /* InfoPlist.strings in Resources */,
 				4C1A86381CA98A6400D94C89 /* cairo-fdr.so in Resources */,
 				4F78D89A13B639100032E0F3 /* MainMenu.xib in Resources */,
-				4F23B9FD13B647A00097A67E /* knob.png in Resources */,
 				4C1A863E1CA98A6400D94C89 /* cairo-sphinx.so in Resources */,
+				4C75CE391CAC813B00DA81A8 /* Slider.png in Resources */,
+				4C75CE551CAC854400DA81A8 /* SliderHandles.png in Resources */,
 				4C1A86201CA98A6400D94C89 /* cairo-sphinx.0.so in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

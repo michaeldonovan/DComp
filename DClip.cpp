@@ -8,8 +8,12 @@ const int kNumPrograms = 1;
 enum EParams
 {
   kGain = 0,
-  kKnob,
-  kMeter,
+  kCeiling,
+  kMode,
+  kQuality,
+  kPlotRes,
+  kPlotRange,
+  kPlot,
   kNumParams
 };
 
@@ -18,10 +22,24 @@ enum ELayout
   kWidth = GUI_WIDTH,
   kHeight = GUI_HEIGHT,
 
-  kGainX = 100,
-  kGainY = 100,
-  kKnobFrames = 60
+  kGainX = 75,
+  kGainHandlesX = 47,
+  kCeilingX = 537,
+  kMeterX = 564,
+  kGainY = 85,
+  kFaderLength = 280,
+  
+  kSliderFrames = 63
 };
+
+enum EParamRanges
+{
+  kGainMin = 0,
+  kGainMax = 32,
+  kCeilingMin = -32,
+  kCeilingMax = 0
+};
+
 
 DClip::DClip(IPlugInstanceInfo instanceInfo)
   :	IPLUG_CTOR(kNumParams, kNumPrograms, instanceInfo), mGain(1.), env(1., 250., GetSampleRate())
@@ -29,32 +47,46 @@ DClip::DClip(IPlugInstanceInfo instanceInfo)
   TRACE;
 
   //arguments are: name, defaultVal, minVal, maxVal, step, label
-  GetParam(kGain)->InitDouble("Gain", 50., 0., 100.0, 0.01, "%");
-  GetParam(kGain)->SetShape(2.);
+  GetParam(kGain)->InitDouble("Gain", 0., kGainMin, kGainMax, 0.01, "dB");
+  GetParam(kCeiling)->InitDouble("Ceiling", 0., kCeilingMin, kCeilingMax, 0.01, "dB");
 
   IGraphics* pGraphics = MakeGraphics(this, kWidth, kHeight);
-
   
-  IColor bg(255, 0xCE, 0xCE, 0xCE);
-  IColor line(255, 0x97, 0x97, 0x97);
-  IColor fill(255, 0xBB, 0xBB, 0xBB);
+  IBitmap slider = pGraphics->LoadIBitmap(SLIDER_ID, SLIDER_FN, kSliderFrames);
+  IBitmap sliderHandles = pGraphics->LoadIBitmap(SLIDERHANDLES_ID, SLIDERHANDLES_FN);
 
-  pGraphics->AttachPanelBackground(&bg);
-  plot = new ILevelPlotControl(this, IRECT(0,0,kWidth,kHeight), kMeter, &fill, &line, 5);
+  pGraphics->AttachBackground(BACKGROUND_ID, BACKGROUND_FN);
+  
+  IRECT plotRECT = IRECT(152, 85, 527, 337);
+  
+  plot = new ILevelPlotControl(this, plotRECT, kPlot, &plotPreFillColor, &plotLineColor, 5);
+  plot->setLineWeight(3.);
+  plot->setResolution(ILevelPlotControl::kHighRes);
+  plot->setYRange(ILevelPlotControl::k32dB);
   pGraphics->AttachControl(plot);
+  
+  mGainSlider = new IBitmapControl(this, kGainX, kGainY, &slider);
+  mGainSliderHandles = new IFaderControl(this, kGainHandlesX, kGainY - 10, kFaderLength, kGain, &sliderHandles);
+  mCeilingSliderHandles = new IFaderControl(this, kCeilingX, kGainY - 10, kFaderLength, kCeiling, &sliderHandles);
+  mOutputMeter = new IBitmapControl(this, kMeterX, kGainY, &slider);
+
+  //IText caption = IText()
+  
+  mGainCaption = new ICaptionControl
+  
+  pGraphics->AttachControl(mGainSlider);
+  pGraphics->AttachControl(mGainSliderHandles);
+  pGraphics->AttachControl(mOutputMeter);
+  pGraphics->AttachControl(mCeilingSliderHandles);
 
   
-  IBitmap knob = pGraphics->LoadIBitmap(KNOB_ID, KNOB_FN, kKnobFrames);
   
-//  pGraphics->AttachControl(new MyCairoControl(this, IRECT(0, 0, 200, 200)));
-
-  mKnob = new IKnobMultiControl(this, 50, 50, kKnob, &knob);
-  pGraphics->AttachControl(mKnob);
-  pGraphics->AttachControl(new IKnobMultiControl(this, 150,150, kGain, &knob));
+  
+  //mKnob = new IKnobMultiControl(this, 50, 50, kKnob, &knob);
+ // pGraphics->AttachControl(mKnob);
+ // pGraphics->AttachControl(new IKnobMultiControl(this, 150,150, kGain, &knob));
   AttachGraphics(pGraphics);
-  
-  plot->setResolution(ILevelPlotControl::kMidRes);
-  
+    
   //MakePreset("preset 1", ... );
   MakeDefaultPreset((char *) "-", kNumPrograms);
 }
@@ -72,13 +104,17 @@ void DClip::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
 
   for (int s = 0; s < nFrames; ++s, ++in1, ++in2, ++out1, ++out2)
   {
-    *out1 = *in1 * mGain;
-    *out2 = *in2 * mGain;
+    
+    *out1 = *in1 * DBToAmp(mGain);
+    *out2 = *in2 * DBToAmp(mGain);
     
     double sample = .6 * (*out1 + *out2);
     double val = env.process(sample);
-    mKnob->SetValueFromPlug(val);
-    plot->process(val * 10);
+    plot->process(AmpToDB(val));
+    val = AmpToDB(val);
+    val = scaleValue(val, kCeilingMin, 2, 0, 1);
+    mOutputMeter->SetValueFromPlug( (val));
+    mOutputMeter->SetDirty();
   }
   
   plot->SetDirty(true);
@@ -97,10 +133,16 @@ void DClip::OnParamChange(int paramIdx)
   switch (paramIdx)
   {
     case kGain:
-      mGain = GetParam(kGain)->Value() / 100.;
+      mGain = GetParam(kGain)->Value();
+      mGainSlider->SetValueFromPlug(scaleValue(mGain, kGainMin, kGainMax, 0, 1));
+      mGainSlider->SetDirty();
       break;
 
     default:
       break;
   }
+}
+
+double DClip::scaleValue(double inValue, double inMin, double inMax, double outMin, double outMax){
+  return ((outMax - outMin) * (inValue - inMin)) / (inMax - inMin) + outMin;
 }

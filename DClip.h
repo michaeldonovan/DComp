@@ -2,8 +2,6 @@
 #define __DCLIP__
 
 #include "IPlug_include_in_plug_hdr.h"
-//#include "IDClip.h"
-#include "MyCairoControl.h"
 #include "EnvelopeFollower.h"
 #include "ICairoControls.h"
 
@@ -18,11 +16,25 @@ public:
   void ProcessDoubleReplacing(double** inputs, double** outputs, int nFrames);
 
 private:
+  double scaleValue(double inValue, double inMin, double inMax, double outMin, double outMax);
+  
+  IColor plotBackgroundColor = IColor(206,206,206);
+  IColor plotLineColor =  IColor(255, 151, 151, 151);
+  IColor plotPreFillColor =  IColor(255, 198, 198, 198);
+  IColor plotPostFillColor =  IColor(255, 187, 187, 187);
+  IColor yellow = IColor(255, 255, 233, 30);
+  
   double mGain;
   struct NVGcontext* vg;
   envFollower env;
   ILevelPlotControl* plot;
-  IKnobMultiControl* mKnob;
+  
+  IBitmapControl* mGainSlider;
+  IFaderControl* mGainSliderHandles;
+  IBitmapControl* mOutputMeter;
+  IFaderControl* mCeilingSliderHandles;
+  ICaptionControl* mGainCaption;
+  ICaptionControl* mCeilingCaption;
 };
 
 #endif

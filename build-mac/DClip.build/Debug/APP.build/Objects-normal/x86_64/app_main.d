@@ -35,12 +35,11 @@ dependencies: \
   /Users/michael/PluginDev/wdl-ol-michaeldonovan\ --\ CAIRO\ TEST/DevCairo/DClip/../../WDL/IPlug/IGraphics.h \
   /Users/michael/PluginDev/wdl-ol-michaeldonovan\ --\ CAIRO\ TEST/DevCairo/DClip/../../WDL/IPlug/IPopupMenu.h \
   /Users/michael/PluginDev/wdl-ol-michaeldonovan\ --\ CAIRO\ TEST/DevCairo/DClip/../../WDL/IPlug/IControl.h \
-  /Users/michael/PluginDev/wdl-ol-michaeldonovan\ --\ CAIRO\ TEST/DevCairo/DClip/app_wrapper/../MyCairoControl.h \
+  /Users/michael/PluginDev/wdl-ol-michaeldonovan\ --\ CAIRO\ TEST/DevCairo/DClip/app_wrapper/../EnvelopeFollower.h \
+  /Users/michael/PluginDev/wdl-ol-michaeldonovan\ --\ CAIRO\ TEST/DevCairo/DClip/app_wrapper/../ICairoControls.h \
   /Users/michael/PluginDev/wdl-ol-michaeldonovan\ --\ CAIRO\ TEST/DevCairo/DClip/../../../../../../opt/local/include/cairo/cairo.h \
   /Users/michael/PluginDev/wdl-ol-michaeldonovan\ --\ CAIRO\ TEST/DevCairo/DClip/../../../../../../opt/local/include/cairo/cairo-version.h \
   /Users/michael/PluginDev/wdl-ol-michaeldonovan\ --\ CAIRO\ TEST/DevCairo/DClip/../../../../../../opt/local/include/cairo/cairo-features.h \
   /Users/michael/PluginDev/wdl-ol-michaeldonovan\ --\ CAIRO\ TEST/DevCairo/DClip/../../../../../../opt/local/include/cairo/cairo-deprecated.h \
-  /Users/michael/PluginDev/wdl-ol-michaeldonovan\ --\ CAIRO\ TEST/DevCairo/DClip/app_wrapper/../EnvelopeFollower.h \
-  /Users/michael/PluginDev/wdl-ol-michaeldonovan\ --\ CAIRO\ TEST/DevCairo/DClip/app_wrapper/../ICairoControls.h \
   /Users/michael/PluginDev/wdl-ol-michaeldonovan\ --\ CAIRO\ TEST/DevCairo/DClip/../../WDL/swell/swell-dlggen.h \
   /Users/michael/PluginDev/wdl-ol-michaeldonovan\ --\ CAIRO\ TEST/DevCairo/DClip/../../WDL/swell/swell-menugen.h

@@ -212,7 +212,13 @@ public:
         kMaxRes
     };
     
-    ILevelPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, double timeScale=5., bool fillEnable=true) : ICairoPlotControl(pPlug, pR, paramIdx, fillColor, lineColor, fillEnable), mTimeScale(timeScale), mBufferLength(0.)
+    enum kYRange{
+        k16dB,
+        k32dB,
+        k48dB
+    };
+    
+    ILevelPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, double timeScale=5., bool fillEnable=true) : ICairoPlotControl(pPlug, pR, paramIdx, fillColor, lineColor, fillEnable), mTimeScale(timeScale), mBufferLength(0.), mYRange(-32)
     {
         mXRes = mWidth/2.;
         mDrawVals = new valarray<double>(mHeight, mXRes);
@@ -244,11 +250,30 @@ public:
                 mXRes = mWidth / 2.;
                 break;
         }
-        mBuffer->resize(mTimeScale * mPlug->GetSampleRate() / (double)mXRes, 0.);
+        mBuffer->resize(mTimeScale * mPlug->GetSampleRate() / (double)mXRes, -48.);
         mBufferLength = 0;
-        mDrawVals->resize(mXRes, 1.);
+        mDrawVals->resize(mXRes, mHeight);
         mSpacing = mWidth / mXRes;
         
+    }
+    
+    void setYRange(int yRangeDB){
+        switch (yRangeDB) {
+            case k16dB:
+                mYRange = -16;
+                break;
+              
+            case k32dB:
+                mYRange = -32;
+                break;
+            
+            case k48dB:
+                mYRange = -48;
+                break;
+                
+            default:
+                break;
+        }
     }
     
     void process(double sample){
@@ -256,8 +281,13 @@ public:
         mBufferLength++;
         
         if(mBufferLength >= mBuffer->size()){
+            double average;
+            
             *mDrawVals = mDrawVals->shift(1);
-            mDrawVals->operator[](mDrawVals->size() - 1) = percentToCoordinates(mBuffer->sum() / (double)mBuffer->size());
+            
+            average = mBuffer->sum() / (double)mBuffer->size();
+            average = scaleValue(average, mYRange, 2, 0, 1);
+            mDrawVals->operator[](mDrawVals->size() - 1) = percentToCoordinates(average);
             
             mBufferLength = 0;
             
@@ -327,7 +357,7 @@ public:
     
 private:
     double mTimeScale;
-    int mBufferLength, mXRes, mSpacing;
+    int mBufferLength, mXRes, mSpacing, mYRange;
     valarray<double> *mBuffer, *mDrawVals;
     
     double percentToCoordinates(double value) {
