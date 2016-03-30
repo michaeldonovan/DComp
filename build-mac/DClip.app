@@ -1,0 +1,1 @@
+/Applications/DClip.app

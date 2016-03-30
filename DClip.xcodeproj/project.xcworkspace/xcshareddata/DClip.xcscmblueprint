@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "E0C9025F2F347FFCCF2FF6EAAA9DDC7486FBE41F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "11B94510860470908E89574702597330C32284A3" : 0,
+    "E0C9025F2F347FFCCF2FF6EAAA9DDC7486FBE41F" : 0,
+    "14BF17120C8BE6F077A1F6A17CD2BE95FFBFB128" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "26D93D7F-B508-42AC-A2DF-7F35006BC887",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "11B94510860470908E89574702597330C32284A3" : "..",
+    "E0C9025F2F347FFCCF2FF6EAAA9DDC7486FBE41F" : "DClip\/",
+    "14BF17120C8BE6F077A1F6A17CD2BE95FFBFB128" : "..\/NanoVGDemo"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "DClip",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "DClip.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/michaeldonovan\/wdl-ol.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "11B94510860470908E89574702597330C32284A3"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/gkellum\/NanoVGDemo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "14BF17120C8BE6F077A1F6A17CD2BE95FFBFB128"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/michael_donovan\/levelplot.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E0C9025F2F347FFCCF2FF6EAAA9DDC7486FBE41F"
+    }
+  ]
+}
