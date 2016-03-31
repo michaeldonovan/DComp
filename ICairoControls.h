@@ -219,12 +219,11 @@ public:
         k48dB
     };
     
-    ILevelPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, double timeScale=5., bool fillEnable=true) : ICairoPlotControl(pPlug, pR, paramIdx, fillColor, lineColor, fillEnable), mTimeScale(timeScale), mBufferLength(0.), mYRange(-32), mStroke(true), mHeadroom(2), mGridLines(false), mDuration(0.), mFrameTime(1/60.), mReverseFill(false)
+    ILevelPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, double timeScale=5., bool fillEnable=true) : ICairoPlotControl(pPlug, pR, paramIdx, fillColor, lineColor, fillEnable), mTimeScale(timeScale), mBufferLength(0.), mYRange(-32), mStroke(true), mHeadroom(2), mDuration(0.), mFrameTime(1/60.), mReverseFill(false)
     {
         mXRes = mWidth/2.;
         mDrawVals = new valarray<double>(mHeight, mXRes);
         mBuffer = new valarray<double>(0., mTimeScale * mPlug->GetSampleRate() / (double)mXRes);
-        mTickSpacing = mHeight / (double)(34);
         setResolution(kHighRes);
         setLineWeight(2.);
         start_time = clock();
@@ -290,16 +289,12 @@ public:
             default:
                 break;
         }
-        mTickSpacing = mHeight / (double)(34);
     }
     
     void setStroke(bool stroke){
         mStroke = stroke;
     }
     
-    void setGridLines(bool lines){
-        mGridLines = lines;
-    }
     
     void process(double sample){
         mBuffer->operator[](mBufferLength) = sample;
@@ -407,11 +402,11 @@ public:
         return pGraphics->DrawBitmap(&result, &this->mRECT);
     }
     
-private:
-    double mTimeScale, mTickSpacing, mFrameTime, mDuration;
+protected:
+    double mTimeScale, mFrameTime, mDuration;
     int mBufferLength, mXRes, mSpacing, mYRange, mHeadroom;
     valarray<double> *mBuffer, *mDrawVals;
-    bool mStroke, mGridLines, mReverseFill;
+    bool mStroke, mReverseFill;
     clock_t start_time;
     
     
@@ -423,50 +418,12 @@ private:
         return ((outMax - outMin) * (inValue - inMin)) / (inMax - inMin) + outMin;
     }
 
-    void drawDBLines(cairo_t *cr){
-        int zero, offset;
-        
-        cairo_set_source_rgba(cr, 0, 0, 0, .05);
 
-        
-        zero = mTickSpacing;
-        offset = mTickSpacing + mTickSpacing; //2
-        cairo_move_to(cr, 0, zero + offset);
-        cairo_line_to(cr, mWidth, zero + zero);
-        cairo_stroke(cr);
-        
-        offset += mTickSpacing + mTickSpacing;  //4
-        cairo_move_to(cr, 0, zero + offset);
-        cairo_line_to(cr, mWidth, zero + offset);
-        cairo_stroke(cr);
-        
-        
-        offset += mTickSpacing + mTickSpacing;  //6
-        cairo_move_to(cr, 0, zero + offset);
-        cairo_line_to(cr, mWidth, zero + offset);
-        cairo_stroke(cr);
-        
-        offset += mTickSpacing + mTickSpacing;  //8
-        cairo_move_to(cr, 0, zero + offset);
-        cairo_line_to(cr, mWidth, zero + offset);
-        cairo_stroke(cr);
-        
-        offset += mTickSpacing + mTickSpacing;  //10
-        cairo_move_to(cr, 0, zero + offset);
-        cairo_line_to(cr, mWidth, zero + offset);
-        cairo_stroke(cr);
-        
-        offset += 6 * mTickSpacing;  //16
-        cairo_move_to(cr, 0, zero + offset);
-        cairo_line_to(cr, mWidth, zero + offset);
-        cairo_stroke(cr);
-        
-        offset += 8 * mTickSpacing;  //24
-        cairo_move_to(cr, 0, zero + offset);
-        cairo_line_to(cr, mWidth, zero + offset);
-        cairo_stroke(cr);
-    }
 };
 
+
+public IGRPlotControl : public ILevelPlotControl{
+    
+}
 
 #endif /* ICairoControls.h */

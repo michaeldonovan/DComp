@@ -34,10 +34,10 @@ private:
   IColor plotPreLineColor =  IColor(170, 151, 151, 151);
   IColor plotPostLineColor =  IColor(255, 120, 120, 120);
   IColor plotPreFillColor =  IColor(30, 198, 198, 198);
-  IColor plotPostFillColor =  IColor(255, 187, 187, 187);
+  IColor plotPostFillColor =  IColor(200, 240, 240, 240);
   IColor yellow = IColor(255, 255, 233, 30);
-  IColor grLineColor = IColor(120, 250, 0,0);
-  IColor grFillColor = IColor(15, 250, 0,0);
+  IColor grLineColor = IColor(90, 250, 0,0);
+  IColor grFillColor = IColor(50, 250, 0,0);
 
   double mGain, mCeiling, duration;
   //double mCeiling;

@@ -23,8 +23,8 @@ enum ELayout
   kHeight = GUI_HEIGHT,
 
   kGainX = 74,
-  kGainHandlesX = 48,
-  kCeilingX = 537,
+  kGainHandlesX = 65,
+  kCeilingX = 554,
   kMeterX = 563,
   kGainY = 85,
   
@@ -39,7 +39,7 @@ enum ELayout
   kQualityX = 368,
   kQualityY = 351,
   
-  kFaderLength = 280,
+  kFaderLength = 264,
   
   kSliderFrames = 100
 };
@@ -48,7 +48,7 @@ enum ELayout
 
 
 DClip::DClip(IPlugInstanceInfo instanceInfo)
-:	IPLUG_CTOR(kNumParams, kNumPrograms, instanceInfo), mGain(0.), mCeiling(0.), envPlotIn(0, 100, 75, GetSampleRate()), envPlotOut(0, 100, 75, GetSampleRate()), envMeter(0, 400, 50, GetSampleRate()), envGR(0, 500, 10, GetSampleRate()), mGainSmoother(5., GetSampleRate()), mCeilingSmoother(5., GetSampleRate()), duration(frameTime)
+:	IPLUG_CTOR(kNumParams, kNumPrograms, instanceInfo), mGain(0.), mCeiling(0.), envPlotIn(0, 75, 75, GetSampleRate()), envPlotOut(0, 75, 75, GetSampleRate()), envMeter(0, 400, 50, GetSampleRate()), envGR(0, 75, 85, GetSampleRate()), mGainSmoother(5., GetSampleRate()), mCeilingSmoother(5., GetSampleRate()), duration(frameTime)
 {
   TRACE;
 
@@ -60,7 +60,7 @@ DClip::DClip(IPlugInstanceInfo instanceInfo)
   GetParam(kQuality)->SetDisplayText(1, "4x");
   GetParam(kQuality)->SetDisplayText(2, "8x");
 
-  IGraphics* pGraphics = MakeGraphics(this, kWidth, kHeight);
+  IGraphics* pGraphics = MakeGraphics(this, kWidth, kHeight, 30);
   
   IBitmap slider = pGraphics->LoadIBitmap(SLIDER_ID, SLIDER_FN, kSliderFrames);
   IBitmap sliderHandles = pGraphics->LoadIBitmap(SLIDERHANDLES_ID, SLIDERHANDLES_FN);
@@ -76,7 +76,6 @@ DClip::DClip(IPlugInstanceInfo instanceInfo)
   plot->setResolution(ILevelPlotControl::kHighRes);
   plot->setYRange(ILevelPlotControl::k32dB);
   plot->setStroke(false);
-  plot->setGridLines(true);
   pGraphics->AttachControl(plot);
   
   plotOut = new ILevelPlotControl(this, plotRECT, kPlot, &plotPostFillColor, &plotPostLineColor, 5);
@@ -86,15 +85,16 @@ DClip::DClip(IPlugInstanceInfo instanceInfo)
   pGraphics->AttachControl(plotOut);
   
   GRplot = new ILevelPlotControl(this, plotRECT, kPlot, &grFillColor, &grLineColor, 5);
-  GRplot->setLineWeight(2.);
+  GRplot->setLineWeight(1.5);
   GRplot->setReverseFill(true);
+  //GRplot->setStroke(false);
   GRplot->setResolution(ILevelPlotControl::kHighRes);
   GRplot->setYRange(ILevelPlotControl::k32dB);
   pGraphics->AttachControl(GRplot);
   
   mDBMeter = new IBitmapControl(this, kGainX, kGainY, &slider);
-  mGainSliderHandles = new IFaderControl(this, kGainHandlesX, kGainY - 10, kFaderLength, kGain, &sliderHandles);
-  mCeilingSliderHandles = new IFaderControl(this, kCeilingX, kGainY - 10, kFaderLength, kCeiling, &sliderHandles);
+  mGainSliderHandles = new IFaderControl(this, kGainHandlesX, kGainY - 5, kFaderLength, kGain, &sliderHandles);
+  mCeilingSliderHandles = new IFaderControl(this, kCeilingX, kGainY - 5, kFaderLength, kCeiling, &sliderHandles);
   mGRMeter = new IBitmapControl(this, kMeterX, kGainY, &sliderRev);
 
   
@@ -152,7 +152,7 @@ void DClip::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
     
     inMax = std::max(sample1, sample2);
     plot->process(AmpToDB(envPlotIn.process(inMax)));
-    mDBMeter->SetValueFromPlug(scaleValue(AmpToDB(envMeter.process(inMax)), kCeilingMin, 2, 0, 1));
+    mDBMeter->SetValueFromPlug(scaleValue(mGain, kGainMin, kGainMax, 0, 1));
 
     
     if (sample1 > ceilingSmoothedAmp) {
@@ -179,9 +179,9 @@ void DClip::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
     
     plotOut->process(AmpToDB(envPlotOut.process(std::max(sample1, sample2))));
     double gr = envGR.process(std::max(GR1,GR2));
-    GRplot->process(scaleValue(AmpToDB(gr), -32, 2, 2, -4));
+    GRplot->process(scaleValue(AmpToDB(gr), -32, 2, 2, -32));
 
-    mGRMeter->SetValueFromPlug(scaleValue(AmpToDB(gr), -32, 2, 0, 1));
+    mGRMeter->SetValueFromPlug(scaleValue(mCeiling, kCeilingMin, kCeilingMax, 1, 0));
     
  //   duration = (clock() - start_time) / (double)CLOCKS_PER_SEC;
     //if ( duration >= frameTime) {
