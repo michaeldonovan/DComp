@@ -4,6 +4,9 @@
 #include "IPlug_include_in_plug_hdr.h"
 #include "EnvelopeFollower.h"
 #include "ICairoControls.h"
+#include "CParamSmooth.h"
+#include "IPopupMenuControl.h"
+#include <ctime>
 
 class DClip : public IPlug
 {
@@ -18,30 +21,43 @@ public:
 private:
   double scaleValue(double inValue, double inMin, double inMax, double outMin, double outMax);
   
+ // clock_t start_time;
+ // clock_t stop_time;
+  
   const int kGainMin = 0;
   const int kGainMax = 32;
   const int kCeilingMin = -32;
-  const int kCeilingMax = 0;
+  const int kCeilingMax = 2;
   
   IColor plotBackgroundColor = IColor(206,206,206);
-  IColor plotLineColor =  IColor(255, 151, 151, 151);
-  IColor plotPreFillColor =  IColor(255, 198, 198, 198);
+  IColor plotPreLineColor =  IColor(170, 151, 151, 151);
+  IColor plotPostLineColor =  IColor(255, 120, 120, 120);
+  IColor plotPreFillColor =  IColor(30, 198, 198, 198);
   IColor plotPostFillColor =  IColor(255, 187, 187, 187);
   IColor yellow = IColor(255, 255, 233, 30);
   
-  double mGain, mCeiling;
+  double mGain, mCeiling, duration;
   //double mCeiling;
   struct NVGcontext* vg;
-  envFollower env;
+  envFollower envPlotIn;
+  envFollower envPlotOut;
+  envFollower envMeter;
+  envFollower envGR;
+
+  CParamSmooth mGainSmoother;
+  CParamSmooth mCeilingSmoother;
+  
   ILevelPlotControl* plot;
   ILevelPlotControl* plotOut;
 
-  IBitmapControl* mGainSlider;
+  IBitmapControl* mDBMeter;
   IFaderControl* mGainSliderHandles;
-  IBitmapControl* mOutputMeter;
+  IBitmapControl* mGRMeter;
   IFaderControl* mCeilingSliderHandles;
   ICaptionControl* mGainCaption;
   ICaptionControl* mCeilingCaption;
+  
+  IBitmapControl* mShadow;
 };
 
 #endif

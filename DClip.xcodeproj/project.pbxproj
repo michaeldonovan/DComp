@@ -152,8 +152,40 @@
 		4C75CE5E1CAC854400DA81A8 /* SliderHandles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE541CAC854400DA81A8 /* SliderHandles@2x.png */; };
 		4C75CE5F1CAC854400DA81A8 /* SliderHandles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE541CAC854400DA81A8 /* SliderHandles@2x.png */; };
 		4C75CE601CAC854400DA81A8 /* SliderHandles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE541CAC854400DA81A8 /* SliderHandles@2x.png */; };
-		4C75CE621CACA6C700DA81A8 /* spline.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C75CE611CACA6C700DA81A8 /* spline.h */; };
-		4C75CE631CACA6C700DA81A8 /* spline.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C75CE611CACA6C700DA81A8 /* spline.h */; };
+		4C75CE661CACB1CC00DA81A8 /* CParamSmooth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C75CE641CACB1CC00DA81A8 /* CParamSmooth.cpp */; };
+		4C75CE671CACB1CC00DA81A8 /* CParamSmooth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C75CE641CACB1CC00DA81A8 /* CParamSmooth.cpp */; };
+		4C75CE681CACB1CC00DA81A8 /* CParamSmooth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C75CE641CACB1CC00DA81A8 /* CParamSmooth.cpp */; };
+		4C75CE691CACB1CC00DA81A8 /* CParamSmooth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C75CE641CACB1CC00DA81A8 /* CParamSmooth.cpp */; };
+		4C75CE6A1CACB1CC00DA81A8 /* CParamSmooth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C75CE641CACB1CC00DA81A8 /* CParamSmooth.cpp */; };
+		4C75CE6B1CACB1CC00DA81A8 /* CParamSmooth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C75CE641CACB1CC00DA81A8 /* CParamSmooth.cpp */; };
+		4C75CE6C1CACB1CC00DA81A8 /* CParamSmooth.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C75CE651CACB1CC00DA81A8 /* CParamSmooth.h */; };
+		4C75CE6D1CACB1CC00DA81A8 /* CParamSmooth.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C75CE651CACB1CC00DA81A8 /* CParamSmooth.h */; };
+		4C75CE701CACBB6D00DA81A8 /* SliderReverse.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE6E1CACBB6D00DA81A8 /* SliderReverse.png */; };
+		4C75CE711CACBB6D00DA81A8 /* SliderReverse.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE6E1CACBB6D00DA81A8 /* SliderReverse.png */; };
+		4C75CE721CACBB6D00DA81A8 /* SliderReverse.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE6E1CACBB6D00DA81A8 /* SliderReverse.png */; };
+		4C75CE731CACBB6D00DA81A8 /* SliderReverse.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE6E1CACBB6D00DA81A8 /* SliderReverse.png */; };
+		4C75CE741CACBB6D00DA81A8 /* SliderReverse.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE6E1CACBB6D00DA81A8 /* SliderReverse.png */; };
+		4C75CE751CACBB6D00DA81A8 /* SliderReverse.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE6E1CACBB6D00DA81A8 /* SliderReverse.png */; };
+		4C75CE761CACBB6D00DA81A8 /* SliderReverse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE6F1CACBB6D00DA81A8 /* SliderReverse@2x.png */; };
+		4C75CE771CACBB6D00DA81A8 /* SliderReverse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE6F1CACBB6D00DA81A8 /* SliderReverse@2x.png */; };
+		4C75CE781CACBB6D00DA81A8 /* SliderReverse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE6F1CACBB6D00DA81A8 /* SliderReverse@2x.png */; };
+		4C75CE791CACBB6D00DA81A8 /* SliderReverse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE6F1CACBB6D00DA81A8 /* SliderReverse@2x.png */; };
+		4C75CE7A1CACBB6D00DA81A8 /* SliderReverse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE6F1CACBB6D00DA81A8 /* SliderReverse@2x.png */; };
+		4C75CE7B1CACBB6D00DA81A8 /* SliderReverse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE6F1CACBB6D00DA81A8 /* SliderReverse@2x.png */; };
+		4C75CE7E1CACD7D300DA81A8 /* PlotShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE7C1CACD7D300DA81A8 /* PlotShadow.png */; };
+		4C75CE7F1CACD7D300DA81A8 /* PlotShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE7C1CACD7D300DA81A8 /* PlotShadow.png */; };
+		4C75CE801CACD7D300DA81A8 /* PlotShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE7C1CACD7D300DA81A8 /* PlotShadow.png */; };
+		4C75CE811CACD7D300DA81A8 /* PlotShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE7C1CACD7D300DA81A8 /* PlotShadow.png */; };
+		4C75CE821CACD7D300DA81A8 /* PlotShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE7C1CACD7D300DA81A8 /* PlotShadow.png */; };
+		4C75CE831CACD7D300DA81A8 /* PlotShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE7C1CACD7D300DA81A8 /* PlotShadow.png */; };
+		4C75CE841CACD7D300DA81A8 /* PlotShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE7D1CACD7D300DA81A8 /* PlotShadow@2x.png */; };
+		4C75CE851CACD7D300DA81A8 /* PlotShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE7D1CACD7D300DA81A8 /* PlotShadow@2x.png */; };
+		4C75CE861CACD7D300DA81A8 /* PlotShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE7D1CACD7D300DA81A8 /* PlotShadow@2x.png */; };
+		4C75CE871CACD7D300DA81A8 /* PlotShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE7D1CACD7D300DA81A8 /* PlotShadow@2x.png */; };
+		4C75CE881CACD7D300DA81A8 /* PlotShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE7D1CACD7D300DA81A8 /* PlotShadow@2x.png */; };
+		4C75CE891CACD7D300DA81A8 /* PlotShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE7D1CACD7D300DA81A8 /* PlotShadow@2x.png */; };
+		4C75CE8B1CACDC1400DA81A8 /* IPopupMenuControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C75CE8A1CACDC1400DA81A8 /* IPopupMenuControl.h */; };
+		4C75CE8C1CACDC1400DA81A8 /* IPopupMenuControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C75CE8A1CACDC1400DA81A8 /* IPopupMenuControl.h */; };
 		4C7708721CAA1A950085AFBA /* ICairoControls.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7708711CAA1A950085AFBA /* ICairoControls.h */; };
 		4C7708731CAA1A950085AFBA /* ICairoControls.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7708711CAA1A950085AFBA /* ICairoControls.h */; };
 		4CE67F271CA9F5C100419118 /* libcairo.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE67F261CA9F5C100419118 /* libcairo.dylib */; };
@@ -598,7 +630,13 @@
 		4C75CE381CAC813B00DA81A8 /* Slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Slider@2x.png"; path = "resources/img/Slider@2x.png"; sourceTree = "<group>"; };
 		4C75CE531CAC854400DA81A8 /* SliderHandles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SliderHandles.png; path = resources/img/SliderHandles.png; sourceTree = "<group>"; };
 		4C75CE541CAC854400DA81A8 /* SliderHandles@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SliderHandles@2x.png"; path = "resources/img/SliderHandles@2x.png"; sourceTree = "<group>"; };
-		4C75CE611CACA6C700DA81A8 /* spline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = spline.h; path = ../../../spline/src/spline.h; sourceTree = "<group>"; };
+		4C75CE641CACB1CC00DA81A8 /* CParamSmooth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CParamSmooth.cpp; sourceTree = "<group>"; };
+		4C75CE651CACB1CC00DA81A8 /* CParamSmooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CParamSmooth.h; sourceTree = "<group>"; };
+		4C75CE6E1CACBB6D00DA81A8 /* SliderReverse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SliderReverse.png; path = resources/img/SliderReverse.png; sourceTree = "<group>"; };
+		4C75CE6F1CACBB6D00DA81A8 /* SliderReverse@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SliderReverse@2x.png"; path = "resources/img/SliderReverse@2x.png"; sourceTree = "<group>"; };
+		4C75CE7C1CACD7D300DA81A8 /* PlotShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PlotShadow.png; path = resources/img/PlotShadow.png; sourceTree = "<group>"; };
+		4C75CE7D1CACD7D300DA81A8 /* PlotShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PlotShadow@2x.png"; path = "resources/img/PlotShadow@2x.png"; sourceTree = "<group>"; };
+		4C75CE8A1CACDC1400DA81A8 /* IPopupMenuControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPopupMenuControl.h; sourceTree = "<group>"; };
 		4C7708711CAA1A950085AFBA /* ICairoControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICairoControls.h; sourceTree = "<group>"; };
 		4CE67F261CA9F5C100419118 /* libcairo.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcairo.dylib; path = usr/local/lib/libcairo.dylib; sourceTree = SDKROOT; };
 		4F017360154D4BFC0034BE1A /* AAX_CIPlugParameters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AAX_CIPlugParameters.cpp; path = ../../WDL/IPlug/AAX/AAX_CIPlugParameters.cpp; sourceTree = SOURCE_ROOT; };
@@ -927,7 +965,9 @@
 				52FBBED20D0CF13D001C8B8A /* DClip.h */,
 				52FBBED00D0CF139001C8B8A /* DClip.cpp */,
 				4C7708711CAA1A950085AFBA /* ICairoControls.h */,
-				4C75CE611CACA6C700DA81A8 /* spline.h */,
+				4C75CE641CACB1CC00DA81A8 /* CParamSmooth.cpp */,
+				4C75CE651CACB1CC00DA81A8 /* CParamSmooth.h */,
+				4C75CE8A1CACDC1400DA81A8 /* IPopupMenuControl.h */,
 				089C167CFE841241C02AAC07 /* Resources */,
 				32C88E010371C26100C91783 /* Other Sources */,
 				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
@@ -1499,12 +1539,16 @@
 		4FD16A0213B6303B001D0217 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				4C75CE6E1CACBB6D00DA81A8 /* SliderReverse.png */,
+				4C75CE6F1CACBB6D00DA81A8 /* SliderReverse@2x.png */,
 				4C75CE291CAC78A900DA81A8 /* Background.png */,
 				4C75CE2A1CAC78A900DA81A8 /* Background@2x.png */,
 				4C75CE371CAC813B00DA81A8 /* Slider.png */,
 				4C75CE381CAC813B00DA81A8 /* Slider@2x.png */,
 				4C75CE531CAC854400DA81A8 /* SliderHandles.png */,
 				4C75CE541CAC854400DA81A8 /* SliderHandles@2x.png */,
+				4C75CE7C1CACD7D300DA81A8 /* PlotShadow.png */,
+				4C75CE7D1CACD7D300DA81A8 /* PlotShadow@2x.png */,
 			);
 			name = img;
 			sourceTree = "<group>";
@@ -1590,6 +1634,7 @@
 				4F3AE17B12C0E5E2001FD7A4 /* resource.h in Headers */,
 				4C1A85F11CA98A3600D94C89 /* cairo-ps.h in Headers */,
 				4C1A85F31CA98A3600D94C89 /* cairo-quartz-image.h in Headers */,
+				4C75CE8C1CACDC1400DA81A8 /* IPopupMenuControl.h in Headers */,
 				4F3AE17C12C0E5E2001FD7A4 /* DClip.h in Headers */,
 				4C1A86031CA98A3600D94C89 /* cairo-xlib-xrender.h in Headers */,
 				4FF016F7134E14E2001447BA /* mutex.h in Headers */,
@@ -1619,7 +1664,6 @@
 				4F78D94013B63BA50032E0F3 /* IPlug_include_in_plug_src.h in Headers */,
 				4F78D94113B63BA50032E0F3 /* IControl.h in Headers */,
 				4F78D94213B63BA50032E0F3 /* IKeyboardControl.h in Headers */,
-				4C75CE631CACA6C700DA81A8 /* spline.h in Headers */,
 				4F78D94413B63BA50032E0F3 /* IPlugBase.h in Headers */,
 				4C1A85FF1CA98A3600D94C89 /* cairo-version.h in Headers */,
 				4F78D94613B63BA50032E0F3 /* IGraphicsMac.h in Headers */,
@@ -1636,6 +1680,7 @@
 				4F78D95F13B63BA50032E0F3 /* IGraphicsCarbon.h in Headers */,
 				4C1A86071CA98A3600D94C89 /* cairo-xml.h in Headers */,
 				4F78D96013B63BA50032E0F3 /* IGraphics.h in Headers */,
+				4C75CE6D1CACB1CC00DA81A8 /* CParamSmooth.h in Headers */,
 				4F78DA0713B63CD90032E0F3 /* IPlugAU.h in Headers */,
 				4F3EE94913B65A350097B791 /* IPlugOSDetect.h in Headers */,
 				4FDA440913F3E4F2000B4551 /* IBitmapMonoText.h in Headers */,
@@ -1671,6 +1716,7 @@
 				4F78DA8E13B640050032E0F3 /* wdlendian.h in Headers */,
 				4F78DA8F13B640050032E0F3 /* swell.h in Headers */,
 				4F78DA9013B640050032E0F3 /* swell-functions.h in Headers */,
+				4C75CE6C1CACB1CC00DA81A8 /* CParamSmooth.h in Headers */,
 				4F78DA9113B640050032E0F3 /* swell-internal.h in Headers */,
 				4C1A85F01CA98A3600D94C89 /* cairo-ps.h in Headers */,
 				4C1A86001CA98A3600D94C89 /* cairo-xcb.h in Headers */,
@@ -1681,7 +1727,6 @@
 				4F78DA9513B640050032E0F3 /* IPlug_include_in_plug_hdr.h in Headers */,
 				4F78DA9613B640050032E0F3 /* IPlug_include_in_plug_src.h in Headers */,
 				4C1A85FE1CA98A3600D94C89 /* cairo-version.h in Headers */,
-				4C75CE621CACA6C700DA81A8 /* spline.h in Headers */,
 				4F78DA9713B640050032E0F3 /* IControl.h in Headers */,
 				4F78DA9813B640050032E0F3 /* IKeyboardControl.h in Headers */,
 				4C1A85E61CA98A3600D94C89 /* cairo-deprecated.h in Headers */,
@@ -1693,6 +1738,7 @@
 				4C1A85F81CA98A3600D94C89 /* cairo-script.h in Headers */,
 				4F78DA9F13B640050032E0F3 /* Log.h in Headers */,
 				4F78DAA013B640050032E0F3 /* IPopupMenu.h in Headers */,
+				4C75CE8B1CACDC1400DA81A8 /* IPopupMenuControl.h in Headers */,
 				4C1A85F41CA98A3600D94C89 /* cairo-quartz.h in Headers */,
 				4C1A85EC1CA98A3600D94C89 /* cairo-gobject.h in Headers */,
 				4C1A85EE1CA98A3600D94C89 /* cairo-pdf.h in Headers */,
@@ -1943,6 +1989,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C75CE771CACBB6D00DA81A8 /* SliderReverse@2x.png in Resources */,
+				4C75CE851CACD7D300DA81A8 /* PlotShadow@2x.png in Resources */,
 				4C75CE321CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4C75CE561CAC854400DA81A8 /* SliderHandles.png in Resources */,
 				4C1A86391CA98A6400D94C89 /* cairo-fdr.so in Resources */,
@@ -1950,9 +1998,11 @@
 				4C1A86211CA98A6400D94C89 /* cairo-sphinx.0.so in Resources */,
 				4C75CE2C1CAC78A900DA81A8 /* Background.png in Resources */,
 				4C1A86151CA98A6300D94C89 /* cairo-fdr.0.so in Resources */,
+				4C75CE711CACBB6D00DA81A8 /* SliderReverse.png in Resources */,
 				4C75CE401CAC813B00DA81A8 /* Slider@2x.png in Resources */,
 				4C1A863F1CA98A6400D94C89 /* cairo-sphinx.so in Resources */,
 				4C75CE3A1CAC813B00DA81A8 /* Slider.png in Resources */,
+				4C75CE7F1CACD7D300DA81A8 /* PlotShadow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1960,6 +2010,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C75CE791CACBB6D00DA81A8 /* SliderReverse@2x.png in Resources */,
+				4C75CE871CACD7D300DA81A8 /* PlotShadow@2x.png in Resources */,
 				4C75CE341CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4C75CE581CAC854400DA81A8 /* SliderHandles.png in Resources */,
 				4C1A863B1CA98A6400D94C89 /* cairo-fdr.so in Resources */,
@@ -1967,9 +2019,11 @@
 				4C1A86231CA98A6400D94C89 /* cairo-sphinx.0.so in Resources */,
 				4C75CE2E1CAC78A900DA81A8 /* Background.png in Resources */,
 				4C1A86171CA98A6300D94C89 /* cairo-fdr.0.so in Resources */,
+				4C75CE731CACBB6D00DA81A8 /* SliderReverse.png in Resources */,
 				4C75CE421CAC813B00DA81A8 /* Slider@2x.png in Resources */,
 				4C1A86411CA98A6400D94C89 /* cairo-sphinx.so in Resources */,
 				4C75CE3C1CAC813B00DA81A8 /* Slider.png in Resources */,
+				4C75CE811CACD7D300DA81A8 /* PlotShadow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1977,6 +2031,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C75CE7A1CACBB6D00DA81A8 /* SliderReverse@2x.png in Resources */,
+				4C75CE881CACD7D300DA81A8 /* PlotShadow@2x.png in Resources */,
 				4C75CE351CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4C75CE591CAC854400DA81A8 /* SliderHandles.png in Resources */,
 				4C1A863C1CA98A6400D94C89 /* cairo-fdr.so in Resources */,
@@ -1984,9 +2040,11 @@
 				4C1A86241CA98A6400D94C89 /* cairo-sphinx.0.so in Resources */,
 				4C75CE2F1CAC78A900DA81A8 /* Background.png in Resources */,
 				4C1A86181CA98A6300D94C89 /* cairo-fdr.0.so in Resources */,
+				4C75CE741CACBB6D00DA81A8 /* SliderReverse.png in Resources */,
 				4C75CE431CAC813B00DA81A8 /* Slider@2x.png in Resources */,
 				4C1A86421CA98A6400D94C89 /* cairo-sphinx.so in Resources */,
 				4C75CE3D1CAC813B00DA81A8 /* Slider.png in Resources */,
+				4C75CE821CACD7D300DA81A8 /* PlotShadow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1994,6 +2052,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C75CE781CACBB6D00DA81A8 /* SliderReverse@2x.png in Resources */,
+				4C75CE861CACD7D300DA81A8 /* PlotShadow@2x.png in Resources */,
 				4C75CE331CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4C75CE571CAC854400DA81A8 /* SliderHandles.png in Resources */,
 				4C1A863A1CA98A6400D94C89 /* cairo-fdr.so in Resources */,
@@ -2001,9 +2061,11 @@
 				4C1A86221CA98A6400D94C89 /* cairo-sphinx.0.so in Resources */,
 				4C75CE2D1CAC78A900DA81A8 /* Background.png in Resources */,
 				4C1A86161CA98A6300D94C89 /* cairo-fdr.0.so in Resources */,
+				4C75CE721CACBB6D00DA81A8 /* SliderReverse.png in Resources */,
 				4C75CE411CAC813B00DA81A8 /* Slider@2x.png in Resources */,
 				4C1A86401CA98A6400D94C89 /* cairo-sphinx.so in Resources */,
 				4C75CE3B1CAC813B00DA81A8 /* Slider.png in Resources */,
+				4C75CE801CACD7D300DA81A8 /* PlotShadow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2011,6 +2073,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C75CE7B1CACBB6D00DA81A8 /* SliderReverse@2x.png in Resources */,
+				4C75CE891CACD7D300DA81A8 /* PlotShadow@2x.png in Resources */,
 				4C75CE361CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4C75CE5A1CAC854400DA81A8 /* SliderHandles.png in Resources */,
 				4C1A863D1CA98A6400D94C89 /* cairo-fdr.so in Resources */,
@@ -2018,9 +2082,11 @@
 				4C1A86251CA98A6400D94C89 /* cairo-sphinx.0.so in Resources */,
 				4C75CE301CAC78A900DA81A8 /* Background.png in Resources */,
 				4C1A86191CA98A6300D94C89 /* cairo-fdr.0.so in Resources */,
+				4C75CE751CACBB6D00DA81A8 /* SliderReverse.png in Resources */,
 				4C75CE441CAC813B00DA81A8 /* Slider@2x.png in Resources */,
 				4C1A86431CA98A6400D94C89 /* cairo-sphinx.so in Resources */,
 				4C75CE3E1CAC813B00DA81A8 /* Slider.png in Resources */,
+				4C75CE831CACD7D300DA81A8 /* PlotShadow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2031,10 +2097,14 @@
 				4F78D88613B6382B0032E0F3 /* DClip.icns in Resources */,
 				4C75CE2B1CAC78A900DA81A8 /* Background.png in Resources */,
 				4C75CE5B1CAC854400DA81A8 /* SliderHandles@2x.png in Resources */,
+				4C75CE841CACD7D300DA81A8 /* PlotShadow@2x.png in Resources */,
 				4C1A86141CA98A6300D94C89 /* cairo-fdr.0.so in Resources */,
 				4C75CE3F1CAC813B00DA81A8 /* Slider@2x.png in Resources */,
 				4C75CE311CAC78A900DA81A8 /* Background@2x.png in Resources */,
+				4C75CE7E1CACD7D300DA81A8 /* PlotShadow.png in Resources */,
+				4C75CE761CACBB6D00DA81A8 /* SliderReverse@2x.png in Resources */,
 				4F78D89913B639100032E0F3 /* InfoPlist.strings in Resources */,
+				4C75CE701CACBB6D00DA81A8 /* SliderReverse.png in Resources */,
 				4C1A86381CA98A6400D94C89 /* cairo-fdr.so in Resources */,
 				4F78D89A13B639100032E0F3 /* MainMenu.xib in Resources */,
 				4C1A863E1CA98A6400D94C89 /* cairo-sphinx.so in Resources */,
@@ -2103,6 +2173,7 @@
 				4F78D9C913B63BA50032E0F3 /* IControl.cpp in Sources */,
 				4F78D9F313B63C6A0032E0F3 /* IPlugVST.cpp in Sources */,
 				4FDA440C13F3E4F2000B4551 /* IBitmapMonoText.cpp in Sources */,
+				4C75CE671CACB1CC00DA81A8 /* CParamSmooth.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2125,6 +2196,7 @@
 				4F78D96113B63BA50032E0F3 /* IControl.cpp in Sources */,
 				4F78DA0813B63CD90032E0F3 /* IPlugAU.cpp in Sources */,
 				4F78DA0A13B63CD90032E0F3 /* IPlugAU_ViewFactory.mm in Sources */,
+				4C75CE691CACB1CC00DA81A8 /* CParamSmooth.cpp in Sources */,
 				4FDA440813F3E4F2000B4551 /* IBitmapMonoText.cpp in Sources */,
 				4F296BDA1678E6C800C0F5C2 /* dfx-au-utilities.c in Sources */,
 			);
@@ -2149,6 +2221,7 @@
 				4F7F5C5B13E95EC8002918FD /* IControl.cpp in Sources */,
 				4F7F5C7113E95FB2002918FD /* IPlugRTAS.cpp in Sources */,
 				4F7F5CAD13E9607A002918FD /* digicode1.cpp in Sources */,
+				4C75CE6A1CACB1CC00DA81A8 /* CParamSmooth.cpp in Sources */,
 				4F7F5CAE13E9607A002918FD /* digicode2.cpp in Sources */,
 				4F7F5CAF13E9607A002918FD /* digicode3.cpp in Sources */,
 				4F7F5CB013E9607A002918FD /* IPlugCustomUI.cpp in Sources */,
@@ -2167,6 +2240,7 @@
 				4F9828B6140A9EB700F3FCC1 /* DClip.cpp in Sources */,
 				4F9828B7140A9EB700F3FCC1 /* swell-gdi.mm in Sources */,
 				4F9828B8140A9EB700F3FCC1 /* IPlugBase.cpp in Sources */,
+				4C75CE681CACB1CC00DA81A8 /* CParamSmooth.cpp in Sources */,
 				4F9828B9140A9EB700F3FCC1 /* IPlugStructs.cpp in Sources */,
 				4F9828BA140A9EB700F3FCC1 /* Hosts.cpp in Sources */,
 				4F9828BB140A9EB700F3FCC1 /* IGraphicsMac.mm in Sources */,
@@ -2218,6 +2292,7 @@
 				4FB600241567CB0A0020189A /* IControl.cpp in Sources */,
 				4FB600251567CB0A0020189A /* IBitmapMonoText.cpp in Sources */,
 				4FB600261567CB0A0020189A /* AAX_Exports.cpp in Sources */,
+				4C75CE6B1CACB1CC00DA81A8 /* CParamSmooth.cpp in Sources */,
 				4FB600271567CB0A0020189A /* IPlugAAX.cpp in Sources */,
 				4FB600281567CB0A0020189A /* IPlugAAX_Describe.cpp in Sources */,
 				4FB600291567CB0A0020189A /* AAX_CIPlugParameters.cpp in Sources */,
@@ -2256,6 +2331,7 @@
 				4F78DA5A13B63F150032E0F3 /* DClip.cpp in Sources */,
 				4FD16CA213B6327D001D0217 /* app_main.cpp in Sources */,
 				4FD16CA313B6327D001D0217 /* app_dialog.cpp in Sources */,
+				4C75CE661CACB1CC00DA81A8 /* CParamSmooth.cpp in Sources */,
 				4FB3624F13B648FE00DB6B76 /* main.mm in Sources */,
 				4FDA440E13F3E4F2000B4551 /* IBitmapMonoText.cpp in Sources */,
 			);

@@ -10,7 +10,6 @@
 #define ICairoControls_h
 
 #include "IControl.h"
-#include "spline.h"
 #include <cairo.h>
 #include <valarray>
 
@@ -219,19 +218,19 @@ public:
         k48dB
     };
     
-    ILevelPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, double timeScale=5., bool fillEnable=true) : ICairoPlotControl(pPlug, pR, paramIdx, fillColor, lineColor, fillEnable), mTimeScale(timeScale), mBufferLength(0.), mYRange(-32), mInterpol(true)
+    ILevelPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, double timeScale=5., bool fillEnable=true) : ICairoPlotControl(pPlug, pR, paramIdx, fillColor, lineColor, fillEnable), mTimeScale(timeScale), mBufferLength(0.), mYRange(-32), mStroke(true), mHeadroom(2), mGridLines(false)
     {
         mXRes = mWidth/2.;
         mDrawVals = new valarray<double>(mHeight, mXRes);
         mBuffer = new valarray<double>(0., mTimeScale * mPlug->GetSampleRate() / (double)mXRes);
+        mTickSpacing = mHeight / (double)(34);
         setResolution(kHighRes);
         setLineWeight(2.);
     }
     
-    ~ILevelPlotControl(){ }
-    
-    void setInterpol(bool interpol){
-        mInterpol = interpol;
+    ~ILevelPlotControl(){
+        delete mDrawVals;
+        delete mBuffer;
     }
     
     void setResolution(int res){
@@ -279,6 +278,15 @@ public:
             default:
                 break;
         }
+        mTickSpacing = mHeight / (double)(34);
+    }
+    
+    void setStroke(bool stroke){
+        mStroke = stroke;
+    }
+    
+    void setGridLines(bool lines){
+        mGridLines = lines;
     }
     
     void process(double sample){
@@ -295,11 +303,12 @@ public:
             mDrawVals->operator[](mDrawVals->size() - 1) = percentToCoordinates(average);
             
             mBufferLength = 0;
-            
-            //setVals(mDrawVals);
         }
     }
     
+    virtual bool IsDirty(){
+        return false;
+    }
     
     bool Draw(IGraphics* pGraphics){
         cairo_save(cr);
@@ -314,6 +323,11 @@ public:
         cairo_set_line_width(cr, mLineWeight);
         cairo_set_antialias(cr, CAIRO_ANTIALIAS_GOOD);
         
+        
+//        if(mGridLines){
+//            drawDBLines(cr);
+//        }
+        
         //Starting point in bottom left corner.
         cairo_move_to(cr, 0, mHeight);
         
@@ -323,13 +337,12 @@ public:
             x += mSpacing;
         }
         
-        
         //Endpoint in bottom right corner
         cairo_line_to(cr, mWidth, mHeight);
         
         cairo_close_path(cr);
         
-        if(mFill){
+        if(mFill && mStroke){
             cairo_set_source_rgba(cr, mColorFill.R, mColorFill.G, mColorFill.B, mColorFill.A);
 
             cairo_path_t* path = cairo_copy_path(cr);
@@ -341,13 +354,18 @@ public:
 
             cairo_set_source_rgba(cr, mColorLine.R, mColorLine.G, mColorLine.B, mColorLine.A);
             
+
             cairo_stroke(cr);
             
             cairo_path_destroy(path);
         }
-        else{
+        else if(mStroke){
             cairo_set_source_rgba(cr, mColorLine.R, mColorLine.G, mColorLine.B, mColorLine.A);
             cairo_stroke(cr);
+        }
+        else if(mFill){
+            cairo_set_source_rgba(cr, mColorFill.R, mColorFill.G, mColorFill.B, mColorFill.A);
+            cairo_fill(cr);
         }
         
         cairo_surface_flush(surface);
@@ -362,10 +380,10 @@ public:
     }
     
 private:
-    double mTimeScale;
-    int mBufferLength, mXRes, mSpacing, mYRange;
+    double mTimeScale, mTickSpacing;
+    int mBufferLength, mXRes, mSpacing, mYRange, mHeadroom;
     valarray<double> *mBuffer, *mDrawVals;
-    bool mInterpol;
+    bool mStroke, mGridLines;
     
     double percentToCoordinates(double value) {
         return getHeight() - value * getHeight();
@@ -375,7 +393,49 @@ private:
         return ((outMax - outMin) * (inValue - inMin)) / (inMax - inMin) + outMin;
     }
 
-    
+    void drawDBLines(cairo_t *cr){
+        int zero, offset;
+        
+        cairo_set_source_rgba(cr, 0, 0, 0, .05);
+
+        
+        zero = mTickSpacing;
+        offset = mTickSpacing + mTickSpacing; //2
+        cairo_move_to(cr, 0, zero + offset);
+        cairo_line_to(cr, mWidth, zero + zero);
+        cairo_stroke(cr);
+        
+        offset += mTickSpacing + mTickSpacing;  //4
+        cairo_move_to(cr, 0, zero + offset);
+        cairo_line_to(cr, mWidth, zero + offset);
+        cairo_stroke(cr);
+        
+        
+        offset += mTickSpacing + mTickSpacing;  //6
+        cairo_move_to(cr, 0, zero + offset);
+        cairo_line_to(cr, mWidth, zero + offset);
+        cairo_stroke(cr);
+        
+        offset += mTickSpacing + mTickSpacing;  //8
+        cairo_move_to(cr, 0, zero + offset);
+        cairo_line_to(cr, mWidth, zero + offset);
+        cairo_stroke(cr);
+        
+        offset += mTickSpacing + mTickSpacing;  //10
+        cairo_move_to(cr, 0, zero + offset);
+        cairo_line_to(cr, mWidth, zero + offset);
+        cairo_stroke(cr);
+        
+        offset += 6 * mTickSpacing;  //16
+        cairo_move_to(cr, 0, zero + offset);
+        cairo_line_to(cr, mWidth, zero + offset);
+        cairo_stroke(cr);
+        
+        offset += 8 * mTickSpacing;  //24
+        cairo_move_to(cr, 0, zero + offset);
+        cairo_line_to(cr, mWidth, zero + offset);
+        cairo_stroke(cr);
+    }
 };
 
 

@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ICairoControls.h"
-            timestampString = "481077533.335266"
+            timestampString = "481085827.062342"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "296"
-            endingLineNumber = "296"
+            startingLineNumber = "304"
+            endingLineNumber = "304"
             landmarkName = "process(double sample)"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ICairoControls.h"
-            timestampString = "481077533.335266"
+            timestampString = "481085827.062342"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
             landmarkName = "process(double sample)"
             landmarkType = "5">
          </BreakpointContent>
@@ -86,15 +86,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ICairoControls.h"
-            timestampString = "481077533.335266"
+            timestampString = "481086609.612227"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "324"
-            endingLineNumber = "324"
+            startingLineNumber = "338"
+            endingLineNumber = "338"
             landmarkName = "Draw(IGraphics* pGraphics)"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ICairoControls.h"
-            timestampString = "481077533.335266"
+            timestampString = "481084519.013217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
             landmarkName = "setResolution(int res)"
             landmarkType = "5">
          </BreakpointContent>
@@ -128,6 +128,22 @@
             startingLineNumber = "21"
             endingLineNumber = "21"
             landmarkName = "process(double sample)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DClip.cpp"
+            timestampString = "481091117.25846"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "DClip::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrames)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
