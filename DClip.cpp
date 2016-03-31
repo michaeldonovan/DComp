@@ -45,7 +45,7 @@ enum ELayout
 
 
 DClip::DClip(IPlugInstanceInfo instanceInfo)
-  :	IPLUG_CTOR(kNumParams, kNumPrograms, instanceInfo), mGain(0.), mCeiling(0.), env(1., 250., GetSampleRate())
+  :	IPLUG_CTOR(kNumParams, kNumPrograms, instanceInfo), mGain(0.), mCeiling(0.), env(0, 100, 75, GetSampleRate())
 {
   TRACE;
 
@@ -63,10 +63,17 @@ DClip::DClip(IPlugInstanceInfo instanceInfo)
   IRECT plotRECT = IRECT(152, 85, 527, 337);
   
   plot = new ILevelPlotControl(this, plotRECT, kPlot, &plotPreFillColor, &plotLineColor, 5);
-  plot->setLineWeight(3.);
-  plot->setResolution(ILevelPlotControl::kHighRes);
+  plot->setLineWeight(2.);
+  plot->setResolution(ILevelPlotControl::kMaxRes);
   plot->setYRange(ILevelPlotControl::k32dB);
   pGraphics->AttachControl(plot);
+  
+  plotOut = new ILevelPlotControl(this, plotRECT, kPlot, &plotPostFillColor, &plotLineColor, 5);
+  plotOut->setLineWeight(2.);
+  plotOut->setResolution(ILevelPlotControl::kMaxRes);
+  plotOut->setYRange(ILevelPlotControl::k32dB);
+  pGraphics->AttachControl(plot);
+  
   
   mGainSlider = new IBitmapControl(this, kGainX, kGainY, &slider);
   mGainSliderHandles = new IFaderControl(this, kGainHandlesX, kGainY - 10, kFaderLength, kGain, &sliderHandles);

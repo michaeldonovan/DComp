@@ -10,6 +10,7 @@
 #define ICairoControls_h
 
 #include "IControl.h"
+#include "spline.h"
 #include <cairo.h>
 #include <valarray>
 
@@ -50,7 +51,7 @@ public:
 class ICairoPlotControl : public IControl
 {
 public:
-    ICairoPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, bool fillEnable=true) : IControl(pPlug, pR), mColorFill(fillColor), mColorLine(lineColor), mFill(fillEnable), mRange(1), mLineWeight(4.)
+    ICairoPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, bool fillEnable=true) : IControl(pPlug, pR), mColorFill(fillColor), mColorLine(lineColor), mFill(fillEnable), mRange(1), mLineWeight(2.)
     {
         mWidth = mRECT.W();
         mHeight = mRECT.H();
@@ -218,7 +219,7 @@ public:
         k48dB
     };
     
-    ILevelPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, double timeScale=5., bool fillEnable=true) : ICairoPlotControl(pPlug, pR, paramIdx, fillColor, lineColor, fillEnable), mTimeScale(timeScale), mBufferLength(0.), mYRange(-32)
+    ILevelPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, double timeScale=5., bool fillEnable=true) : ICairoPlotControl(pPlug, pR, paramIdx, fillColor, lineColor, fillEnable), mTimeScale(timeScale), mBufferLength(0.), mYRange(-32), mInterpol(true)
     {
         mXRes = mWidth/2.;
         mDrawVals = new valarray<double>(mHeight, mXRes);
@@ -228,6 +229,10 @@ public:
     }
     
     ~ILevelPlotControl(){ }
+    
+    void setInterpol(bool interpol){
+        mInterpol = interpol;
+    }
     
     void setResolution(int res){
         switch (res) {
@@ -318,6 +323,7 @@ public:
             x += mSpacing;
         }
         
+        
         //Endpoint in bottom right corner
         cairo_line_to(cr, mWidth, mHeight);
         
@@ -359,6 +365,7 @@ private:
     double mTimeScale;
     int mBufferLength, mXRes, mSpacing, mYRange;
     valarray<double> *mBuffer, *mDrawVals;
+    bool mInterpol;
     
     double percentToCoordinates(double value) {
         return getHeight() - value * getHeight();

@@ -34,7 +34,8 @@ private:
   struct NVGcontext* vg;
   envFollower env;
   ILevelPlotControl* plot;
-  
+  ILevelPlotControl* plotOut;
+
   IBitmapControl* mGainSlider;
   IFaderControl* mGainSliderHandles;
   IBitmapControl* mOutputMeter;

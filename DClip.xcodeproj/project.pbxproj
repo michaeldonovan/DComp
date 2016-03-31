@@ -116,8 +116,6 @@
 		4C1A86481CA98A6400D94C89 /* libcairo-trace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1A86131CA98A6300D94C89 /* libcairo-trace.dylib */; };
 		4C1A86491CA98A6400D94C89 /* libcairo-trace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1A86131CA98A6300D94C89 /* libcairo-trace.dylib */; };
 		4C1A864E1CA98DB500D94C89 /* libcairo.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1A864D1CA98DB500D94C89 /* libcairo.dylib */; };
-		4C2380471CAC519E00324CA4 /* CairoBlur.c in Headers */ = {isa = PBXBuildFile; fileRef = 4C2380451CAC519E00324CA4 /* CairoBlur.c */; };
-		4C23804A1CAC535200324CA4 /* CairoBlur.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C2380451CAC519E00324CA4 /* CairoBlur.c */; };
 		4C75CE2B1CAC78A900DA81A8 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE291CAC78A900DA81A8 /* Background.png */; };
 		4C75CE2C1CAC78A900DA81A8 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE291CAC78A900DA81A8 /* Background.png */; };
 		4C75CE2D1CAC78A900DA81A8 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE291CAC78A900DA81A8 /* Background.png */; };
@@ -154,6 +152,8 @@
 		4C75CE5E1CAC854400DA81A8 /* SliderHandles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE541CAC854400DA81A8 /* SliderHandles@2x.png */; };
 		4C75CE5F1CAC854400DA81A8 /* SliderHandles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE541CAC854400DA81A8 /* SliderHandles@2x.png */; };
 		4C75CE601CAC854400DA81A8 /* SliderHandles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE541CAC854400DA81A8 /* SliderHandles@2x.png */; };
+		4C75CE621CACA6C700DA81A8 /* spline.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C75CE611CACA6C700DA81A8 /* spline.h */; };
+		4C75CE631CACA6C700DA81A8 /* spline.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C75CE611CACA6C700DA81A8 /* spline.h */; };
 		4C7708721CAA1A950085AFBA /* ICairoControls.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7708711CAA1A950085AFBA /* ICairoControls.h */; };
 		4C7708731CAA1A950085AFBA /* ICairoControls.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7708711CAA1A950085AFBA /* ICairoControls.h */; };
 		4CE67F271CA9F5C100419118 /* libcairo.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE67F261CA9F5C100419118 /* libcairo.dylib */; };
@@ -592,13 +592,13 @@
 		4C1A86121CA98A6300D94C89 /* cairo-sphinx.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; name = "cairo-sphinx.so"; path = "../../../../../../opt/local/lib/cairo/cairo-sphinx.so"; sourceTree = "<group>"; };
 		4C1A86131CA98A6300D94C89 /* libcairo-trace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libcairo-trace.dylib"; path = "../../../../../../opt/local/lib/cairo/libcairo-trace.dylib"; sourceTree = "<group>"; };
 		4C1A864D1CA98DB500D94C89 /* libcairo.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcairo.dylib; path = "Library/Frameworks/cairo-1.14.6_0+quartz+x11.darwin_15.x86_64/opt/local/lib/libcairo.dylib"; sourceTree = SDKROOT; };
-		4C2380451CAC519E00324CA4 /* CairoBlur.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CairoBlur.c; sourceTree = "<group>"; };
 		4C75CE291CAC78A900DA81A8 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Background.png; path = resources/img/Background.png; sourceTree = "<group>"; };
 		4C75CE2A1CAC78A900DA81A8 /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Background@2x.png"; path = "resources/img/Background@2x.png"; sourceTree = "<group>"; };
 		4C75CE371CAC813B00DA81A8 /* Slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Slider.png; path = resources/img/Slider.png; sourceTree = "<group>"; };
 		4C75CE381CAC813B00DA81A8 /* Slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Slider@2x.png"; path = "resources/img/Slider@2x.png"; sourceTree = "<group>"; };
 		4C75CE531CAC854400DA81A8 /* SliderHandles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SliderHandles.png; path = resources/img/SliderHandles.png; sourceTree = "<group>"; };
 		4C75CE541CAC854400DA81A8 /* SliderHandles@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SliderHandles@2x.png"; path = "resources/img/SliderHandles@2x.png"; sourceTree = "<group>"; };
+		4C75CE611CACA6C700DA81A8 /* spline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = spline.h; path = ../../../spline/src/spline.h; sourceTree = "<group>"; };
 		4C7708711CAA1A950085AFBA /* ICairoControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICairoControls.h; sourceTree = "<group>"; };
 		4CE67F261CA9F5C100419118 /* libcairo.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcairo.dylib; path = usr/local/lib/libcairo.dylib; sourceTree = SDKROOT; };
 		4F017360154D4BFC0034BE1A /* AAX_CIPlugParameters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AAX_CIPlugParameters.cpp; path = ../../WDL/IPlug/AAX/AAX_CIPlugParameters.cpp; sourceTree = SOURCE_ROOT; };
@@ -927,7 +927,7 @@
 				52FBBED20D0CF13D001C8B8A /* DClip.h */,
 				52FBBED00D0CF139001C8B8A /* DClip.cpp */,
 				4C7708711CAA1A950085AFBA /* ICairoControls.h */,
-				4C2380451CAC519E00324CA4 /* CairoBlur.c */,
+				4C75CE611CACA6C700DA81A8 /* spline.h */,
 				089C167CFE841241C02AAC07 /* Resources */,
 				32C88E010371C26100C91783 /* Other Sources */,
 				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
@@ -1619,6 +1619,7 @@
 				4F78D94013B63BA50032E0F3 /* IPlug_include_in_plug_src.h in Headers */,
 				4F78D94113B63BA50032E0F3 /* IControl.h in Headers */,
 				4F78D94213B63BA50032E0F3 /* IKeyboardControl.h in Headers */,
+				4C75CE631CACA6C700DA81A8 /* spline.h in Headers */,
 				4F78D94413B63BA50032E0F3 /* IPlugBase.h in Headers */,
 				4C1A85FF1CA98A3600D94C89 /* cairo-version.h in Headers */,
 				4F78D94613B63BA50032E0F3 /* IGraphicsMac.h in Headers */,
@@ -1631,7 +1632,6 @@
 				4F78D95613B63BA50032E0F3 /* IPlugStructs.h in Headers */,
 				4F78D95A13B63BA50032E0F3 /* IPlug_Prefix.pch in Headers */,
 				4F78D95B13B63BA50032E0F3 /* IParam.h in Headers */,
-				4C2380471CAC519E00324CA4 /* CairoBlur.c in Headers */,
 				4F78D95D13B63BA50032E0F3 /* IMidiQueue.h in Headers */,
 				4F78D95F13B63BA50032E0F3 /* IGraphicsCarbon.h in Headers */,
 				4C1A86071CA98A3600D94C89 /* cairo-xml.h in Headers */,
@@ -1681,6 +1681,7 @@
 				4F78DA9513B640050032E0F3 /* IPlug_include_in_plug_hdr.h in Headers */,
 				4F78DA9613B640050032E0F3 /* IPlug_include_in_plug_src.h in Headers */,
 				4C1A85FE1CA98A3600D94C89 /* cairo-version.h in Headers */,
+				4C75CE621CACA6C700DA81A8 /* spline.h in Headers */,
 				4F78DA9713B640050032E0F3 /* IControl.h in Headers */,
 				4F78DA9813B640050032E0F3 /* IKeyboardControl.h in Headers */,
 				4C1A85E61CA98A3600D94C89 /* cairo-deprecated.h in Headers */,
@@ -2227,7 +2228,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C23804A1CAC535200324CA4 /* CairoBlur.c in Sources */,
 				4FD16CFC13B63468001D0217 /* swell-appstub.mm in Sources */,
 				4FD16D0513B634AA001D0217 /* swell-dlg.mm in Sources */,
 				4FD16D0C13B634BF001D0217 /* swell-gdi.mm in Sources */,
@@ -2481,6 +2481,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = "$(VST_FOLDER)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(RELEASE_DEFS)",
+					IPLUG_RETINA_SUPPORT,
+				);
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
 					"$(VST_DEFS)",
 					"$(inherited)",
@@ -2546,6 +2550,10 @@
 			buildSettings = {
 				DSTROOT = "$(AU_FOLDER)";
 				EXPORTED_SYMBOLS_FILE = DClip.exp;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(RELEASE_DEFS)",
+					IPLUG_RETINA_SUPPORT,
+				);
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
 					"$(AU_DEFS)",
 					"$(inherited)",
@@ -3021,6 +3029,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = "$(APP_FOLDER)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(RELEASE_DEFS)",
+					IPLUG_RETINA_SUPPORT,
+				);
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
 					"$(APP_DEFS)",
 					"$(inherited)",

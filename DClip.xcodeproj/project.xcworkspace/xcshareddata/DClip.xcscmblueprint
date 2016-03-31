@@ -5,12 +5,14 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "11B94510860470908E89574702597330C32284A3" : 0,
+    "A298F9ACBF2CA6194B270444FE9ED2264E025EB8" : 0,
     "E0C9025F2F347FFCCF2FF6EAAA9DDC7486FBE41F" : 0,
     "14BF17120C8BE6F077A1F6A17CD2BE95FFBFB128" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "26D93D7F-B508-42AC-A2DF-7F35006BC887",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "11B94510860470908E89574702597330C32284A3" : "..",
+    "A298F9ACBF2CA6194B270444FE9ED2264E025EB8" : "..\/..\/spline",
     "E0C9025F2F347FFCCF2FF6EAAA9DDC7486FBE41F" : "DClip\/",
     "14BF17120C8BE6F077A1F6A17CD2BE95FFBFB128" : "..\/NanoVGDemo"
   },
@@ -27,6 +29,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/gkellum\/NanoVGDemo.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "14BF17120C8BE6F077A1F6A17CD2BE95FFBFB128"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ttk592\/spline.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A298F9ACBF2CA6194B270444FE9ED2264E025EB8"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/michael_donovan\/levelplot.git",
