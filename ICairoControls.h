@@ -57,7 +57,7 @@ public:
         
         mVals = new valarray<double>(0., mWidth);
         
-        surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
+        surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth * 10, mHeight * 10);
         cr = cairo_create(surface);
     }
     
@@ -321,7 +321,7 @@ public:
         cr = cairo_create(surface);
         
         cairo_set_line_width(cr, mLineWeight);
-        cairo_set_antialias(cr, CAIRO_ANTIALIAS_GOOD);
+        cairo_set_antialias(cr, CAIRO_ANTIALIAS_FAST);
         
         
 //        if(mGridLines){
