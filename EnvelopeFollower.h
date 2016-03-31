@@ -13,7 +13,7 @@ public:
     envFollower(int attackMS, int releaseMS, int holdMS, double SampleRate) : env(0.), timer(0.){
         attack = pow(0.01, 1.0/(attackMS * SampleRate * 0.001));
         release = pow(0.01, 1.0/(releaseMS * SampleRate * 0.001));
-        hold = holdMS / 1000. * SampleRate;
+        hold = holdMS * SampleRate * 0.001;
     }
     
     double process(double sample){

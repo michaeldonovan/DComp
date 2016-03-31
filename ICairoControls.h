@@ -221,9 +221,10 @@ public:
     
     ILevelPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, double timeScale=5., bool fillEnable=true) : ICairoPlotControl(pPlug, pR, paramIdx, fillColor, lineColor, fillEnable), mTimeScale(timeScale), mBufferLength(0.), mYRange(-32), mStroke(true), mHeadroom(2), mGridLines(false), mDuration(0.), mFrameTime(1/60.)
     {
+        sr = mPlug->GetSampleRate();
         mXRes = mWidth/2.;
         mDrawVals = new valarray<double>(mHeight, mXRes);
-        mBuffer = new valarray<double>(0., mTimeScale * mPlug->GetSampleRate() / (double)mXRes);
+        mBuffer = new valarray<double>(0., mTimeScale * sr / (double)mXRes);
         mTickSpacing = mHeight / (double)(34);
         setResolution(kHighRes);
         setLineWeight(2.);
@@ -257,11 +258,15 @@ public:
                 mXRes = mWidth / 2.;
                 break;
         }
-        mBuffer->resize(mTimeScale * mPlug->GetSampleRate() / (double)mXRes, -48.);
+        mBuffer->resize(mTimeScale * sr / (double)mXRes, -48.);
         mBufferLength = 0;
         mDrawVals->resize(mXRes, mHeight);
         mSpacing = mWidth / mXRes;
         
+    }
+    
+    void setSampleRate(double sr){
+        mBuffer->resize(mTimeScale * sr/ (double)mXRes, -48.);
     }
     
     void setYRange(int yRangeDB){
@@ -315,7 +320,7 @@ public:
     
     bool Draw(IGraphics* pGraphics){
         mDuration = (clock() - start_time) / (double)CLOCKS_PER_SEC;
-        if(mDuration >= mFrameTime){
+       // if(mDuration >= mFrameTime){
             start_time = clock();
             
             cairo_save(cr);
@@ -379,21 +384,20 @@ public:
             
             unsigned int *data = (unsigned int*)cairo_image_surface_get_data(surface);
             //Bind to LICE
-            WrapperBitmap = LICE_WrapperBitmap(data, this->mRECT.W(), this->mRECT.H(), this->mRECT.W(), false);
-            
+            LICE_WrapperBitmap WrapperBitmap = LICE_WrapperBitmap(data, this->mRECT.W(), this->mRECT.H(), this->mRECT.W(), false);
+        
             //Render
-        }
+        //}
         IBitmap result(&WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
         return pGraphics->DrawBitmap(&result, &this->mRECT);
     }
     
 private:
-    double mTimeScale, mTickSpacing, mFrameTime, mDuration;
+    double mTimeScale, mTickSpacing, mFrameTime, mDuration, sr;
     int mBufferLength, mXRes, mSpacing, mYRange, mHeadroom;
     valarray<double> *mBuffer, *mDrawVals;
     bool mStroke, mGridLines;
     clock_t start_time;
-    LICE_WrapperBitmap WrapperBitmap;
     double percentToCoordinates(double value) {
         return getHeight() - value * getHeight();
     }
