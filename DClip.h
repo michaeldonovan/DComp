@@ -21,13 +21,14 @@ public:
 private:
   double scaleValue(double inValue, double inMin, double inMax, double outMin, double outMax);
   
- // clock_t start_time;
- // clock_t stop_time;
+  clock_t start_time;
+  clock_t stop_time;
   
   const int kGainMin = 0;
   const int kGainMax = 32;
   const int kCeilingMin = -32;
   const int kCeilingMax = 2;
+  const double frameTime = 1/20.;
   
   IColor plotBackgroundColor = IColor(206,206,206);
   IColor plotPreLineColor =  IColor(170, 151, 151, 151);

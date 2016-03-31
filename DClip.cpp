@@ -48,7 +48,7 @@ enum ELayout
 
 
 DClip::DClip(IPlugInstanceInfo instanceInfo)
-:	IPLUG_CTOR(kNumParams, kNumPrograms, instanceInfo), mGain(0.), mCeiling(0.), envPlotIn(0, 100, 75, GetSampleRate()), envPlotOut(0, 100, 75, GetSampleRate()), envMeter(0, 400, 50, GetSampleRate()), envGR(0, 500, 10, GetSampleRate()), mGainSmoother(5., GetSampleRate()), mCeilingSmoother(5., GetSampleRate())//, duration(frameTime)
+:	IPLUG_CTOR(kNumParams, kNumPrograms, instanceInfo), mGain(0.), mCeiling(0.), envPlotIn(0, 100, 75, GetSampleRate()), envPlotOut(0, 100, 75, GetSampleRate()), envMeter(0, 400, 50, GetSampleRate()), envGR(0, 500, 10, GetSampleRate()), mGainSmoother(5., GetSampleRate()), mCeilingSmoother(5., GetSampleRate()), duration(frameTime)
 {
   TRACE;
 
@@ -99,7 +99,7 @@ DClip::DClip(IPlugInstanceInfo instanceInfo)
   mShadow = new IBitmapControl(this, plotRECT.L , plotRECT.T, &shadow);
   
   pGraphics->AttachControl(new ITextControl(this, IRECT(kQualityX, kQualityY, kQualityX+50, kQualityY+30), &caption, "Quality:"));
-  pGraphics->AttachControl(new IPopUpMenuControl(this, IRECT(kQualityX + 55, kQualityY-1, kQualityX+100, kQualityY+40), yellow, yellow, yellow, kQuality));
+  pGraphics->AttachControl(new IPopUpMenuControl(this, IRECT(kQualityX + 55, kQualityY-1, kQualityX+100, kQualityY+20), yellow, yellow, yellow, kQuality));
   pGraphics->AttachControl(mDBMeter);
   pGraphics->AttachControl(mGainSliderHandles);
   pGraphics->AttachControl(mGRMeter);
@@ -108,13 +108,13 @@ DClip::DClip(IPlugInstanceInfo instanceInfo)
   pGraphics->AttachControl(mCeilingCaption);
   pGraphics->AttachControl(mShadow);
   
-  //mKnob = new IKnobMultiControl(this, 50, 50, kKnob, &knob);
+ // mKnob = new IKnobMultiControl(this, 50, 50, kKnob, &knob);
  // pGraphics->AttachControl(mKnob);
  // pGraphics->AttachControl(new IKnobMultiControl(this, 150,150, kGain, &knob));
   AttachGraphics(pGraphics);
   
-//  start_time = clock();
-//  stop_time = clock();
+  start_time = clock();
+  stop_time = clock();
   
   //MakePreset("preset 1", ... );
   MakeDefaultPreset((char *) "-", kNumPrograms);
@@ -134,6 +134,8 @@ void DClip::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
   for (int s = 0; s < nFrames; ++s, ++in1, ++in2, ++out1, ++out2)
   {
     double sample1, sample2, inMax, gainSmoothed, ceilingSmoothedAmp, GR1, GR2;
+    GR1 = 0;
+    GR2 = 0;
     gainSmoothed = mGainSmoother.process(mGain);
     ceilingSmoothedAmp = DBToAmp(mCeilingSmoother.process(mCeiling));
     
@@ -172,15 +174,16 @@ void DClip::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
     plotOut->process(AmpToDB(envPlotOut.process(std::max(sample1, sample2))));
     mGRMeter->SetValueFromPlug(scaleValue(AmpToDB(envGR.process(std::max(GR1,GR2))), -32, 2, 0, 1));
     
-   // duration = (clock() - start_time) / (double)CLOCKS_PER_SEC;
+    duration = (clock() - start_time) / (double)CLOCKS_PER_SEC;
     //if ( duration >= frameTime) {
       mGRMeter->SetDirty();
       mDBMeter->SetDirty();
       plot->SetDirty();
       plotOut->SetDirty();
-    mShadow->SetDirty();
-   //   start_time = clock();
-   // }
+      mShadow->SetDirty();
+      start_time = clock();
+      
+    //}
 
   }
   
@@ -206,6 +209,7 @@ void DClip::OnParamChange(int paramIdx)
     case kCeiling:
      mCeiling = GetParam(kCeiling)->Value();
 //      mCeilingCaption->SetDirty();
+
       break;
       
     default:

@@ -12,6 +12,7 @@
 #include "IControl.h"
 #include <cairo.h>
 #include <valarray>
+#include <ctime>
 
 using std::valarray;
 
@@ -218,7 +219,7 @@ public:
         k48dB
     };
     
-    ILevelPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, double timeScale=5., bool fillEnable=true) : ICairoPlotControl(pPlug, pR, paramIdx, fillColor, lineColor, fillEnable), mTimeScale(timeScale), mBufferLength(0.), mYRange(-32), mStroke(true), mHeadroom(2), mGridLines(false)
+    ILevelPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, double timeScale=5., bool fillEnable=true) : ICairoPlotControl(pPlug, pR, paramIdx, fillColor, lineColor, fillEnable), mTimeScale(timeScale), mBufferLength(0.), mYRange(-32), mStroke(true), mHeadroom(2), mGridLines(false), mDuration(0.), mFrameTime(1/60.)
     {
         mXRes = mWidth/2.;
         mDrawVals = new valarray<double>(mHeight, mXRes);
@@ -226,6 +227,8 @@ public:
         mTickSpacing = mHeight / (double)(34);
         setResolution(kHighRes);
         setLineWeight(2.);
+        start_time = clock();
+        mRedraw=false;
     }
     
     ~ILevelPlotControl(){
@@ -311,80 +314,86 @@ public:
     }
     
     bool Draw(IGraphics* pGraphics){
-        cairo_save(cr);
-        cairo_set_source_rgba(cr, 0, 0, 0, 0);
-        cairo_set_operator(cr, CAIRO_OPERATOR_SOURCE);
-        cairo_paint(cr);
-        cairo_restore(cr);
-        
-        surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
-        cr = cairo_create(surface);
-        
-        cairo_set_line_width(cr, mLineWeight);
-        cairo_set_antialias(cr, CAIRO_ANTIALIAS_FAST);
-        
-        
-//        if(mGridLines){
-//            drawDBLines(cr);
-//        }
-        
-        //Starting point in bottom left corner.
-        cairo_move_to(cr, 0, mHeight);
-        
-        //Draw data points
-        for (int i = 0, x = 0; x < mWidth && i < mDrawVals->size(); i++) {
-            cairo_line_to(cr, x, mDrawVals->operator[](i));
-            x += mSpacing;
-        }
-        
-        //Endpoint in bottom right corner
-        cairo_line_to(cr, mWidth, mHeight);
-        
-        cairo_close_path(cr);
-        
-        if(mFill && mStroke){
-            cairo_set_source_rgba(cr, mColorFill.R, mColorFill.G, mColorFill.B, mColorFill.A);
-
-            cairo_path_t* path = cairo_copy_path(cr);
+        mDuration = (clock() - start_time) / (double)CLOCKS_PER_SEC;
+        if(mDuration >= mFrameTime){
+            start_time = clock();
             
-
-            cairo_fill(cr);
+            cairo_save(cr);
+            cairo_set_source_rgba(cr, 0, 0, 0, 0);
+            cairo_set_operator(cr, CAIRO_OPERATOR_SOURCE);
+            cairo_paint(cr);
+            cairo_restore(cr);
             
-            cairo_append_path(cr, path);
-
-            cairo_set_source_rgba(cr, mColorLine.R, mColorLine.G, mColorLine.B, mColorLine.A);
+            surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
+            cr = cairo_create(surface);
             
-
-            cairo_stroke(cr);
+            cairo_set_line_width(cr, mLineWeight);
+            cairo_set_antialias(cr, CAIRO_ANTIALIAS_FAST);
             
-            cairo_path_destroy(path);
+            
+            //        if(mGridLines){
+            //            drawDBLines(cr);
+            //        }
+            
+            //Starting point in bottom left corner.
+            cairo_move_to(cr, 0, mHeight);
+            
+            //Draw data points
+            for (int i = 0, x = 0; x < mWidth && i < mDrawVals->size(); i++) {
+                cairo_line_to(cr, x, mDrawVals->operator[](i));
+                x += mSpacing;
+            }
+            
+            //Endpoint in bottom right corner
+            cairo_line_to(cr, mWidth, mHeight);
+            
+            cairo_close_path(cr);
+            
+            if(mFill && mStroke){
+                cairo_set_source_rgba(cr, mColorFill.R, mColorFill.G, mColorFill.B, mColorFill.A);
+                
+                cairo_path_t* path = cairo_copy_path(cr);
+                
+                
+                cairo_fill(cr);
+                
+                cairo_append_path(cr, path);
+                
+                cairo_set_source_rgba(cr, mColorLine.R, mColorLine.G, mColorLine.B, mColorLine.A);
+                
+                
+                cairo_stroke(cr);
+                
+                cairo_path_destroy(path);
+            }
+            else if(mStroke){
+                cairo_set_source_rgba(cr, mColorLine.R, mColorLine.G, mColorLine.B, mColorLine.A);
+                cairo_stroke(cr);
+            }
+            else if(mFill){
+                cairo_set_source_rgba(cr, mColorFill.R, mColorFill.G, mColorFill.B, mColorFill.A);
+                cairo_fill(cr);
+            }
+            
+            cairo_surface_flush(surface);
+            
+            unsigned int *data = (unsigned int*)cairo_image_surface_get_data(surface);
+            //Bind to LICE
+            WrapperBitmap = LICE_WrapperBitmap(data, this->mRECT.W(), this->mRECT.H(), this->mRECT.W(), false);
+            
+            //Render
         }
-        else if(mStroke){
-            cairo_set_source_rgba(cr, mColorLine.R, mColorLine.G, mColorLine.B, mColorLine.A);
-            cairo_stroke(cr);
-        }
-        else if(mFill){
-            cairo_set_source_rgba(cr, mColorFill.R, mColorFill.G, mColorFill.B, mColorFill.A);
-            cairo_fill(cr);
-        }
-        
-        cairo_surface_flush(surface);
-        
-        unsigned int *data = (unsigned int*)cairo_image_surface_get_data(surface);
-        //Bind to LICE
-        LICE_WrapperBitmap WrapperBitmap = LICE_WrapperBitmap(data, this->mRECT.W(), this->mRECT.H(), this->mRECT.W(), false);
-        
-        //Render
         IBitmap result(&WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
         return pGraphics->DrawBitmap(&result, &this->mRECT);
     }
     
 private:
-    double mTimeScale, mTickSpacing;
+    double mTimeScale, mTickSpacing, mFrameTime, mDuration;
     int mBufferLength, mXRes, mSpacing, mYRange, mHeadroom;
     valarray<double> *mBuffer, *mDrawVals;
     bool mStroke, mGridLines;
-    
+    clock_t start_time;
+    LICE_WrapperBitmap WrapperBitmap;
     double percentToCoordinates(double value) {
         return getHeight() - value * getHeight();
     }
