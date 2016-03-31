@@ -27,22 +27,25 @@ enum ELayout
   kCeilingX = 537,
   kMeterX = 564,
   kGainY = 85,
+  
+  kGainCaptionX = 65,
+  kCeilingCaptionX = 554,
+
+  kCaptionY = 344,
+  
+  kCaptionHeight = 50,
+  kCaptionWidth = 62,
+  
   kFaderLength = 280,
   
   kSliderFrames = 63
 };
 
-enum EParamRanges
-{
-  kGainMin = 0,
-  kGainMax = 32,
-  kCeilingMin = -32,
-  kCeilingMax = 0
-};
+
 
 
 DClip::DClip(IPlugInstanceInfo instanceInfo)
-  :	IPLUG_CTOR(kNumParams, kNumPrograms, instanceInfo), mGain(1.), env(1., 250., GetSampleRate())
+  :	IPLUG_CTOR(kNumParams, kNumPrograms, instanceInfo), mGain(0.), mCeiling(0.), env(1., 250., GetSampleRate())
 {
   TRACE;
 
@@ -70,16 +73,18 @@ DClip::DClip(IPlugInstanceInfo instanceInfo)
   mCeilingSliderHandles = new IFaderControl(this, kCeilingX, kGainY - 10, kFaderLength, kCeiling, &sliderHandles);
   mOutputMeter = new IBitmapControl(this, kMeterX, kGainY, &slider);
 
-  //IText caption = IText()
+  IText caption = IText(16, &COLOR_WHITE, "Futura", IText::kStyleNormal, IText::kAlignCenter);
   
-  mGainCaption = new ICaptionControl
-  
+  mGainCaption = new ICaptionControl(this, IRECT(kGainCaptionX, kCaptionY, kGainCaptionX+kCaptionWidth, kCaptionY+kCaptionHeight), kGain, &caption, true);
+  mCeilingCaption = new ICaptionControl(this, IRECT(kCeilingCaptionX, kCaptionY, kCeilingCaptionX+kCaptionWidth, kCaptionY+kCaptionHeight), kCeiling, &caption, true);
+
   pGraphics->AttachControl(mGainSlider);
   pGraphics->AttachControl(mGainSliderHandles);
   pGraphics->AttachControl(mOutputMeter);
   pGraphics->AttachControl(mCeilingSliderHandles);
+  pGraphics->AttachControl(mGainCaption);
+  pGraphics->AttachControl(mCeilingCaption);
 
-  
   
   
   //mKnob = new IKnobMultiControl(this, 50, 50, kKnob, &knob);
@@ -136,8 +141,14 @@ void DClip::OnParamChange(int paramIdx)
       mGain = GetParam(kGain)->Value();
       mGainSlider->SetValueFromPlug(scaleValue(mGain, kGainMin, kGainMax, 0, 1));
       mGainSlider->SetDirty();
+      //mGainCaption->SetDirty();
       break;
-
+      
+    case kCeiling:
+     mCeiling = GetParam(kCeiling)->Value();
+//      mCeilingCaption->SetDirty();
+      break;
+      
     default:
       break;
   }
