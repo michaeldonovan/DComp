@@ -48,7 +48,7 @@ enum ELayout
 
 
 DClip::DClip(IPlugInstanceInfo instanceInfo)
-:	IPLUG_CTOR(kNumParams, kNumPrograms, instanceInfo), mGain(0.), mCeiling(0.), envPlotIn(0, 100, 75, GetSampleRate()), envPlotOut(0, 100, 75, GetSampleRate()), envMeter(0, 400, 50, GetSampleRate()), envGR(0, 500, 10, GetSampleRate()), mGainSmoother(5., GetSampleRate()), mCeilingSmoother(5., GetSampleRate()), duration(frameTime), mOversampling(2)
+:	IPLUG_CTOR(kNumParams, kNumPrograms, instanceInfo), mGain(0.), mCeiling(0.), envPlotIn(0, 100, 75, GetSampleRate()), envPlotOut(0, 100, 75, GetSampleRate()), envMeter(0, 400, 50, GetSampleRate()), envGR(0, 500, 10, GetSampleRate()), mGainSmoother(5., GetSampleRate()), mCeilingSmoother(5., GetSampleRate()), duration(frameTime)
 {
   TRACE;
 
@@ -60,9 +60,7 @@ DClip::DClip(IPlugInstanceInfo instanceInfo)
   GetParam(kQuality)->SetDisplayText(1, "4x");
   GetParam(kQuality)->SetDisplayText(2, "8x");
 
-  IGraphics* pGraphics = MakeGraphics(this, kWidth, kHeight, 30);
-  //pGraphics->SetStrictDrawing(false);
-  
+  IGraphics* pGraphics = MakeGraphics(this, kWidth, kHeight);
   
   IBitmap slider = pGraphics->LoadIBitmap(SLIDER_ID, SLIDER_FN, kSliderFrames);
   IBitmap sliderHandles = pGraphics->LoadIBitmap(SLIDERHANDLES_ID, SLIDERHANDLES_FN);
@@ -71,8 +69,6 @@ DClip::DClip(IPlugInstanceInfo instanceInfo)
 
   pGraphics->AttachBackground(BACKGROUND_ID, BACKGROUND_FN);
   
-  
-  
   IRECT plotRECT = IRECT(152, 85, 527, 337);
   IText caption = IText(16, &COLOR_WHITE, "Futura", IText::kStyleNormal, IText::kAlignCenter);
   
@@ -80,16 +76,21 @@ DClip::DClip(IPlugInstanceInfo instanceInfo)
   plot->setResolution(ILevelPlotControl::kHighRes);
   plot->setYRange(ILevelPlotControl::k32dB);
   plot->setStroke(false);
-  plot->setSampleRate(GetSampleRate() * mOversampling);
+  plot->setGridLines(true);
   pGraphics->AttachControl(plot);
   
   plotOut = new ILevelPlotControl(this, plotRECT, kPlot, &plotPostFillColor, &plotPostLineColor, 5);
   plotOut->setLineWeight(2.);
   plotOut->setResolution(ILevelPlotControl::kHighRes);
   plotOut->setYRange(ILevelPlotControl::k32dB);
-  plotOut->setSampleRate(GetSampleRate() * mOversampling);
   pGraphics->AttachControl(plotOut);
   
+  GRplot = new ILevelPlotControl(this, plotRECT, kPlot, &grFillColor, &grLineColor, 5);
+  GRplot->setLineWeight(2.);
+  GRplot->setReverseFill(true);
+  GRplot->setResolution(ILevelPlotControl::kHighRes);
+  GRplot->setYRange(ILevelPlotControl::k32dB);
+  pGraphics->AttachControl(GRplot);
   
   mDBMeter = new IBitmapControl(this, kGainX, kGainY, &slider);
   mGainSliderHandles = new IFaderControl(this, kGainHandlesX, kGainY - 10, kFaderLength, kGain, &sliderHandles);
@@ -121,11 +122,6 @@ DClip::DClip(IPlugInstanceInfo instanceInfo)
   start_time = clock();
   stop_time = clock();
   
-  mAntiAlias.Calc(0.5 / (double)mOversampling);
-  mUpsample.Reset();
-  mDownsample.Reset();
-
-  
   //MakePreset("preset 1", ... );
   MakeDefaultPreset((char *) "-", kNumPrograms);
 }
@@ -135,63 +131,71 @@ DClip::~DClip() {}
 void DClip::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrames)
 {
   // Mutex is already locked for us.
-  
-  for (int i = 0; i < channelCount; i++) {
-    double* input = inputs[i];
-    double* output = outputs[i];
+
+  double* in1 = inputs[0];
+  double* in2 = inputs[1];
+  double* out1 = outputs[0];
+  double* out2 = outputs[1];
+
+  for (int s = 0; s < nFrames; ++s, ++in1, ++in2, ++out1, ++out2)
+  {
+    double sample1, sample2, inMax, gainSmoothed, ceilingSmoothedAmp, GR1, GR2;
+    GR1 = 0;
+    GR2 = 0;
+    gainSmoothed = mGainSmoother.process(mGain);
+    ceilingSmoothedAmp = DBToAmp(mCeilingSmoother.process(mCeiling));
     
-    for (int s = 0; s < nFrames; ++s, ++input, ++output) {
-      {
-        double sample, gainSmoothed, ceilingSmoothedAmp, GR1;
-        GR1 = 0;
-        gainSmoothed = mGainSmoother.process(mGain);
-        ceilingSmoothedAmp = DBToAmp(mCeilingSmoother.process(mCeiling));
-        
-        
-        sample = *input * DBToAmp(gainSmoothed);
-        
-        
-        plot->process(AmpToDB(envPlotIn.process(sample)));
-        mDBMeter->SetValueFromPlug(scaleValue(AmpToDB(envMeter.process(sample)), kCeilingMin, 2, 0, 1));
-        
-        
-        for (int j = 0; j < mOversampling; ++j)
-        {
-          //UpSample
-          if (j > 0) sample = 0.;
-          mUpsample.Process(sample, mAntiAlias.Coeffs());
-          sample = (double)mOversampling * mUpsample.Output();
-          
-          
-          if (WDL_DENORMAL_OR_ZERO_DOUBLE_AGGRESSIVE(&sample))
-            sample = 0.;
-          else if (sample > ceilingSmoothedAmp) {
-            GR1 = sample - ceilingSmoothedAmp;
-            sample = ceilingSmoothedAmp;
-          }
-          else if(sample < -1 * ceilingSmoothedAmp){
-            GR1 = -1 * sample - ceilingSmoothedAmp;
-            sample = -1 * ceilingSmoothedAmp;
-          }
-          
-          // Downsample
-          mDownsample.Process(sample, mAntiAlias.Coeffs());
-          if (j == 0) *output = mDownsample.Output();
-        }
-        
-        
-        
-        plotOut->process(AmpToDB(envPlotOut.process(sample)));
-        mGRMeter->SetValueFromPlug(scaleValue(AmpToDB(envGR.process(GR1)), -32, 2, 0, 1));
-        
-        mGRMeter->SetDirty();
-        mDBMeter->SetDirty();
-        plot->SetDirty();
-        plotOut->SetDirty();
-        mShadow->SetDirty();
-      }
+    
+    sample1 = *in1 * DBToAmp(gainSmoothed);
+    sample2 = *in2 * DBToAmp(gainSmoothed);
+    
+    
+    inMax = std::max(sample1, sample2);
+    plot->process(AmpToDB(envPlotIn.process(inMax)));
+    mDBMeter->SetValueFromPlug(scaleValue(AmpToDB(envMeter.process(inMax)), kCeilingMin, 2, 0, 1));
+
+    
+    if (sample1 > ceilingSmoothedAmp) {
+      GR1 = sample1 - ceilingSmoothedAmp;
+      sample1 = ceilingSmoothedAmp;
     }
+    else if(sample1 < -1 * ceilingSmoothedAmp){
+      GR1 = -1 * sample1 - ceilingSmoothedAmp;
+      sample1 = -1 * ceilingSmoothedAmp;
+    }
+    
+    if (sample2 > ceilingSmoothedAmp) {
+      GR2 = sample2 - ceilingSmoothedAmp;
+      sample2 = ceilingSmoothedAmp;
+    }
+    else if(sample2 < -1 * ceilingSmoothedAmp){
+      GR2 =  -1 * sample2 - ceilingSmoothedAmp;
+      sample2 = -1 * ceilingSmoothedAmp;
+    }
+    
+    *out1 = sample1;
+    *out2 = sample2;
+
+    
+    plotOut->process(AmpToDB(envPlotOut.process(std::max(sample1, sample2))));
+    double gr = envGR.process(std::max(GR1,GR2));
+    GRplot->process(scaleValue(AmpToDB(gr), -32, 2, 2, -4));
+
+    mGRMeter->SetValueFromPlug(scaleValue(AmpToDB(gr), -32, 2, 0, 1));
+    
+ //   duration = (clock() - start_time) / (double)CLOCKS_PER_SEC;
+    //if ( duration >= frameTime) {
+      mGRMeter->SetDirty();
+      mDBMeter->SetDirty();
+      plot->SetDirty();
+      plotOut->SetDirty();
+      mShadow->SetDirty();
+      start_time = clock();
+      
+    //}
+
   }
+  
 }
 
 void DClip::Reset()
@@ -214,16 +218,7 @@ void DClip::OnParamChange(int paramIdx)
     case kCeiling:
      mCeiling = GetParam(kCeiling)->Value();
 //      mCeilingCaption->SetDirty();
-      break;
-      
-    case kQuality:
-      mOversampling = pow(2, GetParam(kQuality)->Value() + 1);
-      mAntiAlias.Calc(0.5 / (double)mOversampling);
-      mUpsample.Reset();
-      mDownsample.Reset();
 
-      plot->setSampleRate(GetSampleRate() * mOversampling);
-      plotOut->setSampleRate(GetSampleRate() * mOversampling);
       break;
       
     default:

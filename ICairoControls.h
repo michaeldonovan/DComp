@@ -219,12 +219,11 @@ public:
         k48dB
     };
     
-    ILevelPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, double timeScale=5., bool fillEnable=true) : ICairoPlotControl(pPlug, pR, paramIdx, fillColor, lineColor, fillEnable), mTimeScale(timeScale), mBufferLength(0.), mYRange(-32), mStroke(true), mHeadroom(2), mGridLines(false), mDuration(0.), mFrameTime(1/60.)
+    ILevelPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, double timeScale=5., bool fillEnable=true) : ICairoPlotControl(pPlug, pR, paramIdx, fillColor, lineColor, fillEnable), mTimeScale(timeScale), mBufferLength(0.), mYRange(-32), mStroke(true), mHeadroom(2), mGridLines(false), mDuration(0.), mFrameTime(1/60.), mReverseFill(false)
     {
-        sr = mPlug->GetSampleRate();
         mXRes = mWidth/2.;
         mDrawVals = new valarray<double>(mHeight, mXRes);
-        mBuffer = new valarray<double>(0., mTimeScale * sr / (double)mXRes);
+        mBuffer = new valarray<double>(0., mTimeScale * mPlug->GetSampleRate() / (double)mXRes);
         mTickSpacing = mHeight / (double)(34);
         setResolution(kHighRes);
         setLineWeight(2.);
@@ -235,6 +234,10 @@ public:
     ~ILevelPlotControl(){
         delete mDrawVals;
         delete mBuffer;
+    }
+    
+    void setReverseFill(bool rev){
+        mReverseFill = rev;
     }
     
     void setResolution(int res){
@@ -258,15 +261,16 @@ public:
                 mXRes = mWidth / 2.;
                 break;
         }
-        mBuffer->resize(mTimeScale * sr / (double)mXRes, -48.);
+        mBuffer->resize(mTimeScale * mPlug->GetSampleRate() / (double)mXRes, -48.);
         mBufferLength = 0;
-        mDrawVals->resize(mXRes, mHeight);
+        if(mReverseFill){
+            mDrawVals->resize(mXRes, -2);
+        }
+        else{
+            mDrawVals->resize(mXRes, mHeight);
+        }
         mSpacing = mWidth / mXRes;
         
-    }
-    
-    void setSampleRate(double sr){
-        mBuffer->resize(mTimeScale * sr/ (double)mXRes, -48.);
     }
     
     void setYRange(int yRangeDB){
@@ -321,7 +325,7 @@ public:
     bool Draw(IGraphics* pGraphics){
         mDuration = (clock() - start_time) / (double)CLOCKS_PER_SEC;
        // if(mDuration >= mFrameTime){
-            start_time = clock();
+         //   start_time = clock();
             
             cairo_save(cr);
             cairo_set_source_rgba(cr, 0, 0, 0, 0);
@@ -341,17 +345,28 @@ public:
             //        }
             
             //Starting point in bottom left corner.
+        if(mReverseFill){
+            cairo_move_to(cr, 0, 0);
+        }
+        else{
             cairo_move_to(cr, 0, mHeight);
-            
+        }
+        
             //Draw data points
             for (int i = 0, x = 0; x < mWidth && i < mDrawVals->size(); i++) {
                 cairo_line_to(cr, x, mDrawVals->operator[](i));
                 x += mSpacing;
             }
-            
+        
+        cairo_line_to(cr, mWidth+1, mDrawVals->operator[](mDrawVals->size()-1));
             //Endpoint in bottom right corner
+        if(mReverseFill){
+            cairo_line_to(cr, mWidth, 0);
+        }
+        else{
             cairo_line_to(cr, mWidth, mHeight);
-            
+        }
+        
             cairo_close_path(cr);
             
             if(mFill && mStroke){
@@ -385,7 +400,7 @@ public:
             unsigned int *data = (unsigned int*)cairo_image_surface_get_data(surface);
             //Bind to LICE
             LICE_WrapperBitmap WrapperBitmap = LICE_WrapperBitmap(data, this->mRECT.W(), this->mRECT.H(), this->mRECT.W(), false);
-        
+            
             //Render
         //}
         IBitmap result(&WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
@@ -393,11 +408,13 @@ public:
     }
     
 private:
-    double mTimeScale, mTickSpacing, mFrameTime, mDuration, sr;
+    double mTimeScale, mTickSpacing, mFrameTime, mDuration;
     int mBufferLength, mXRes, mSpacing, mYRange, mHeadroom;
     valarray<double> *mBuffer, *mDrawVals;
-    bool mStroke, mGridLines;
+    bool mStroke, mGridLines, mReverseFill;
     clock_t start_time;
+    
+    
     double percentToCoordinates(double value) {
         return getHeight() - value * getHeight();
     }

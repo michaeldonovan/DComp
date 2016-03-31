@@ -42,6 +42,4 @@ dependencies: \
   /Users/michael/PluginDev/wdl-ol-michaeldonovan\ --\ CAIRO\ TEST/DevCairo/DClip/../../../../../../opt/local/include/cairo/cairo-features.h \
   /Users/michael/PluginDev/wdl-ol-michaeldonovan\ --\ CAIRO\ TEST/DevCairo/DClip/../../../../../../opt/local/include/cairo/cairo-deprecated.h \
   /Users/michael/PluginDev/wdl-ol-michaeldonovan\ --\ CAIRO\ TEST/DevCairo/DClip/app_wrapper/../CParamSmooth.h \
-  /Users/michael/PluginDev/wdl-ol-michaeldonovan\ --\ CAIRO\ TEST/DevCairo/DClip/app_wrapper/../IPopupMenuControl.h \
-  /Users/michael/PluginDev/wdl-ol-michaeldonovan\ --\ CAIRO\ TEST/DevCairo/DClip/app_wrapper/../besselfilter.h \
-  /Users/michael/PluginDev/wdl-ol-michaeldonovan\ --\ CAIRO\ TEST/DevCairo/DClip/app_wrapper/../denormal.h
+  /Users/michael/PluginDev/wdl-ol-michaeldonovan\ --\ CAIRO\ TEST/DevCairo/DClip/app_wrapper/../IPopupMenuControl.h

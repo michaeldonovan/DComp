@@ -8,10 +8,6 @@
 #include "IPopupMenuControl.h"
 #include <ctime>
 
-#define WDL_BESSEL_FILTER_ORDER 8
-#define WDL_BESSEL_DENORMAL_AGGRESSIVE
-#include "besselfilter.h"
-
 class DClip : public IPlug
 {
 public:
@@ -28,14 +24,11 @@ private:
   clock_t start_time;
   clock_t stop_time;
   
-  const int channelCount = 2;
   const int kGainMin = 0;
   const int kGainMax = 32;
   const int kCeilingMin = -32;
   const int kCeilingMax = 2;
   const double frameTime = 1/20.;
-  
-  int mOversampling;
   
   IColor plotBackgroundColor = IColor(206,206,206);
   IColor plotPreLineColor =  IColor(170, 151, 151, 151);
@@ -43,7 +36,9 @@ private:
   IColor plotPreFillColor =  IColor(30, 198, 198, 198);
   IColor plotPostFillColor =  IColor(255, 187, 187, 187);
   IColor yellow = IColor(255, 255, 233, 30);
-  
+  IColor grLineColor = IColor(120, 250, 0,0);
+  IColor grFillColor = IColor(15, 250, 0,0);
+
   double mGain, mCeiling, duration;
   //double mCeiling;
   struct NVGcontext* vg;
@@ -57,6 +52,7 @@ private:
   
   ILevelPlotControl* plot;
   ILevelPlotControl* plotOut;
+  ILevelPlotControl* GRplot;
 
   IBitmapControl* mDBMeter;
   IFaderControl* mGainSliderHandles;
@@ -66,9 +62,6 @@ private:
   ICaptionControl* mCeilingCaption;
   
   IBitmapControl* mShadow;
-  
-  WDL_BesselFilterCoeffs mAntiAlias;
-  WDL_BesselFilterStage mUpsample, mDownsample;
 };
 
 #endif
