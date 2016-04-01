@@ -188,6 +188,8 @@
 		4C75CE8C1CACDC1400DA81A8 /* IPopupMenuControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C75CE8A1CACDC1400DA81A8 /* IPopupMenuControl.h */; };
 		4C7708721CAA1A950085AFBA /* ICairoControls.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7708711CAA1A950085AFBA /* ICairoControls.h */; };
 		4C7708731CAA1A950085AFBA /* ICairoControls.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7708711CAA1A950085AFBA /* ICairoControls.h */; };
+		4C921EBD1CAE1B1F00C522F2 /* Limiter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C921EBC1CAE1B1F00C522F2 /* Limiter.h */; };
+		4C921EBE1CAE1B1F00C522F2 /* Limiter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C921EBC1CAE1B1F00C522F2 /* Limiter.h */; };
 		4CE67F271CA9F5C100419118 /* libcairo.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE67F261CA9F5C100419118 /* libcairo.dylib */; };
 		4F1F1BEA135B1F60003A5BB2 /* wdlendian.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F1F1BE9135B1F60003A5BB2 /* wdlendian.h */; };
 		4F20EECB132C69FE0030E34C /* DClip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52FBBED00D0CF139001C8B8A /* DClip.cpp */; };
@@ -638,6 +640,7 @@
 		4C75CE7D1CACD7D300DA81A8 /* PlotShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PlotShadow@2x.png"; path = "resources/img/PlotShadow@2x.png"; sourceTree = "<group>"; };
 		4C75CE8A1CACDC1400DA81A8 /* IPopupMenuControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPopupMenuControl.h; sourceTree = "<group>"; };
 		4C7708711CAA1A950085AFBA /* ICairoControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICairoControls.h; sourceTree = "<group>"; };
+		4C921EBC1CAE1B1F00C522F2 /* Limiter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Limiter.h; sourceTree = "<group>"; };
 		4CE67F261CA9F5C100419118 /* libcairo.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcairo.dylib; path = usr/local/lib/libcairo.dylib; sourceTree = SDKROOT; };
 		4F017360154D4BFC0034BE1A /* AAX_CIPlugParameters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AAX_CIPlugParameters.cpp; path = ../../WDL/IPlug/AAX/AAX_CIPlugParameters.cpp; sourceTree = SOURCE_ROOT; };
 		4F017361154D4BFC0034BE1A /* AAX_CIPlugParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAX_CIPlugParameters.h; path = ../../WDL/IPlug/AAX/AAX_CIPlugParameters.h; sourceTree = SOURCE_ROOT; };
@@ -961,6 +964,7 @@
 			isa = PBXGroup;
 			children = (
 				4C1A34F81CA492DF00082AF8 /* EnvelopeFollower.h */,
+				4C921EBC1CAE1B1F00C522F2 /* Limiter.h */,
 				52FBBED30D0CF143001C8B8A /* resource.h */,
 				52FBBED20D0CF13D001C8B8A /* DClip.h */,
 				52FBBED00D0CF139001C8B8A /* DClip.cpp */,
@@ -1642,6 +1646,7 @@
 				4C1A34FA1CA492DF00082AF8 /* EnvelopeFollower.h in Headers */,
 				4FF016F9134E14E2001447BA /* wdlstring.h in Headers */,
 				4FD16D1913B634E5001D0217 /* swell.h in Headers */,
+				4C921EBE1CAE1B1F00C522F2 /* Limiter.h in Headers */,
 				4C7708731CAA1A950085AFBA /* ICairoControls.h in Headers */,
 				4C1A85F71CA98A3600D94C89 /* cairo-script-interpreter.h in Headers */,
 				4FD16D2413B6351C001D0217 /* swell-functions.h in Headers */,
@@ -1732,6 +1737,7 @@
 				4C1A85E61CA98A3600D94C89 /* cairo-deprecated.h in Headers */,
 				4F78DA9913B640050032E0F3 /* IPlugBase.h in Headers */,
 				4F78DA9A13B640050032E0F3 /* IGraphicsMac.h in Headers */,
+				4C921EBD1CAE1B1F00C522F2 /* Limiter.h in Headers */,
 				4F78DA9C13B640050032E0F3 /* Containers.h in Headers */,
 				4F78DA9D13B640050032E0F3 /* Hosts.h in Headers */,
 				4F78DA9E13B640050032E0F3 /* IGraphicsCocoa.h in Headers */,

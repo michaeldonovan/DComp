@@ -39,14 +39,16 @@ private:
   IColor grLineColor = IColor(90, 250, 0,0);
   IColor grFillColor = IColor(50, 250, 0,0);
 
-  double mGain, mCeiling, duration;
+  double mGain, mCeiling, mAttack, mRelease, mKnee;
+  int mMode;
   //double mCeiling;
   struct NVGcontext* vg;
   envFollower envPlotIn;
   envFollower envPlotOut;
-  envFollower envMeter;
   envFollower envGR;
-
+  compressor compR;
+  compressor compL;
+  
   CParamSmooth mGainSmoother;
   CParamSmooth mCeilingSmoother;
   

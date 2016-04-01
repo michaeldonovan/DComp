@@ -9,8 +9,10 @@ enum EParams
 {
   kGain = 0,
   kCeiling,
+  kAttack,
+  kRelease,
+  kKnee,
   kMode,
-  kQuality,
   kPlotRes,
   kPlotRange,
   kPlot,
@@ -48,17 +50,28 @@ enum ELayout
 
 
 DClip::DClip(IPlugInstanceInfo instanceInfo)
-:	IPLUG_CTOR(kNumParams, kNumPrograms, instanceInfo), mGain(0.), mCeiling(0.), envPlotIn(0, 75, 75, GetSampleRate()), envPlotOut(0, 75, 75, GetSampleRate()), envMeter(0, 400, 50, GetSampleRate()), envGR(0, 75, 85, GetSampleRate()), mGainSmoother(5., GetSampleRate()), mCeilingSmoother(5., GetSampleRate()), duration(frameTime)
+:	IPLUG_CTOR(kNumParams, kNumPrograms, instanceInfo), mGain(0.), mCeiling(0.), mGainSmoother(5., GetSampleRate()), mCeilingSmoother(5., GetSampleRate())
 {
   TRACE;
+  
+  //Envelope Followers
+  envGR.init(0, 75, 85, GetSampleRate());
+  envPlotIn.init(0, 75, 75, GetSampleRate());
+  envPlotOut.init(0, 75, 75, GetSampleRate());
+  compR.init(10., 100., 0., 4, .5, GetSampleRate());
+  compL.init(10., 100., 0., 4, .5, GetSampleRate());
+  compR.setMode(compressor::kLimiter);
+  compL.setMode(compressor::kLimiter);
 
   //arguments are: name, defaultVal, minVal, maxVal, step, label
   GetParam(kGain)->InitDouble("Gain", 0., kGainMin, kGainMax, 0.01, "dB");
   GetParam(kCeiling)->InitDouble("Ceiling", 0., kCeilingMin, kCeilingMax, 0.01, "dB");
-  GetParam(kQuality)->InitEnum("Quality", 0, 3);
-  GetParam(kQuality)->SetDisplayText(0, "2x");
-  GetParam(kQuality)->SetDisplayText(1, "4x");
-  GetParam(kQuality)->SetDisplayText(2, "8x");
+  GetParam(kAttack)->InitDouble("Attack", 10., 0., 250., 0.01, "ms");
+  GetParam(kRelease)->InitDouble("Release", 500., 0., 750., 0.01, "ms");
+  GetParam(kKnee)->InitDouble("Knee", 0.5, 0., 1., 0.01, "%");
+  GetParam(kMode)->InitEnum("Mode", 0, 1);
+  GetParam(kMode)->SetDisplayText(0, "Limit");
+  GetParam(kMode)->SetDisplayText(1, "Clip");
 
   IGraphics* pGraphics = MakeGraphics(this, kWidth, kHeight, 30);
   
@@ -107,8 +120,7 @@ DClip::DClip(IPlugInstanceInfo instanceInfo)
   
   mShadow = new IBitmapControl(this, plotRECT.L , plotRECT.T, &shadow);
   
-  pGraphics->AttachControl(new ITextControl(this, IRECT(kQualityX, kQualityY, kQualityX+50, kQualityY+30), &caption, "Quality:"));
-  pGraphics->AttachControl(new IPopUpMenuControl(this, IRECT(kQualityX + 55, kQualityY-1, kQualityX+100, kQualityY+20), yellow, yellow, yellow, kQuality));
+
   pGraphics->AttachControl(mDBMeter);
   pGraphics->AttachControl(mGainSliderHandles);
   pGraphics->AttachControl(mGRMeter);
@@ -142,9 +154,9 @@ void DClip::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
 
   for (int s = 0; s < nFrames; ++s, ++in1, ++in2, ++out1, ++out2)
   {
-    double sampleDry1, sampleDry2, sample1, sample2, inMax, gainSmoothed, ceilingSmoothedAmp, GR1, GR2;
-    GR1 = 0;
-    GR2 = 0;
+    double sampleDry1, sampleDry2, sample1, sample2, inMax, gainSmoothed, ceilingSmoothedAmp, GRL, GRR;
+    GRL = 0;
+    GRR = 0;
     gainSmoothed = mGainSmoother.process(mGain);
     ceilingSmoothedAmp = DBToAmp(mCeilingSmoother.process(mCeiling));
     
@@ -157,34 +169,46 @@ void DClip::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
     inMax = std::max(sample1, sample2);
     plot->process(AmpToDB(envPlotIn.process(inMax)));
     mDBMeter->SetValueFromPlug(scaleValue(mGain, kGainMin, kGainMax, 0, 1));
-
     
-    if (sample1 > ceilingSmoothedAmp) {
-      GR1 = sample1 - ceilingSmoothedAmp;
-      sample1 = ceilingSmoothedAmp;
+    if(mMode==0){
+      sample1 = compL.process(sample1);
+      sample2 = compL.process(sample2);
+      GRL = compL.getGainReductionDB();
+      GRR = compR.getGainReductionDB();
     }
-    else if(sample1 < -1 * ceilingSmoothedAmp){
-      GR1 = -1 * sample1 - ceilingSmoothedAmp;
-      sample1 = -1 * ceilingSmoothedAmp;
+    else if(mMode==1){
+      if (sample1 > ceilingSmoothedAmp) {
+        GRL = sample1 - ceilingSmoothedAmp;
+        sample1 = ceilingSmoothedAmp;
+      }
+      else if(sample1 < -1 * ceilingSmoothedAmp){
+        GRL = -1 * sample1 - ceilingSmoothedAmp;
+        sample1 = -1 * ceilingSmoothedAmp;
+      }
+      
+      if (sample2 > ceilingSmoothedAmp) {
+        GRR = sample2 - ceilingSmoothedAmp;
+        sample2 = ceilingSmoothedAmp;
+      }
+      else if(sample2 < -1 * ceilingSmoothedAmp){
+        GRR =  -1 * sample2 - ceilingSmoothedAmp;
+        sample2 = -1 * ceilingSmoothedAmp;
+      }
     }
-    
-    if (sample2 > ceilingSmoothedAmp) {
-      GR2 = sample2 - ceilingSmoothedAmp;
-      sample2 = ceilingSmoothedAmp;
-    }
-    else if(sample2 < -1 * ceilingSmoothedAmp){
-      GR2 =  -1 * sample2 - ceilingSmoothedAmp;
-      sample2 = -1 * ceilingSmoothedAmp;
-    }
-    
+  
     *out1 = sample1;
     *out2 = sample2;
 
     
     
     plotOut->process(AmpToDB(envPlotOut.process(std::max(sample1, sample2))));
-    double gr = envGR.process(std::max(GR1,GR2));
-    GRplot->process(scaleValue(AmpToDB(gr), -32, 2, 2, -32));
+    if(mMode == 0){
+      GRplot->process(scaleValue(std::max(GRL, GRR), -32, 2, 2, -32));
+    }
+    else{
+      GRplot->process(scaleValue(envGR.process(AmpToDB(std::max(GRL,GRR))), -32, 2, 2, -32));
+
+    }
 
     mGRMeter->SetValueFromPlug(scaleValue(mCeiling, kCeilingMin, kCeilingMax, 1, 0));
     
@@ -226,6 +250,21 @@ void DClip::OnParamChange(int paramIdx)
 
       break;
       
+    case kAttack:
+      mAttack = GetParam(kAttack)->Value();
+      break;
+      
+    case kRelease:
+      mRelease = GetParam(kRelease)->Value();
+      break;
+      
+    case kKnee:
+      mKnee = GetParam(kKnee)->Value();
+      break;
+      
+    case kMode:
+      mMode = GetParam(kMode)->Value();
+   
     default:
       break;
   }
