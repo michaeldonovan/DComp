@@ -83,6 +83,9 @@ DClip::DClip(IPlugInstanceInfo instanceInfo)
   plotOut->setResolution(ILevelPlotControl::kHighRes);
   plotOut->setYRange(ILevelPlotControl::k32dB);
   pGraphics->AttachControl(plotOut);
+
+
+  
   
   GRplot = new ILevelPlotControl(this, plotRECT, kPlot, &grFillColor, &grLineColor, 5);
   GRplot->setLineWeight(1.5);
@@ -139,7 +142,7 @@ void DClip::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
 
   for (int s = 0; s < nFrames; ++s, ++in1, ++in2, ++out1, ++out2)
   {
-    double sample1, sample2, inMax, gainSmoothed, ceilingSmoothedAmp, GR1, GR2;
+    double sampleDry1, sampleDry2, sample1, sample2, inMax, gainSmoothed, ceilingSmoothedAmp, GR1, GR2;
     GR1 = 0;
     GR2 = 0;
     gainSmoothed = mGainSmoother.process(mGain);
@@ -148,7 +151,8 @@ void DClip::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
     
     sample1 = *in1 * DBToAmp(gainSmoothed);
     sample2 = *in2 * DBToAmp(gainSmoothed);
-    
+    sampleDry1 = sample1;
+    sampleDry2 = sample2;
     
     inMax = std::max(sample1, sample2);
     plot->process(AmpToDB(envPlotIn.process(inMax)));
@@ -176,6 +180,7 @@ void DClip::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
     *out1 = sample1;
     *out2 = sample2;
 
+    
     
     plotOut->process(AmpToDB(envPlotOut.process(std::max(sample1, sample2))));
     double gr = envGR.process(std::max(GR1,GR2));

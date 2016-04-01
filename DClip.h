@@ -34,7 +34,7 @@ private:
   IColor plotPreLineColor =  IColor(170, 151, 151, 151);
   IColor plotPostLineColor =  IColor(255, 120, 120, 120);
   IColor plotPreFillColor =  IColor(30, 198, 198, 198);
-  IColor plotPostFillColor =  IColor(200, 240, 240, 240);
+  IColor plotPostFillColor =  IColor(190, 255, 255, 255);
   IColor yellow = IColor(255, 255, 233, 30);
   IColor grLineColor = IColor(90, 250, 0,0);
   IColor grFillColor = IColor(50, 250, 0,0);
@@ -53,7 +53,7 @@ private:
   ILevelPlotControl* plot;
   ILevelPlotControl* plotOut;
   ILevelPlotControl* GRplot;
-
+  
   IBitmapControl* mDBMeter;
   IFaderControl* mGainSliderHandles;
   IBitmapControl* mGRMeter;
