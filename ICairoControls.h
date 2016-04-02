@@ -54,8 +54,14 @@ class ICairoPlotControl : public IControl
 public:
     ICairoPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, bool fillEnable=true) : IControl(pPlug, pR), mColorFill(fillColor), mColorLine(lineColor), mFill(fillEnable), mRange(1), mLineWeight(2.)
     {
+#ifndef IPLUG_RETINA_SUPPORT
         mWidth = mRECT.W();
         mHeight = mRECT.H();
+#else
+        mWidth = mRECT.W() * 2;
+        mHeight = mRECT.H() * 2;
+#endif
+       
         
         mVals = new valarray<double>(0., mWidth);
         
@@ -175,7 +181,11 @@ public:
         LICE_WrapperBitmap WrapperBitmap = LICE_WrapperBitmap(data, this->mRECT.W(), this->mRECT.H(), this->mRECT.W(), false);
         
         //Render
+#ifndef IPLUG_RETINA_SUPPORT
         IBitmap result(&WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
+#else
+        IBitmap result(&WrapperBitmap, &WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
+#endif
         return pGraphics->DrawBitmap(&result, &this->mRECT);
     }
     
@@ -222,6 +232,7 @@ public:
     
     ILevelPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, double timeScale=5., bool fillEnable=true) : ICairoPlotControl(pPlug, pR, paramIdx, fillColor, lineColor, fillEnable), mTimeScale(timeScale), mBufferLength(0.), mYRange(-32), mStroke(true), mHeadroom(2), mReverseFill(false)
     {
+
         mXRes = mWidth/2.;
         mDrawVals = new valarray<double>(mHeight, mXRes);
         mBuffer = new valarray<double>(0., mTimeScale * mPlug->GetSampleRate() / (double)mXRes);
@@ -394,7 +405,11 @@ public:
         
         //Render
         //}
+#ifndef IPLUG_RETINA_SUPPORT
         IBitmap result(&WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
+#else
+        IBitmap result(&WrapperBitmap, &WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
+#endif
         return pGraphics->DrawBitmap(&result, &this->mRECT);
     }
     
@@ -683,8 +698,11 @@ public:
         
         //Render
         //}
+#ifndef IPLUG_RETINA_SUPPORT
         IBitmap result(&WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
-        return pGraphics->DrawBitmap(&result, &this->mRECT);
+#else
+        IBitmap result(&WrapperBitmap, &WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
+#endif        return pGraphics->DrawBitmap(&result, &this->mRECT);
     }
     
 protected:

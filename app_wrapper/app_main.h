@@ -12,9 +12,9 @@
 
  App settings are stored in a .ini file. The location is as follows:
 
- Windows7: C:\Users\USERNAME\AppData\Local\DClip\settings.ini
- Windows XP/Vista: C:\Documents and Settings\USERNAME\Local Settings\Application Data\DClip\settings.ini
- OSX: /Users/USERNAME/Library/Application\ Support/DClip/settings.ini
+ Windows7: C:\Users\USERNAME\AppData\Local\DComp\settings.ini
+ Windows XP/Vista: C:\Documents and Settings\USERNAME\Local Settings\Application Data\DComp\settings.ini
+ OSX: /Users/USERNAME/Library/Application\ Support/DComp/settings.ini
 
 */
 
@@ -44,7 +44,7 @@
 #include <string>
 #include <vector>
 
-#include "../DClip.h" // change this to match your iplug plugin .h file
+#include "../DComp.h" // change this to match your iplug plugin .h file
 
 typedef unsigned short UInt16;
 

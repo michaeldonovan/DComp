@@ -1,19 +1,19 @@
 #define PLUG_MFR "Michael Donovan"
-#define PLUG_NAME "DClip"
+#define PLUG_NAME "DComp"
 
-#define PLUG_CLASS_NAME DClip
+#define PLUG_CLASS_NAME DComp
 
 #define BUNDLE_MFR "michaeldonovan"
-#define BUNDLE_NAME "DClip"
+#define BUNDLE_NAME "DComp"
 
-#define PLUG_ENTRY DClip_Entry
-#define PLUG_VIEW_ENTRY DClip_ViewEntry
+#define PLUG_ENTRY DComp_Entry
+#define PLUG_VIEW_ENTRY DComp_ViewEntry
 
-#define PLUG_ENTRY_STR "DClip_Entry"
-#define PLUG_VIEW_ENTRY_STR "DClip_ViewEntry"
+#define PLUG_ENTRY_STR "DComp_Entry"
+#define PLUG_VIEW_ENTRY_STR "DComp_ViewEntry"
 
-#define VIEW_CLASS DClip_View
-#define VIEW_CLASS_STR "DClip_View"
+#define VIEW_CLASS DComp_View
+#define VIEW_CLASS_STR "DComp_View"
 
 // Format        0xMAJR.MN.BG - in HEX! so version 10.1.5 would be 0x000A0105
 #define PLUG_VER 0x00000001
@@ -21,7 +21,7 @@
 
 // http://service.steinberg.de/databases/plugin.nsf/plugIn?openForm
 // 4 chars, single quotes. At least one capital letter
-#define PLUG_UNIQUE_ID 'j0dx'
+#define PLUG_UNIQUE_ID 'lim7'
 // make sure this is not the same as BUNDLE_MFR
 #define PLUG_MFR_ID 'Dnvn'
 
@@ -33,8 +33,8 @@
   const int PLUG_TYPE_IDS_AS[2] = {'EFA1', 'EFA2'}; // AudioSuite
 #endif
 
-#define PLUG_MFR_PT "michaeldonovan\nmichaeldonovan\nAcme"
-#define PLUG_NAME_PT "DClip\nj0dx"
+#define PLUG_MFR_PT "michaeldonovan\nmichaeldonovan\nDnvn"
+#define PLUG_NAME_PT "DComp\nlim7"
 #define PLUG_TYPE_PT "Effect"
 #define PLUG_DOES_AUDIOSUITE 1
 

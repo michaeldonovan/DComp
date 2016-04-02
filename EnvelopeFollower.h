@@ -21,9 +21,10 @@ public:
     }
     
     virtual void init(double attackMS, double releaseMS, double holdMS, double SampleRate){
-        attack = pow(0.01, 1.0/(attackMS * SampleRate * 0.001));
-        release = pow(0.01, 1.0/(releaseMS * SampleRate * 0.001));
-        hold = holdMS / 1000. * SampleRate;
+        sr = SampleRate;
+        attack = pow(0.01, 1.0/(attackMS * sr * 0.001));
+        release = pow(0.01, 1.0/(releaseMS * sr * 0.001));
+        hold = holdMS / 1000. * sr;
         env = 0;
         timer = 0;
     }
@@ -57,7 +58,7 @@ public:
     }
     
 protected:
-    double attack, release, env;
+    double attack, release, env, sr;
     int timer, hold;
 };
 
@@ -79,12 +80,25 @@ public:
     
     void init(double attackMS, double releaseMS, double holdMS, double ratio, double knee, double SampleRate){
         envFollower::init(attackMS, releaseMS, holdMS, SampleRate);
+        mMode = 0;
         gainReduction = 0;
         mKnee = knee;
         mRatio = ratio;
         mThreshold = 0.;
         calcKnee();
         calcSlope();
+    }
+    
+    void setAttack(double attackMS){
+        attack = pow(0.01, 1.0/(attackMS * sr * 0.001));
+    }
+    
+    void setRelease(double releaseMS){
+        release = pow(0.01, 1.0/(releaseMS * sr * 0.001));
+    }
+    
+    void setHold(double holdMS){
+        hold = holdMS / 1000. * sr;
     }
     
     void setKnee(double knee){
@@ -99,8 +113,8 @@ public:
         calcSlope();
     }
     
-    void setThreshold(double threshold){
-        mThreshold = threshold;
+    void setThreshold(double thresholdDB){
+        mThreshold = thresholdDB;
         calcKnee();
         calcSlope();
     }
@@ -111,9 +125,17 @@ public:
         calcSlope();
     }
     
+    double getThreshold(){ return mThreshold; }
+    double getAttack(){ return attack; }
+    double getRelease(){ return release; }
+    double getHold(){ return hold; }
+    double getKnee() { return mKnee; }
+    double getRatio() { return mRatio; }
+
+    
+    
     double process(double sample){
-        double e;
-        e = envFollower::process(sample);
+        double e = AmpToDB(envFollower::process(sample));
         calcSlope();
         
         if(kneeWidth > 0. && e > kneeBoundL && e < kneeBoundU){
@@ -126,6 +148,26 @@ public:
         }
         
         return sample * DBToAmp(gainReduction);
+    }
+    
+    //Takes pointers to two samples, processes them, and returns gain reduction in dB
+    double processStereo(double *sample1, double *sample2){
+        double e = AmpToDB(envFollower::process(std::max(*sample1, *sample2)));
+        calcSlope();
+        
+        if(kneeWidth > 0. && e > kneeBoundL && e < kneeBoundU){
+            slope *= ((e - kneeBoundL) / kneeWidth) * 0.5;
+            gainReduction = slope * (kneeBoundL  - e);
+        }
+        else{
+            gainReduction = slope * (mThreshold - e);
+            gainReduction = std::min(0., gainReduction);
+        }
+        
+        *sample1 *= DBToAmp(gainReduction);
+        *sample2 *= DBToAmp(gainReduction);
+
+        return gainReduction;
     }
     
     double getGainReductionDB(){

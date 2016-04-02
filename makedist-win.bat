@@ -6,7 +6,7 @@ REM - zipping requires 7zip in %ProgramFiles%\7-Zip\7z.exe
 REM - building installer requires innotsetup in "%ProgramFiles(x86)%\Inno Setup 5\iscc"
 REM - AAX codesigning requires ashelper tool added to %PATH% env variable and aax.key/.crt in .\..\..\..\Certificates\
 
-echo Making DClip win distribution ...
+echo Making DComp win distribution ...
 
 echo ------------------------------------------------------------------
 echo Updating version numbers ...
@@ -33,10 +33,10 @@ REM - set preprocessor macros like this, for instance to enable demo build:
 REM - SET CMDLINE_DEFINES="DEMO_VERSION"
 
 REM - Could build individual targets like this:
-REM - msbuild DClip-app.vcxproj /p:configuration=release /p:platform=win32
+REM - msbuild DComp-app.vcxproj /p:configuration=release /p:platform=win32
 
-msbuild DClip.sln /p:configuration=release /p:platform=win32 /nologo /noconsolelogger /fileLogger /v:quiet /flp:logfile=build-win.log;errorsonly 
-msbuild DClip.sln /p:configuration=release /p:platform=x64 /nologo /noconsolelogger /fileLogger /v:quiet /flp:logfile=build-win.log;errorsonly;append
+msbuild DComp.sln /p:configuration=release /p:platform=win32 /nologo /noconsolelogger /fileLogger /v:quiet /flp:logfile=build-win.log;errorsonly 
+msbuild DComp.sln /p:configuration=release /p:platform=x64 /nologo /noconsolelogger /fileLogger /v:quiet /flp:logfile=build-win.log;errorsonly;append
 
 #echo ------------------------------------------------------------------
 #echo Code sign aax binary...
@@ -51,18 +51,18 @@ echo Making Installer ...
 if exist "%ProgramFiles(x86)%" (goto 64-Bit-is) else (goto 32-Bit-is)
 
 :32-Bit-is
-"%ProgramFiles%\Inno Setup 5\iscc" /cc ".\installer\DClip.iss"
+"%ProgramFiles%\Inno Setup 5\iscc" /cc ".\installer\DComp.iss"
 goto END-is
 
 :64-Bit-is
-"%ProgramFiles(x86)%\Inno Setup 5\iscc" /cc ".\installer\DClip.iss"
+"%ProgramFiles(x86)%\Inno Setup 5\iscc" /cc ".\installer\DComp.iss"
 goto END-is
 
 :END-is
 
 REM - ZIP
-REM - "%ProgramFiles%\7-Zip\7z.exe" a .\installer\DClip-win-32bit.zip .\build-win\app\win32\bin\DClip.exe .\build-win\vst3\win32\bin\DClip.vst3 .\build-win\vst2\win32\bin\DClip.dll .\build-win\rtas\bin\DClip.dpm .\build-win\rtas\bin\DClip.dpm.rsr .\build-win\aax\bin\DClip.aaxplugin* .\installer\license.rtf .\installer\readmewin.rtf
-REM - "%ProgramFiles%\7-Zip\7z.exe" a .\installer\DClip-win-64bit.zip .\build-win\app\x64\bin\DClip.exe .\build-win\vst3\x64\bin\DClip.vst3 .\build-win\vst2\x64\bin\DClip.dll .\installer\license.rtf .\installer\readmewin.rtf
+REM - "%ProgramFiles%\7-Zip\7z.exe" a .\installer\DComp-win-32bit.zip .\build-win\app\win32\bin\DComp.exe .\build-win\vst3\win32\bin\DComp.vst3 .\build-win\vst2\win32\bin\DComp.dll .\build-win\rtas\bin\DComp.dpm .\build-win\rtas\bin\DComp.dpm.rsr .\build-win\aax\bin\DComp.aaxplugin* .\installer\license.rtf .\installer\readmewin.rtf
+REM - "%ProgramFiles%\7-Zip\7z.exe" a .\installer\DComp-win-64bit.zip .\build-win\app\x64\bin\DComp.exe .\build-win\vst3\x64\bin\DComp.vst3 .\build-win\vst2\x64\bin\DComp.dll .\installer\license.rtf .\installer\readmewin.rtf
 
 echo ------------------------------------------------------------------
 echo Printing log file to console...

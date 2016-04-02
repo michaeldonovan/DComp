@@ -38,7 +38,7 @@ def main():
   print "update_version.py - setting version to " + FullVersionStr
   print "Updating plist version info..."
   
-  plistpath = scriptpath + "/resources/DClip-VST2-Info.plist"
+  plistpath = scriptpath + "/resources/DComp-VST2-Info.plist"
   vst2 = plistlib.readPlist(plistpath)
   vst2['CFBundleGetInfoString'] = CFBundleGetInfoString
   vst2['CFBundleVersion'] = CFBundleVersion
@@ -46,7 +46,7 @@ def main():
   plistlib.writePlist(vst2, plistpath)
   replacestrs(plistpath, "//Apple//", "//Apple Computer//");
   
-  plistpath = scriptpath + "/resources/DClip-AU-Info.plist"
+  plistpath = scriptpath + "/resources/DComp-AU-Info.plist"
   au = plistlib.readPlist(plistpath)
   au['CFBundleGetInfoString'] = CFBundleGetInfoString
   au['CFBundleVersion'] = CFBundleVersion
@@ -54,7 +54,7 @@ def main():
   plistlib.writePlist(au, plistpath)
   replacestrs(plistpath, "//Apple//", "//Apple Computer//");
   
-  plistpath = scriptpath + "/resources/DClip-VST3-Info.plist"
+  plistpath = scriptpath + "/resources/DComp-VST3-Info.plist"
   vst3 = plistlib.readPlist(plistpath)
   vst3['CFBundleGetInfoString'] = CFBundleGetInfoString
   vst3['CFBundleVersion'] = CFBundleVersion
@@ -62,7 +62,7 @@ def main():
   plistlib.writePlist(vst3, plistpath)
   replacestrs(plistpath, "//Apple//", "//Apple Computer//");
   
-  plistpath = scriptpath + "/resources/DClip-OSXAPP-Info.plist"
+  plistpath = scriptpath + "/resources/DComp-OSXAPP-Info.plist"
   app = plistlib.readPlist(plistpath)
   app['CFBundleGetInfoString'] = CFBundleGetInfoString
   app['CFBundleVersion'] = CFBundleVersion
@@ -70,7 +70,7 @@ def main():
   plistlib.writePlist(app, plistpath)
   replacestrs(plistpath, "//Apple//", "//Apple Computer//");
   
-  plistpath = scriptpath + "/resources/DClip-RTAS-Info.plist"
+  plistpath = scriptpath + "/resources/DComp-RTAS-Info.plist"
   rtas = plistlib.readPlist(plistpath)
   rtas['CFBundleGetInfoString'] = CFBundleGetInfoString
   rtas['CFBundleVersion'] = CFBundleVersion
@@ -78,7 +78,7 @@ def main():
   plistlib.writePlist(rtas, plistpath)
   replacestrs(plistpath, "//Apple//", "//Apple Computer//");
   
-  plistpath = scriptpath + "/resources/DClip-AAX-Info.plist"
+  plistpath = scriptpath + "/resources/DComp-AAX-Info.plist"
   aax = plistlib.readPlist(plistpath)
   aax['CFBundleGetInfoString'] = CFBundleGetInfoString
   aax['CFBundleVersion'] = CFBundleVersion
@@ -86,7 +86,7 @@ def main():
   plistlib.writePlist(aax, plistpath)
   replacestrs(plistpath, "//Apple//", "//Apple Computer//");
   
-#   plistpath = scriptpath + "/resources/DClip-IOSAPP-Info.plist"
+#   plistpath = scriptpath + "/resources/DComp-IOSAPP-Info.plist"
 #   iosapp = plistlib.readPlist(plistpath)
 #   iosapp['CFBundleGetInfoString'] = CFBundleGetInfoString
 #   iosapp['CFBundleVersion'] = CFBundleVersion
@@ -96,7 +96,7 @@ def main():
 
   print "Updating Mac Installer version info..."
   
-  plistpath = scriptpath + "/installer/DClip.pkgproj"
+  plistpath = scriptpath + "/installer/DComp.pkgproj"
   installer = plistlib.readPlist(plistpath)
   
   for x in range(0,6):
@@ -107,7 +107,7 @@ def main():
   
   print "Updating Windows Installer version info..."
   
-  for line in fileinput.input(scriptpath + "/installer/DClip.iss",inplace=1):
+  for line in fileinput.input(scriptpath + "/installer/DComp.iss",inplace=1):
     if "AppVersion" in line:
       line="AppVersion=" + FullVersionStr + "\n"
     sys.stdout.write(line)
