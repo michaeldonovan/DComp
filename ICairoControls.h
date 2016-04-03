@@ -127,7 +127,7 @@ public:
     }
     
     bool Draw(IGraphics* pGraphics){
-        double mSpacing = mVals->size() / (double)mWidth;
+        double mSpacing = (double)mWidth / mVals->size()  ;
         
         cairo_save(cr);
         cairo_set_source_rgba(cr, 0, 0, 0, 0);
@@ -208,6 +208,9 @@ protected:
     cairo_surface_t *surface;
     cairo_t *cr;
     
+    inline double scaleValue(double inValue, double inMin, double inMax, double outMin, double outMax){
+        return ((outMax - outMin) * (inValue - inMin)) / (inMax - inMin) + outMin;
+    }
 };
 
 
@@ -230,7 +233,13 @@ public:
         k48dB
     };
     
-    ILevelPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, double timeScale=5., bool fillEnable=true) : ICairoPlotControl(pPlug, pR, paramIdx, fillColor, lineColor, fillEnable), mTimeScale(timeScale), mBufferLength(0.), mYRange(-32), mStroke(true), mHeadroom(2), mReverseFill(false)
+    enum AAQuality{
+        kFast,
+        kGood,
+        kBest
+    };
+    
+    ILevelPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, double timeScale=5., bool fillEnable=true) : ICairoPlotControl(pPlug, pR, paramIdx, fillColor, lineColor, fillEnable), mTimeScale(timeScale), mBufferLength(0.), mYRange(-32), mStroke(true), mHeadroom(2), mReverseFill(false), mGradientFill(false)
     {
 
         mXRes = mWidth/2.;
@@ -243,6 +252,20 @@ public:
     ~ILevelPlotControl(){
         delete mDrawVals;
         delete mBuffer;
+    }
+    
+    void setAAquality(int quality){
+        switch(quality){
+            case kFast:
+                cairo_set_antialias(cr, CAIRO_ANTIALIAS_FAST);
+                break;
+            case kGood:
+                cairo_set_antialias(cr, CAIRO_ANTIALIAS_GOOD);
+                break;
+            case kBest:
+                cairo_set_antialias(cr, CAIRO_ANTIALIAS_BEST);
+                break;
+        }
     }
     
     void setReverseFill(bool rev){
@@ -305,7 +328,9 @@ public:
         mStroke = stroke;
     }
     
-    
+    void setGradientFill(bool grad){
+        mGradientFill = grad;
+    }
     void process(double sample){
         mBuffer->operator[](mBufferLength) = sample;
         mBufferLength++;
@@ -348,10 +373,10 @@ public:
         
         //Starting point in bottom left corner.
         if(mReverseFill){
-            cairo_move_to(cr, 0, 0);
+            cairo_move_to(cr, -2, -2);
         }
         else{
-            cairo_move_to(cr, 0, mHeight);
+            cairo_move_to(cr, -2, mHeight+2);
         }
         
         //Draw data points
@@ -363,21 +388,31 @@ public:
         cairo_line_to(cr, mWidth+1, mDrawVals->operator[](mDrawVals->size()-1));
         //Endpoint in bottom right corner
         if(mReverseFill){
-            cairo_line_to(cr, mWidth, 0);
+            cairo_line_to(cr, mWidth+2, -2);
         }
         else{
-            cairo_line_to(cr, mWidth, mHeight);
+            cairo_line_to(cr, mWidth+2, mHeight+2);
         }
         
         cairo_close_path(cr);
         
         if(mFill && mStroke){
-            cairo_set_source_rgba(cr, mColorFill.R, mColorFill.G, mColorFill.B, mColorFill.A);
-            
             cairo_path_t* path = cairo_copy_path(cr);
             
-            
-            cairo_fill(cr);
+            if(mGradientFill){
+                cairo_pattern_t* grad = cairo_pattern_create_linear(0, 0, 0, mHeight);
+                
+                cairo_pattern_add_color_stop_rgba(grad, .75, mColorFill.R, mColorFill.G, mColorFill.B, mColorFill.A);
+                cairo_pattern_add_color_stop_rgba(grad, 1, mColorFill.R, mColorFill.G, mColorFill.B, .3);
+                
+                cairo_set_source(cr, grad);
+                cairo_fill(cr);
+                cairo_pattern_destroy(grad);
+            }
+            else{
+                cairo_set_source_rgba(cr, mColorFill.R, mColorFill.G, mColorFill.B, mColorFill.A);
+                cairo_fill(cr);
+            }
             
             cairo_append_path(cr, path);
             
@@ -393,10 +428,22 @@ public:
             cairo_stroke(cr);
         }
         else if(mFill){
-            cairo_set_source_rgba(cr, mColorFill.R, mColorFill.G, mColorFill.B, mColorFill.A);
-            cairo_fill(cr);
+            if(mGradientFill){
+                cairo_pattern_t* grad = cairo_pattern_create_linear(0, 0, 0, mHeight);
+                
+                cairo_pattern_add_color_stop_rgba(grad, .75, mColorFill.R, mColorFill.G, mColorFill.B, mColorFill.A);
+                cairo_pattern_add_color_stop_rgba(grad, 1, mColorFill.R, mColorFill.G, mColorFill.B, .3);
+                
+                cairo_set_source(cr, grad);
+                cairo_fill(cr);
+                
+                cairo_pattern_destroy(grad);
+            }
+            else{
+                cairo_set_source_rgba(cr, mColorFill.R, mColorFill.G, mColorFill.B, mColorFill.A);
+                cairo_fill(cr);
+            }
         }
-        
         cairo_surface_flush(surface);
         
         unsigned int *data = (unsigned int*)cairo_image_surface_get_data(surface);
@@ -417,16 +464,13 @@ protected:
     double mTimeScale;
     int mBufferLength, mXRes, mSpacing, mYRange, mHeadroom;
     valarray<double> *mBuffer, *mDrawVals;
-    bool mStroke, mReverseFill;
+    bool mStroke, mReverseFill, mGradientFill;
     
     
     inline double percentToCoordinates(double value) {
         return getHeight() - value * getHeight();
     }
-    
-    inline double scaleValue(double inValue, double inMin, double inMax, double outMin, double outMax){
-        return ((outMax - outMin) * (inValue - inMin)) / (inMax - inMin) + outMin;
-    }
+
 };
 
 
@@ -470,6 +514,8 @@ public:
         delete mBufferPre;
         delete mBufferPost;
     }
+    
+    
     
     void setResolution(int res){
         switch (res) {
@@ -702,7 +748,8 @@ public:
         IBitmap result(&WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
 #else
         IBitmap result(&WrapperBitmap, &WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
-#endif        return pGraphics->DrawBitmap(&result, &this->mRECT);
+#endif        
+        return pGraphics->DrawBitmap(&result, &this->mRECT);
     }
     
 protected:
@@ -723,5 +770,174 @@ protected:
 };
 
 
+class ICompressorPlotControl : public ICairoPlotControl
+{
+public:
+    ICompressorPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, compressor* comp, bool fillEnable=false) : ICairoPlotControl(pPlug, pR, paramIdx, fillColor, lineColor, fillEnable), mYRange(-32), mHeadroom(2.){
+        setLineWeight(2.);
+        mComp = comp;
+    }
+    
+    void calc(){
+        double threshCoord = scaleValue(mComp->getThreshold(), mYRange, mHeadroom, 0, mWidth);
+        
+        x1  = scaleValue(mComp->getKneeBoundL(), mYRange, mHeadroom, 0, mWidth) ;
+        y1 = mHeight - x1;
+        
+        xCP = threshCoord;
+        yCP = mHeight - threshCoord;
+        
+        x2 = scaleValue(mComp->getKneeBoundU(), mYRange, mHeadroom, 0, mWidth);
+        y2 = yCP - ((x2 - xCP) / mComp->getRatio());
+        
+        x3 = mWidth+2;
+        
+        y3 = yCP - ((mWidth + 2 - xCP) / mComp->getRatio());
+        
+        SetDirty();
+    }
+    
+    bool Draw(IGraphics* pGraphics){
+        
+        cairo_save(cr);
+        cairo_set_source_rgba(cr, 0, 0, 0, 0);
+        cairo_set_operator(cr, CAIRO_OPERATOR_SOURCE);
+        cairo_paint(cr);
+        cairo_restore(cr);
+        
+        surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
+        cr = cairo_create(surface);
+        
+        cairo_set_line_width(cr, mLineWeight);
+        cairo_set_antialias(cr, CAIRO_ANTIALIAS_FAST);
+        
+        //fill background
+        cairo_set_source_rgba(cr, mColorFill.R, mColorFill.G, mColorFill.B, mColorFill.A);
+        cairo_rectangle(cr, 0, 0, mWidth, mHeight);
+        cairo_fill(cr);
+        
+        cairo_set_source_rgba(cr, mColorLine.R, mColorLine.G, mColorLine.B, mColorLine.A);
 
+        //Starting point in bottom left corner.
+        cairo_move_to(cr, -1, mHeight + 1);
+ 
+        if(mComp->getKnee() > 0.){
+            cairo_line_to(cr, x1, y1);
+            cairo_curve_to(cr, xCP, yCP, xCP, yCP, x2, y2);
+            cairo_line_to(cr, x3, y3);
+        }
+        else{
+            cairo_line_to(cr, xCP, yCP);
+            cairo_line_to(cr, x3, y3);
+        }
+        
+        cairo_stroke(cr);
+        
+        cairo_surface_flush(surface);
+        
+        unsigned int *data = (unsigned int*)cairo_image_surface_get_data(surface);
+        //Bind to LICE
+        LICE_WrapperBitmap WrapperBitmap = LICE_WrapperBitmap(data, this->mRECT.W(), this->mRECT.H(), this->mRECT.W(), false);
+        
+        //Render
+        //}
+#ifndef IPLUG_RETINA_SUPPORT
+        IBitmap result(&WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
+#else
+        IBitmap result(&WrapperBitmap, &WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
+#endif
+        return pGraphics->DrawBitmap(&result, &this->mRECT);
+    }
+    
+private:
+    double mThreshold, mKnee, mRatio, mKneeBoundL, mKneeBoundU, mHeadroom;
+    double x1, y1, xCP, yCP, x2, y2, x3, y3;
+    int mYRange;
+    compressor *mComp;
+};
+
+
+class IThresholdPlotControl : public ICairoPlotControl
+{
+public:
+    IThresholdPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* lineColor, compressor* comp) : ICairoPlotControl(pPlug, pR, paramIdx, (IColor*)&COLOR_BLACK, lineColor, false), mYRange(-32), mHeadroom(2)
+    {
+        mComp = comp;
+    }
+
+    
+    
+    bool Draw(IGraphics* pGraphics){
+        
+        cairo_save(cr);
+        cairo_set_source_rgba(cr, 0, 0, 0, 0);
+        cairo_set_operator(cr, CAIRO_OPERATOR_SOURCE);
+        cairo_paint(cr);
+        cairo_restore(cr);
+        
+        surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
+        cr = cairo_create(surface);
+        
+        cairo_set_line_width(cr, mLineWeight);
+        cairo_set_antialias(cr, CAIRO_ANTIALIAS_FAST);
+        
+        cairo_set_source_rgba(cr, mColorLine.R, mColorLine.G, mColorLine.B, mColorLine.A);
+        
+        double dashes[] = {6.0,  /* ink */
+            3.0,  /* skip */
+            6.0,  /* ink */
+            3.0   /* skip*/
+        };
+        int    ndash  = sizeof (dashes)/sizeof(dashes[0]);
+        double offset = -5.0;
+        
+        cairo_set_dash (cr, dashes, ndash, offset);
+        
+        double threshCoord = scaleValue(mComp->getThreshold(), mYRange, mHeadroom, 0, mHeight);
+        
+        cairo_move_to(cr, threshCoord, 0);
+        
+        cairo_line_to(cr, threshCoord, mHeight);
+        
+        cairo_stroke(cr);
+        
+        cairo_move_to(cr, 0, mHeight - threshCoord);
+        cairo_line_to(cr, mWidth, mHeight-threshCoord);
+        
+        cairo_stroke(cr);
+        
+        cairo_pattern_t* grad = cairo_pattern_create_linear(mHeight, 0, mHeight+5, 0);
+        
+        cairo_pattern_add_color_stop_rgba(grad, 0, .1, .1, .1, .4);
+        cairo_pattern_add_color_stop_rgba(grad, 1, .1, .1, .1, 0);
+        
+        cairo_set_source(cr, grad);
+   
+        cairo_rectangle(cr, mHeight, 0, mWidth, mHeight);
+
+        cairo_fill(cr);
+        cairo_pattern_destroy(grad);
+        
+        cairo_surface_flush(surface);
+        
+        unsigned int *data = (unsigned int*)cairo_image_surface_get_data(surface);
+        //Bind to LICE
+        LICE_WrapperBitmap WrapperBitmap = LICE_WrapperBitmap(data, this->mRECT.W(), this->mRECT.H(), this->mRECT.W(), false);
+        
+        //Render
+        //}
+#ifndef IPLUG_RETINA_SUPPORT
+        IBitmap result(&WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
+#else
+        IBitmap result(&WrapperBitmap, &WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
+#endif
+        return pGraphics->DrawBitmap(&result, &this->mRECT);
+    }
+    
+    
+private:
+    int mYRange;
+    double mHeadroom;
+    compressor* mComp;
+};
 #endif /* ICairoControls.h */

@@ -59,6 +59,8 @@ instrument determined by PLUG _IS _INST
 #define SLIDERHANDLES_ID 103
 #define SLIDERREV_ID 104
 #define SHADOW_ID 105
+#define KNOB_ID 106
+#define SMALLKNOB_ID 107
 
 // Image resource locations for this plug.
 #define BACKGROUND_FN "resources/img/Background.png"
@@ -66,10 +68,12 @@ instrument determined by PLUG _IS _INST
 #define SLIDERHANDLES_FN "resources/img/SliderHandles.png"
 #define SLIDERREV_FN "resources/img/SliderReverse.png"
 #define SHADOW_FN "resources/img/PlotShadow.png"
+#define KNOB_FN "resources/img/Knob.png"
+#define SMALLKNOB_FN "resources/img/SmallKnob.png"
 
 // GUI default dimensions
-#define GUI_WIDTH 681
-#define GUI_HEIGHT 410
+#define GUI_WIDTH 629
+#define GUI_HEIGHT 444
 
 // on MSVC, you must define SA_API in the resource editor preprocessor macros as well as the c++ ones
 #if defined(SA_API) && !defined(OS_IOS)

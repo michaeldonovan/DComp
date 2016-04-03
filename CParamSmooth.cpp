@@ -27,7 +27,7 @@ void CParamSmooth::init(double smoothingTimeInMs, double samplingRate)
     z = 0.0f;
 }
 
-inline double CParamSmooth::process(double in)
+double CParamSmooth::process(double in)
 {
     z = (in * b) + (z * a);
     return z;

@@ -131,12 +131,14 @@ public:
     double getHold(){ return hold; }
     double getKnee() { return mKnee; }
     double getRatio() { return mRatio; }
+    double getGainReductionDB(){return gainReduction;}
+    double getKneeBoundL(){ return kneeBoundL; }
+    double getKneeBoundU(){ return kneeBoundU; }
 
     
     
     double process(double sample){
         double e = AmpToDB(envFollower::process(sample));
-        calcSlope();
         
         if(kneeWidth > 0. && e > kneeBoundL && e < kneeBoundU){
             slope *= ((e - kneeBoundL) / kneeWidth) * 0.5;
@@ -150,9 +152,9 @@ public:
         return sample * DBToAmp(gainReduction);
     }
     
-    //Takes pointers to two samples, processes them, and returns gain reduction in dB
-    double processStereo(double *sample1, double *sample2){
-        double e = AmpToDB(envFollower::process(std::max(*sample1, *sample2)));
+    //Takes in two samples, processes them, and returns gain reduction in dB
+    double processStereo(double sample1, double sample2){
+        double e = AmpToDB(envFollower::process(std::max(sample1, sample2)));
         calcSlope();
         
         if(kneeWidth > 0. && e > kneeBoundL && e < kneeBoundU){
@@ -163,16 +165,11 @@ public:
             gainReduction = slope * (mThreshold - e);
             gainReduction = std::min(0., gainReduction);
         }
-        
-        *sample1 *= DBToAmp(gainReduction);
-        *sample2 *= DBToAmp(gainReduction);
 
         return gainReduction;
     }
     
-    double getGainReductionDB(){
-        return gainReduction;
-    }
+
     
 private:
     double gainReduction, mKnee, mRatio, mThreshold, kneeWidth, kneeBoundL, kneeBoundU, slope;
