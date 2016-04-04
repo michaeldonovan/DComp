@@ -41,6 +41,8 @@ enum ELayout
   kAttackX = 22,
   kReleaseX = kAttackX + 104,
   
+  kSliderCaptionOffset = 8,
+  kSmallKnobCaptionOffset = 5,
   kSmallKnobsY = 350,
   kHoldX = 238,
   kRatioX = kHoldX + 68,
@@ -53,6 +55,10 @@ enum ELayout
   kSCAudX = 581,
   kSCAudY = kSCBypassY + 1,
   kFaderLength = 264,
+  
+  kLPCaptionX = 477,
+  kLPCaptionY = 347,
+  kHPCaptionY = 403,
   
   kPlotTimeScale = 4,
   
@@ -144,7 +150,6 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   
   //374 x 183
   IRECT plotRECT = IRECT(101, 71, 475, 254);
-  IText caption = IText(14, &COLOR_WHITE, "Futura", IText::kStyleNormal, IText::kAlignCenter);
   
   plot = new ILevelPlotControl(this, plotRECT, -1, &plotPreFillColor, &plotPreLineColor, kPlotTimeScale);
   plot->setResolution(ILevelPlotControl::kHighRes);
@@ -185,17 +190,18 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   
   
   mShadow = new IBitmapControl(this, plotRECT.L , plotRECT.T, &shadow);
-  pGraphics->AttachControl(new IKnobMultiControlText(this, kThresholdX, kSlidersY, kThreshold, &slider, &caption));
-  pGraphics->AttachControl(new IKnobMultiControlText(this, kGainX, kSlidersY, kGain, &slider, &caption));
-  pGraphics->AttachControl(new IKnobMultiControlText(this, kMixX, kSlidersY, kMix, &slider, &caption));
+  pGraphics->AttachControl(new IFaderControlText(this, kThresholdX, kSlidersY, kThreshold, &slider, &sliderCaption, true, kSliderCaptionOffset));
+  pGraphics->AttachControl(new IFaderControlText(this, kGainX, kSlidersY, kGain, &slider, &sliderCaption, true, kSliderCaptionOffset));
+  pGraphics->AttachControl(new IFaderControlText(this, kMixX, kSlidersY, kMix, &slider, &sliderCaption, true, kSliderCaptionOffset));
   pGraphics->AttachControl(new IKnobMultiControlText(this, kAttackX, kBigKnobsY, kAttack, &knob, &caption));
   pGraphics->AttachControl(new IKnobMultiControlText(this, kReleaseX, kBigKnobsY, kRelease, &knob, &caption));
-  pGraphics->AttachControl(new IKnobMultiControlText(this, kHoldX, kSmallKnobsY, kHold, &smallKnob, &caption));
-  pGraphics->AttachControl(new IKnobMultiControlText(this, kRatioX, kSmallKnobsY, kRatio, &smallKnob, &caption));
-  pGraphics->AttachControl(new IKnobMultiControlText(this, kKneeX, kSmallKnobsY, kKnee, &smallKnob, &caption));
-  pGraphics->AttachControl(new IKnobMultiControlText(this, kSCKnobsX, kSCKnobY, kCutoffLP, &smallKnob, &caption));
-  pGraphics->AttachControl(new IKnobMultiControlText(this, kSCKnobsX, kSCKnob2Y, kCutoffHP, &smallKnob, &caption));
-  
+  pGraphics->AttachControl(new IKnobMultiControlText(this, kHoldX, kSmallKnobsY, kHold, &smallKnob, &caption, true, kSmallKnobCaptionOffset));
+  pGraphics->AttachControl(new IKnobMultiControlText(this, kRatioX, kSmallKnobsY, kRatio, &smallKnob, &caption, true, kSmallKnobCaptionOffset));
+  pGraphics->AttachControl(new IKnobMultiControlText(this, kKneeX, kSmallKnobsY, kKnee, &smallKnob, &caption, true, kSmallKnobCaptionOffset));
+  pGraphics->AttachControl(new IKnobMultiControl(this, kSCKnobsX, kSCKnobY, kCutoffLP, &smallKnob));
+  pGraphics->AttachControl(new IKnobMultiControl(this, kSCKnobsX, kSCKnob2Y, kCutoffHP, &smallKnob));
+  pGraphics->AttachControl(new ICaptionControl(this, IRECT(kLPCaptionX, kLPCaptionY, kLPCaptionX + 63, kLPCaptionY + 21), kCutoffLP, &cutoffCaption));
+    pGraphics->AttachControl(new ICaptionControl(this, IRECT(kLPCaptionX, kHPCaptionY, kLPCaptionX + 63, kHPCaptionY + 21), kCutoffHP, &cutoffCaption));
   pGraphics->AttachControl(new ISwitchControl(this, kHPx, kHPy, kHPEnable, &HPButton));
   pGraphics->AttachControl(new ISwitchControl(this, kHPx, kLPy, kLPEnable, &LPButton));
   pGraphics->AttachControl(new ISwitchControl(this, kSCBypassX, kSCBypassY, kSidechain, &Bypass));

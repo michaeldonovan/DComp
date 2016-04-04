@@ -41,6 +41,10 @@ private:
   IColor grFillColor = IColor(50, 250, 0,0);
   IColor threshLineColor = IColor(180, 180, 180, 180);
   
+  IText caption = IText(14, &COLOR_WHITE, "Futura", IText::kStyleNormal, IText::kAlignCenter);
+  IText cutoffCaption = IText(11, &COLOR_WHITE, "Futura", IText::kStyleNormal, IText::kAlignCenter);
+  IText sliderCaption = IText(12, &COLOR_WHITE, "Futura", IText::kStyleNormal, IText::kAlignCenter);
+
   double mGain, mThreshold, mAttack, mHold, mRelease, mRatio, mKnee, mMix, mCuttoffLP, mCuttoffHP;
   int mMode;
   bool mSidechainEnable, mSCAudition, mLPEnable, mHPEnable;
