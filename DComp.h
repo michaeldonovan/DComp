@@ -42,7 +42,6 @@ private:
   IColor threshLineColor = IColor(180, 180, 180, 180);
   
   double mGain, mThreshold, mAttack, mHold, mRelease, mRatio, mKnee, mMix, mCuttoffLP, mCuttoffHP;
-  double sampleDry1, sampleDry2, sample1, sample2, inMax, gr, gainSmoothed;
   int mMode;
   bool mSidechainEnable, mSCAudition, mLPEnable, mHPEnable;
   envFollower envPlotIn;

@@ -373,7 +373,7 @@ public:
         
         //Starting point in bottom left corner.
         if(mReverseFill){
-            cairo_move_to(cr, -2, -2);
+            cairo_move_to(cr, -3, -2);
         }
         else{
             cairo_move_to(cr, -2, mHeight+2);

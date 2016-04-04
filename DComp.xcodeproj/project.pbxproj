@@ -124,6 +124,54 @@
 		4C1A86481CA98A6400D94C89 /* libcairo-trace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1A86131CA98A6300D94C89 /* libcairo-trace.dylib */; };
 		4C1A86491CA98A6400D94C89 /* libcairo-trace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1A86131CA98A6300D94C89 /* libcairo-trace.dylib */; };
 		4C1A864E1CA98DB500D94C89 /* libcairo.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1A864D1CA98DB500D94C89 /* libcairo.dylib */; };
+		4C2FCEE51CB1EFE50037AFE4 /* HPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE11CB1EFE50037AFE4 /* HPButton.png */; };
+		4C2FCEE61CB1EFE50037AFE4 /* HPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE11CB1EFE50037AFE4 /* HPButton.png */; };
+		4C2FCEE71CB1EFE50037AFE4 /* HPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE11CB1EFE50037AFE4 /* HPButton.png */; };
+		4C2FCEE81CB1EFE50037AFE4 /* HPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE11CB1EFE50037AFE4 /* HPButton.png */; };
+		4C2FCEE91CB1EFE50037AFE4 /* HPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE11CB1EFE50037AFE4 /* HPButton.png */; };
+		4C2FCEEA1CB1EFE50037AFE4 /* HPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE11CB1EFE50037AFE4 /* HPButton.png */; };
+		4C2FCEEB1CB1EFE50037AFE4 /* HPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE21CB1EFE50037AFE4 /* HPButton@2x.png */; };
+		4C2FCEEC1CB1EFE50037AFE4 /* HPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE21CB1EFE50037AFE4 /* HPButton@2x.png */; };
+		4C2FCEED1CB1EFE50037AFE4 /* HPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE21CB1EFE50037AFE4 /* HPButton@2x.png */; };
+		4C2FCEEE1CB1EFE50037AFE4 /* HPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE21CB1EFE50037AFE4 /* HPButton@2x.png */; };
+		4C2FCEEF1CB1EFE50037AFE4 /* HPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE21CB1EFE50037AFE4 /* HPButton@2x.png */; };
+		4C2FCEF01CB1EFE50037AFE4 /* HPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE21CB1EFE50037AFE4 /* HPButton@2x.png */; };
+		4C2FCEF11CB1EFE50037AFE4 /* LPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE31CB1EFE50037AFE4 /* LPButton.png */; };
+		4C2FCEF21CB1EFE50037AFE4 /* LPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE31CB1EFE50037AFE4 /* LPButton.png */; };
+		4C2FCEF31CB1EFE50037AFE4 /* LPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE31CB1EFE50037AFE4 /* LPButton.png */; };
+		4C2FCEF41CB1EFE50037AFE4 /* LPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE31CB1EFE50037AFE4 /* LPButton.png */; };
+		4C2FCEF51CB1EFE50037AFE4 /* LPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE31CB1EFE50037AFE4 /* LPButton.png */; };
+		4C2FCEF61CB1EFE50037AFE4 /* LPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE31CB1EFE50037AFE4 /* LPButton.png */; };
+		4C2FCEF71CB1EFE50037AFE4 /* LPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE41CB1EFE50037AFE4 /* LPButton@2x.png */; };
+		4C2FCEF81CB1EFE50037AFE4 /* LPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE41CB1EFE50037AFE4 /* LPButton@2x.png */; };
+		4C2FCEF91CB1EFE50037AFE4 /* LPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE41CB1EFE50037AFE4 /* LPButton@2x.png */; };
+		4C2FCEFA1CB1EFE50037AFE4 /* LPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE41CB1EFE50037AFE4 /* LPButton@2x.png */; };
+		4C2FCEFB1CB1EFE50037AFE4 /* LPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE41CB1EFE50037AFE4 /* LPButton@2x.png */; };
+		4C2FCEFC1CB1EFE50037AFE4 /* LPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE41CB1EFE50037AFE4 /* LPButton@2x.png */; };
+		4C2FCF031CB3088A0037AFE4 /* Audition.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEFF1CB3088A0037AFE4 /* Audition.png */; };
+		4C2FCF041CB3088A0037AFE4 /* Audition.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEFF1CB3088A0037AFE4 /* Audition.png */; };
+		4C2FCF051CB3088A0037AFE4 /* Audition.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEFF1CB3088A0037AFE4 /* Audition.png */; };
+		4C2FCF061CB3088A0037AFE4 /* Audition.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEFF1CB3088A0037AFE4 /* Audition.png */; };
+		4C2FCF071CB3088A0037AFE4 /* Audition.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEFF1CB3088A0037AFE4 /* Audition.png */; };
+		4C2FCF081CB3088A0037AFE4 /* Audition.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEFF1CB3088A0037AFE4 /* Audition.png */; };
+		4C2FCF091CB3088A0037AFE4 /* Audition@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCF001CB3088A0037AFE4 /* Audition@2x.png */; };
+		4C2FCF0A1CB3088A0037AFE4 /* Audition@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCF001CB3088A0037AFE4 /* Audition@2x.png */; };
+		4C2FCF0B1CB3088A0037AFE4 /* Audition@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCF001CB3088A0037AFE4 /* Audition@2x.png */; };
+		4C2FCF0C1CB3088A0037AFE4 /* Audition@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCF001CB3088A0037AFE4 /* Audition@2x.png */; };
+		4C2FCF0D1CB3088A0037AFE4 /* Audition@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCF001CB3088A0037AFE4 /* Audition@2x.png */; };
+		4C2FCF0E1CB3088A0037AFE4 /* Audition@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCF001CB3088A0037AFE4 /* Audition@2x.png */; };
+		4C2FCF0F1CB3088A0037AFE4 /* Bypass.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCF011CB3088A0037AFE4 /* Bypass.png */; };
+		4C2FCF101CB3088A0037AFE4 /* Bypass.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCF011CB3088A0037AFE4 /* Bypass.png */; };
+		4C2FCF111CB3088A0037AFE4 /* Bypass.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCF011CB3088A0037AFE4 /* Bypass.png */; };
+		4C2FCF121CB3088A0037AFE4 /* Bypass.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCF011CB3088A0037AFE4 /* Bypass.png */; };
+		4C2FCF131CB3088A0037AFE4 /* Bypass.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCF011CB3088A0037AFE4 /* Bypass.png */; };
+		4C2FCF141CB3088A0037AFE4 /* Bypass.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCF011CB3088A0037AFE4 /* Bypass.png */; };
+		4C2FCF151CB3088A0037AFE4 /* Bypass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCF021CB3088A0037AFE4 /* Bypass@2x.png */; };
+		4C2FCF161CB3088A0037AFE4 /* Bypass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCF021CB3088A0037AFE4 /* Bypass@2x.png */; };
+		4C2FCF171CB3088A0037AFE4 /* Bypass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCF021CB3088A0037AFE4 /* Bypass@2x.png */; };
+		4C2FCF181CB3088A0037AFE4 /* Bypass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCF021CB3088A0037AFE4 /* Bypass@2x.png */; };
+		4C2FCF191CB3088A0037AFE4 /* Bypass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCF021CB3088A0037AFE4 /* Bypass@2x.png */; };
+		4C2FCF1A1CB3088A0037AFE4 /* Bypass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCF021CB3088A0037AFE4 /* Bypass@2x.png */; };
 		4C75CE2B1CAC78A900DA81A8 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE291CAC78A900DA81A8 /* Background.png */; };
 		4C75CE2C1CAC78A900DA81A8 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE291CAC78A900DA81A8 /* Background.png */; };
 		4C75CE2D1CAC78A900DA81A8 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C75CE291CAC78A900DA81A8 /* Background.png */; };
@@ -668,6 +716,14 @@
 		4C1A86121CA98A6300D94C89 /* cairo-sphinx.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; name = "cairo-sphinx.so"; path = "../../../../../../opt/local/lib/cairo/cairo-sphinx.so"; sourceTree = "<group>"; };
 		4C1A86131CA98A6300D94C89 /* libcairo-trace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libcairo-trace.dylib"; path = "../../../../../../opt/local/lib/cairo/libcairo-trace.dylib"; sourceTree = "<group>"; };
 		4C1A864D1CA98DB500D94C89 /* libcairo.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcairo.dylib; path = "Library/Frameworks/cairo-1.14.6_0+quartz+x11.darwin_15.x86_64/opt/local/lib/libcairo.dylib"; sourceTree = SDKROOT; };
+		4C2FCEE11CB1EFE50037AFE4 /* HPButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HPButton.png; sourceTree = "<group>"; };
+		4C2FCEE21CB1EFE50037AFE4 /* HPButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HPButton@2x.png"; sourceTree = "<group>"; };
+		4C2FCEE31CB1EFE50037AFE4 /* LPButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LPButton.png; sourceTree = "<group>"; };
+		4C2FCEE41CB1EFE50037AFE4 /* LPButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LPButton@2x.png"; sourceTree = "<group>"; };
+		4C2FCEFF1CB3088A0037AFE4 /* Audition.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Audition.png; path = resources/img/Audition.png; sourceTree = "<group>"; };
+		4C2FCF001CB3088A0037AFE4 /* Audition@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Audition@2x.png"; path = "resources/img/Audition@2x.png"; sourceTree = "<group>"; };
+		4C2FCF011CB3088A0037AFE4 /* Bypass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Bypass.png; path = resources/img/Bypass.png; sourceTree = "<group>"; };
+		4C2FCF021CB3088A0037AFE4 /* Bypass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Bypass@2x.png"; path = "resources/img/Bypass@2x.png"; sourceTree = "<group>"; };
 		4C75CE291CAC78A900DA81A8 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Background.png; path = resources/img/Background.png; sourceTree = "<group>"; };
 		4C75CE2A1CAC78A900DA81A8 /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Background@2x.png"; path = "resources/img/Background@2x.png"; sourceTree = "<group>"; };
 		4C75CE371CAC813B00DA81A8 /* Slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Slider.png; path = resources/img/Slider.png; sourceTree = "<group>"; };
@@ -1595,6 +1651,14 @@
 		4FD16A0213B6303B001D0217 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				4C2FCEFF1CB3088A0037AFE4 /* Audition.png */,
+				4C2FCF001CB3088A0037AFE4 /* Audition@2x.png */,
+				4C2FCF011CB3088A0037AFE4 /* Bypass.png */,
+				4C2FCF021CB3088A0037AFE4 /* Bypass@2x.png */,
+				4C2FCEE11CB1EFE50037AFE4 /* HPButton.png */,
+				4C2FCEE21CB1EFE50037AFE4 /* HPButton@2x.png */,
+				4C2FCEE31CB1EFE50037AFE4 /* LPButton.png */,
+				4C2FCEE41CB1EFE50037AFE4 /* LPButton@2x.png */,
 				4C75CE6E1CACBB6D00DA81A8 /* SliderReverse.png */,
 				4C75CE6F1CACBB6D00DA81A8 /* SliderReverse@2x.png */,
 				4C75CE291CAC78A900DA81A8 /* Background.png */,
@@ -2056,6 +2120,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C75CE771CACBB6D00DA81A8 /* SliderReverse@2x.png in Resources */,
+				4C2FCF0A1CB3088A0037AFE4 /* Audition@2x.png in Resources */,
+				4C2FCEE61CB1EFE50037AFE4 /* HPButton.png in Resources */,
 				4C88C1861CB0D7A200176B1C /* SmallKnob.png in Resources */,
 				4C88C18C1CB0D7A200176B1C /* SmallKnob@2x.png in Resources */,
 				4C75CE851CACD7D300DA81A8 /* PlotShadow@2x.png in Resources */,
@@ -2063,13 +2129,19 @@
 				4C75CE321CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4C75CE561CAC854400DA81A8 /* SliderHandles.png in Resources */,
 				4C1A86391CA98A6400D94C89 /* cairo-fdr.so in Resources */,
+				4C2FCF041CB3088A0037AFE4 /* Audition.png in Resources */,
 				4C75CE5C1CAC854400DA81A8 /* SliderHandles@2x.png in Resources */,
 				4C1A86211CA98A6400D94C89 /* cairo-sphinx.0.so in Resources */,
 				4C75CE2C1CAC78A900DA81A8 /* Background.png in Resources */,
+				4C2FCEEC1CB1EFE50037AFE4 /* HPButton@2x.png in Resources */,
 				4C1A86151CA98A6300D94C89 /* cairo-fdr.0.so in Resources */,
 				4C75CE711CACBB6D00DA81A8 /* SliderReverse.png in Resources */,
+				4C2FCEF21CB1EFE50037AFE4 /* LPButton.png in Resources */,
+				4C2FCEF81CB1EFE50037AFE4 /* LPButton@2x.png in Resources */,
+				4C2FCF101CB3088A0037AFE4 /* Bypass.png in Resources */,
 				4C75CE401CAC813B00DA81A8 /* Slider@2x.png in Resources */,
 				4C1A863F1CA98A6400D94C89 /* cairo-sphinx.so in Resources */,
+				4C2FCF161CB3088A0037AFE4 /* Bypass@2x.png in Resources */,
 				4C88C1781CB0D23500176B1C /* Knob.png in Resources */,
 				4C75CE3A1CAC813B00DA81A8 /* Slider.png in Resources */,
 				4C75CE7F1CACD7D300DA81A8 /* PlotShadow.png in Resources */,
@@ -2081,6 +2153,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C75CE791CACBB6D00DA81A8 /* SliderReverse@2x.png in Resources */,
+				4C2FCF0C1CB3088A0037AFE4 /* Audition@2x.png in Resources */,
+				4C2FCEE81CB1EFE50037AFE4 /* HPButton.png in Resources */,
 				4C88C1881CB0D7A200176B1C /* SmallKnob.png in Resources */,
 				4C88C18E1CB0D7A200176B1C /* SmallKnob@2x.png in Resources */,
 				4C75CE871CACD7D300DA81A8 /* PlotShadow@2x.png in Resources */,
@@ -2088,13 +2162,19 @@
 				4C75CE341CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4C75CE581CAC854400DA81A8 /* SliderHandles.png in Resources */,
 				4C1A863B1CA98A6400D94C89 /* cairo-fdr.so in Resources */,
+				4C2FCF061CB3088A0037AFE4 /* Audition.png in Resources */,
 				4C75CE5E1CAC854400DA81A8 /* SliderHandles@2x.png in Resources */,
 				4C1A86231CA98A6400D94C89 /* cairo-sphinx.0.so in Resources */,
 				4C75CE2E1CAC78A900DA81A8 /* Background.png in Resources */,
+				4C2FCEEE1CB1EFE50037AFE4 /* HPButton@2x.png in Resources */,
 				4C1A86171CA98A6300D94C89 /* cairo-fdr.0.so in Resources */,
 				4C75CE731CACBB6D00DA81A8 /* SliderReverse.png in Resources */,
+				4C2FCEF41CB1EFE50037AFE4 /* LPButton.png in Resources */,
+				4C2FCEFA1CB1EFE50037AFE4 /* LPButton@2x.png in Resources */,
+				4C2FCF121CB3088A0037AFE4 /* Bypass.png in Resources */,
 				4C75CE421CAC813B00DA81A8 /* Slider@2x.png in Resources */,
 				4C1A86411CA98A6400D94C89 /* cairo-sphinx.so in Resources */,
+				4C2FCF181CB3088A0037AFE4 /* Bypass@2x.png in Resources */,
 				4C88C17A1CB0D23500176B1C /* Knob.png in Resources */,
 				4C75CE3C1CAC813B00DA81A8 /* Slider.png in Resources */,
 				4C75CE811CACD7D300DA81A8 /* PlotShadow.png in Resources */,
@@ -2106,6 +2186,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C75CE7A1CACBB6D00DA81A8 /* SliderReverse@2x.png in Resources */,
+				4C2FCF0D1CB3088A0037AFE4 /* Audition@2x.png in Resources */,
+				4C2FCEE91CB1EFE50037AFE4 /* HPButton.png in Resources */,
 				4C88C1891CB0D7A200176B1C /* SmallKnob.png in Resources */,
 				4C88C18F1CB0D7A200176B1C /* SmallKnob@2x.png in Resources */,
 				4C75CE881CACD7D300DA81A8 /* PlotShadow@2x.png in Resources */,
@@ -2113,13 +2195,19 @@
 				4C75CE351CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4C75CE591CAC854400DA81A8 /* SliderHandles.png in Resources */,
 				4C1A863C1CA98A6400D94C89 /* cairo-fdr.so in Resources */,
+				4C2FCF071CB3088A0037AFE4 /* Audition.png in Resources */,
 				4C75CE5F1CAC854400DA81A8 /* SliderHandles@2x.png in Resources */,
 				4C1A86241CA98A6400D94C89 /* cairo-sphinx.0.so in Resources */,
 				4C75CE2F1CAC78A900DA81A8 /* Background.png in Resources */,
+				4C2FCEEF1CB1EFE50037AFE4 /* HPButton@2x.png in Resources */,
 				4C1A86181CA98A6300D94C89 /* cairo-fdr.0.so in Resources */,
 				4C75CE741CACBB6D00DA81A8 /* SliderReverse.png in Resources */,
+				4C2FCEF51CB1EFE50037AFE4 /* LPButton.png in Resources */,
+				4C2FCEFB1CB1EFE50037AFE4 /* LPButton@2x.png in Resources */,
+				4C2FCF131CB3088A0037AFE4 /* Bypass.png in Resources */,
 				4C75CE431CAC813B00DA81A8 /* Slider@2x.png in Resources */,
 				4C1A86421CA98A6400D94C89 /* cairo-sphinx.so in Resources */,
+				4C2FCF191CB3088A0037AFE4 /* Bypass@2x.png in Resources */,
 				4C88C17B1CB0D23500176B1C /* Knob.png in Resources */,
 				4C75CE3D1CAC813B00DA81A8 /* Slider.png in Resources */,
 				4C75CE821CACD7D300DA81A8 /* PlotShadow.png in Resources */,
@@ -2131,6 +2219,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C75CE781CACBB6D00DA81A8 /* SliderReverse@2x.png in Resources */,
+				4C2FCF0B1CB3088A0037AFE4 /* Audition@2x.png in Resources */,
+				4C2FCEE71CB1EFE50037AFE4 /* HPButton.png in Resources */,
 				4C88C1871CB0D7A200176B1C /* SmallKnob.png in Resources */,
 				4C88C18D1CB0D7A200176B1C /* SmallKnob@2x.png in Resources */,
 				4C75CE861CACD7D300DA81A8 /* PlotShadow@2x.png in Resources */,
@@ -2138,13 +2228,19 @@
 				4C75CE331CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4C75CE571CAC854400DA81A8 /* SliderHandles.png in Resources */,
 				4C1A863A1CA98A6400D94C89 /* cairo-fdr.so in Resources */,
+				4C2FCF051CB3088A0037AFE4 /* Audition.png in Resources */,
 				4C75CE5D1CAC854400DA81A8 /* SliderHandles@2x.png in Resources */,
 				4C1A86221CA98A6400D94C89 /* cairo-sphinx.0.so in Resources */,
 				4C75CE2D1CAC78A900DA81A8 /* Background.png in Resources */,
+				4C2FCEED1CB1EFE50037AFE4 /* HPButton@2x.png in Resources */,
 				4C1A86161CA98A6300D94C89 /* cairo-fdr.0.so in Resources */,
 				4C75CE721CACBB6D00DA81A8 /* SliderReverse.png in Resources */,
+				4C2FCEF31CB1EFE50037AFE4 /* LPButton.png in Resources */,
+				4C2FCEF91CB1EFE50037AFE4 /* LPButton@2x.png in Resources */,
+				4C2FCF111CB3088A0037AFE4 /* Bypass.png in Resources */,
 				4C75CE411CAC813B00DA81A8 /* Slider@2x.png in Resources */,
 				4C1A86401CA98A6400D94C89 /* cairo-sphinx.so in Resources */,
+				4C2FCF171CB3088A0037AFE4 /* Bypass@2x.png in Resources */,
 				4C88C1791CB0D23500176B1C /* Knob.png in Resources */,
 				4C75CE3B1CAC813B00DA81A8 /* Slider.png in Resources */,
 				4C75CE801CACD7D300DA81A8 /* PlotShadow.png in Resources */,
@@ -2156,6 +2252,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C75CE7B1CACBB6D00DA81A8 /* SliderReverse@2x.png in Resources */,
+				4C2FCF0E1CB3088A0037AFE4 /* Audition@2x.png in Resources */,
+				4C2FCEEA1CB1EFE50037AFE4 /* HPButton.png in Resources */,
 				4C88C18A1CB0D7A200176B1C /* SmallKnob.png in Resources */,
 				4C88C1901CB0D7A200176B1C /* SmallKnob@2x.png in Resources */,
 				4C75CE891CACD7D300DA81A8 /* PlotShadow@2x.png in Resources */,
@@ -2163,13 +2261,19 @@
 				4C75CE361CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4C75CE5A1CAC854400DA81A8 /* SliderHandles.png in Resources */,
 				4C1A863D1CA98A6400D94C89 /* cairo-fdr.so in Resources */,
+				4C2FCF081CB3088A0037AFE4 /* Audition.png in Resources */,
 				4C75CE601CAC854400DA81A8 /* SliderHandles@2x.png in Resources */,
 				4C1A86251CA98A6400D94C89 /* cairo-sphinx.0.so in Resources */,
 				4C75CE301CAC78A900DA81A8 /* Background.png in Resources */,
+				4C2FCEF01CB1EFE50037AFE4 /* HPButton@2x.png in Resources */,
 				4C1A86191CA98A6300D94C89 /* cairo-fdr.0.so in Resources */,
 				4C75CE751CACBB6D00DA81A8 /* SliderReverse.png in Resources */,
+				4C2FCEF61CB1EFE50037AFE4 /* LPButton.png in Resources */,
+				4C2FCEFC1CB1EFE50037AFE4 /* LPButton@2x.png in Resources */,
+				4C2FCF141CB3088A0037AFE4 /* Bypass.png in Resources */,
 				4C75CE441CAC813B00DA81A8 /* Slider@2x.png in Resources */,
 				4C1A86431CA98A6400D94C89 /* cairo-sphinx.so in Resources */,
+				4C2FCF1A1CB3088A0037AFE4 /* Bypass@2x.png in Resources */,
 				4C88C17C1CB0D23500176B1C /* Knob.png in Resources */,
 				4C75CE3E1CAC813B00DA81A8 /* Slider.png in Resources */,
 				4C75CE831CACD7D300DA81A8 /* PlotShadow.png in Resources */,
@@ -2183,18 +2287,26 @@
 				4F78D88613B6382B0032E0F3 /* DComp.icns in Resources */,
 				4C75CE2B1CAC78A900DA81A8 /* Background.png in Resources */,
 				4C75CE5B1CAC854400DA81A8 /* SliderHandles@2x.png in Resources */,
+				4C2FCEEB1CB1EFE50037AFE4 /* HPButton@2x.png in Resources */,
 				4C75CE841CACD7D300DA81A8 /* PlotShadow@2x.png in Resources */,
 				4C1A86141CA98A6300D94C89 /* cairo-fdr.0.so in Resources */,
 				4C75CE3F1CAC813B00DA81A8 /* Slider@2x.png in Resources */,
+				4C2FCF0F1CB3088A0037AFE4 /* Bypass.png in Resources */,
 				4C75CE311CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4C75CE7E1CACD7D300DA81A8 /* PlotShadow.png in Resources */,
 				4C75CE761CACBB6D00DA81A8 /* SliderReverse@2x.png in Resources */,
 				4C88C17D1CB0D23500176B1C /* Knob@2x.png in Resources */,
 				4C88C1771CB0D23500176B1C /* Knob.png in Resources */,
+				4C2FCEF71CB1EFE50037AFE4 /* LPButton@2x.png in Resources */,
+				4C2FCF091CB3088A0037AFE4 /* Audition@2x.png in Resources */,
 				4C88C1851CB0D7A200176B1C /* SmallKnob.png in Resources */,
+				4C2FCF031CB3088A0037AFE4 /* Audition.png in Resources */,
 				4F78D89913B639100032E0F3 /* InfoPlist.strings in Resources */,
 				4C75CE701CACBB6D00DA81A8 /* SliderReverse.png in Resources */,
+				4C2FCEF11CB1EFE50037AFE4 /* LPButton.png in Resources */,
 				4C1A86381CA98A6400D94C89 /* cairo-fdr.so in Resources */,
+				4C2FCEE51CB1EFE50037AFE4 /* HPButton.png in Resources */,
+				4C2FCF151CB3088A0037AFE4 /* Bypass@2x.png in Resources */,
 				4F78D89A13B639100032E0F3 /* MainMenu.xib in Resources */,
 				4C1A863E1CA98A6400D94C89 /* cairo-sphinx.so in Resources */,
 				4C88C18B1CB0D7A200176B1C /* SmallKnob@2x.png in Resources */,

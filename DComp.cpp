@@ -37,21 +37,28 @@ enum ELayout
   kGainX = 505,
   kMixX = 559,
   
-  kBigKnobsY = 322,
+  kBigKnobsY = 318,
   kAttackX = 22,
   kReleaseX = kAttackX + 104,
   
-  kSmallKnobsY = 354,
+  kSmallKnobsY = 350,
   kHoldX = 238,
   kRatioX = kHoldX + 68,
   kKneeX = kRatioX + 68,
   kSCKnobsX = 547,
   kSCKnobY= 318,
   kSCKnob2Y = kSCKnobY + 57,
+  kSCBypassX = 465,
+  kSCBypassY = 282,
+  kSCAudX = 581,
+  kSCAudY = kSCBypassY + 1,
   kFaderLength = 264,
   
   kPlotTimeScale = 4,
   
+  kHPx = 474,
+  kLPy = 318,
+  kHPy = kLPy + 56,
   
   kKnobFrames = 63,
   kSliderFrames = 68
@@ -61,7 +68,7 @@ enum ELayout
 
 
 DComp::DComp(IPlugInstanceInfo instanceInfo)
-:	IPLUG_CTOR(kNumParams, kNumPrograms, instanceInfo), mGain(0.), mThreshold(0.)
+:	IPLUG_CTOR(kNumParams, kNumPrograms, instanceInfo), mGain(0.), mThreshold(0.), mAttack(10.), mHold(0.), mRelease(250.), mRatio(4), mKnee(.5),mMix(1.), mCuttoffLP(20000.), mCuttoffHP(20.), mHPEnable(false), mLPEnable(false), mSCAudition(false), mSidechainEnable(false), mMode(0)
 {
   TRACE;
   
@@ -85,11 +92,12 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
 
   //Parameters
   //arguments are: name, defaultVal, minVal, maxVal, step, label
-  GetParam(kGain)->InitDouble("Gain", 0., kGainMin, kGainMax, 0.01, "dB");
-  GetParam(kThreshold)->InitDouble("Threshold", -4., kThresholdMin, kThresholdMax, 0.01, "dB");
+  GetParam(kGain)->InitDouble("Gain", 0., kGainMin, kGainMax, 0.1, "dB");
+  GetParam(kThreshold)->InitDouble("Threshold", -4., kThresholdMin, kThresholdMax, 0.1, "dB");
   GetParam(kAttack)->InitDouble("Attack", 10., 0., 250., .1, "ms");
   GetParam(kAttack)->SetShape(2.);
   GetParam(kHold)->InitDouble("Hold", 0., 0., 300., 1., "ms");
+  GetParam(kHold)->SetShape(2.);
   GetParam(kRelease)->InitDouble("Release", 250, 10., 1000., 1., "ms");
   GetParam(kRelease)->SetShape(2.);
   GetParam(kRatio)->InitDouble("Ratio", 4., 1., 100., 0.1, ": 1");
@@ -108,6 +116,7 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   
   GetParam(kMode)->InitEnum("Mode", 0, 1);
   GetParam(kMode)->SetDisplayText(0, "Clean");
+  GetParam(kMode)->SetDisplayText(1, "Opto");
 
   
   //Filters
@@ -126,6 +135,11 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   IBitmap shadow = pGraphics->LoadIBitmap(SHADOW_ID, SHADOW_FN);
   IBitmap knob = pGraphics->LoadIBitmap(KNOB_ID, KNOB_FN, kKnobFrames);
   IBitmap smallKnob = pGraphics->LoadIBitmap(SMALLKNOB_ID, SMALLKNOB_FN, kKnobFrames);
+  IBitmap HPButton = pGraphics->LoadIBitmap(HPBUTTON_ID, HPBUTTON_FN, 2);
+  IBitmap LPButton = pGraphics->LoadIBitmap(LPBUTTON_ID, LPBUTTON_FN, 2);
+  IBitmap Audition = pGraphics->LoadIBitmap(AUDITION_ID, AUDITION_FN, 2);
+  IBitmap Bypass = pGraphics->LoadIBitmap(BYPASS_ID, BYPASS_FN, 2);
+  
   pGraphics->AttachBackground(BACKGROUND_ID, BACKGROUND_FN);
   
   //374 x 183
@@ -181,35 +195,95 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   pGraphics->AttachControl(new IKnobMultiControlText(this, kKneeX, kSmallKnobsY, kKnee, &smallKnob, &caption));
   pGraphics->AttachControl(new IKnobMultiControlText(this, kSCKnobsX, kSCKnobY, kCutoffLP, &smallKnob, &caption));
   pGraphics->AttachControl(new IKnobMultiControlText(this, kSCKnobsX, kSCKnob2Y, kCutoffHP, &smallKnob, &caption));
+  
+  pGraphics->AttachControl(new ISwitchControl(this, kHPx, kHPy, kHPEnable, &HPButton));
+  pGraphics->AttachControl(new ISwitchControl(this, kHPx, kLPy, kLPEnable, &LPButton));
+  pGraphics->AttachControl(new ISwitchControl(this, kSCBypassX, kSCBypassY, kSidechain, &Bypass));
+  pGraphics->AttachControl(new ISwitchControl(this, kSCAudX, kSCAudY, kSCAudition, &Audition));
   pGraphics->AttachControl(mShadow);
   
  // mKnob = new IKnobMultiControl(this, 50, 50, kKnob, &knob);
  // pGraphics->AttachControl(mKnob);
  // pGraphics->AttachControl(new IKnobMultiControl(this, 150,150, kGain, &knob));
-  AttachGraphics(pGraphics);
   
+  
+  if (GetAPI() == kAPIVST2) // for VST2 we name individual outputs
+  {
+    SetInputLabel(0, "main input L");
+    SetInputLabel(1, "main input R");
+    SetInputLabel(2, "sc input L");
+    SetInputLabel(3, "sc input R");
+    SetOutputLabel(0, "output L");
+    SetOutputLabel(1, "output R");
+  }
+  else // for AU and VST3 we name buses
+  {
+    SetInputBusLabel(0, "main input");
+    SetInputBusLabel(1, "sc input");
+    SetOutputBusLabel(0, "output");
+  }
+  
+  
+  
+  AttachGraphics(pGraphics);
+
   //MakePreset("preset 1", ... );
   MakeDefaultPreset((char *) "-", kNumPrograms);
 }
 
-DComp::~DComp() {}
+DComp::~DComp() {
+
+}
 
 void DComp::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrames)
 {
   // Mutex is already locked for us.
 
+  bool in1ic = IsInChannelConnected(0);
+  bool in2ic = IsInChannelConnected(1);
+  bool in3ic = IsInChannelConnected(2);
+  bool in4ic = IsInChannelConnected(3);
+  
+  printf("%i %i %i %i, ------------------------- \n", in1ic, in2ic, in3ic, in4ic);
+  
+#ifdef RTAS_API
   double* in1 = inputs[0];
   double* in2 = inputs[1];
+  double* scin1 = inputs[2];
+  
+  double* out1 = outputs[0];
+  double* out2 = outputs[1];
+#else
+  double* in1 = inputs[0];
+  double* in2 = inputs[1];
+  double* scin1 = inputs[2];
+  double* scin2 = inputs[3];
+  
   double* out1 = outputs[0];
   double* out2 = outputs[1];
 
-  for (int s = 0; s < nFrames; ++s, ++in1, ++in2, ++out1, ++out2)
+
+
+  //Stupid hack because logic connects the sidechain bus to the main bus when no sidechain is connected
+  //see coreaudio mailing list
+#ifdef AU_API
+  if (GetHost() == kHostLogic)
   {
+    if(!memcmp(in1, scin1, nFrames * sizeof(double)))
+    {
+      memset(scin1, 0, nFrames * sizeof(double));
+      memset(scin2, 0, nFrames * sizeof(double));
+    }
+  }
+#endif
+
+
+  for (int s = 0; s < nFrames; ++s, ++scin1, ++scin2, ++in1, ++in2, ++out1, ++out2)
+  {
+    double sampleFiltered1, sampleFiltered2, sampleDry1, sampleDry2, gr, gainSmoothed, mixSmoothed;
 
     gainSmoothed = mGainSmoother.process(mGain);
-    mComp.setThreshold(mThresholdSmoother.process(mThreshold));
-    mComp.setAttack(mAttackSmoother.process(mAttack));
-    double sampleDry1, sampleDry2, sample1, sample2, inMax, gr, gainSmoothed, mixSmoothed;
+    
 
     if(gainSmoothed != mGain) gainSmoothed = mGainSmoother.process(mGain);
     if(mComp.getAttack() != mAttack) mComp.setAttack(mAttackSmoother.process(mAttack));
@@ -231,48 +305,71 @@ void DComp::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
     if(mLowpass.getCutoff() != mCuttoffLP) mLowpass.setCutoffFreq(mLPSmoother.process(mCuttoffLP));
     if(mHighpass.getCutoff() != mCuttoffHP) mHighpass.setCutoffFreq(mHPSmoother.process(mCuttoffHP));
     
-    
-    sample1 = *in1;
-    sample2 = *in2;
-  
-    sampleDry1 = sample1;
-    sampleDry2 = sample2;
-    
+    sampleDry1 = *in1;
+    sampleDry2 = *in2;
+    sampleFiltered1 = *in1;
+    sampleFiltered2 = *in2;
     
     if(!mSidechainEnable){
-      sample1 = mLowpass.processAudioSample(sample1, 0);
-      sample1 = mHighpass.processAudioSample(sample1, 0);
-      sample2 = mLowpass.processAudioSample(sample2, 1);
-      sample2 = mHighpass.processAudioSample(sample2, 1);
+      if(mLPEnable) {
+        sampleFiltered1 = mLowpass.processAudioSample(sampleFiltered1, 0);
+        sampleFiltered2 = mLowpass.processAudioSample(sampleFiltered2, 1);
+      }
+      if(mHPEnable){
+        sampleFiltered1 = mHighpass.processAudioSample(sampleFiltered1, 0);
+        sampleFiltered2 = mHighpass.processAudioSample(sampleFiltered2, 1);
+      }
+    
+      gr = mComp.processStereo(sampleFiltered1, sampleFiltered2);
+    }
+    else{
+      if(mLPEnable){
+        *scin1 = mLowpass.processAudioSample(*scin1, 0);
+        *scin2 = mLowpass.processAudioSample(*scin2, 1);
+      }
+      if(mHPEnable){
+        *scin1 = mHighpass.processAudioSample(*scin1, 0);
+        *scin2 = mHighpass.processAudioSample(*scin2, 1);
+      }
 
-      gr = mComp.processStereo(sample1, sample2);
+      gr = mComp.processStereo(*scin1, *scin2);
     }
     
-    sample1 = sampleDry1 * DBToAmp(gr);
-    sample2 = sampleDry2 * DBToAmp(gr);
+    *in1 *= DBToAmp(gr);
+    *in2 *= DBToAmp(gr);
     
-
+    *in1 *= DBToAmp(gainSmoothed);
+    *in2 *= DBToAmp(gainSmoothed);
     
-    sample1 *= DBToAmp(gainSmoothed);
-    sample2 *= DBToAmp(gainSmoothed);
-    *out1 = sample1 * mixSmoothed + sampleDry1 * (1 - mixSmoothed);
-    *out2 = sample2 * mixSmoothed + sampleDry2 * (1 - mixSmoothed);
+    if(!mSCAudition){
+      *out1 = *in1 * mixSmoothed + sampleDry1 * (1 - mixSmoothed);
+      *out2 = *in2 * mixSmoothed + sampleDry2 * (1 - mixSmoothed);
+    }
+    else if(mSidechainEnable){
+      *out1 = *scin1;
+      *out2 = *scin2;
+    }
+    else{
+      *out1 = sampleFiltered1;
+      *out2 = sampleFiltered2;
+    }
 
     
     plot->process(AmpToDB(envPlotIn.process(max(sampleDry1, sampleDry2))));
-    plotOut->process(AmpToDB(envPlotOut.process(max(sample1, sample2))));
+    plotOut->process(AmpToDB(envPlotOut.process(max(*in1, *in2))));
     GRplot->process(scaleValue(gr, 2, -32, 2, -32));
 
   
-    
-    plot->SetDirty();
-    plotOut->SetDirty();
-    mShadow->SetDirty();
-    compPlot->SetDirty();
-    threshPlot->SetDirty();
-    GRplot->SetDirty();
+    if(GetGUI()) {
+      plot->SetDirty();
+      plotOut->SetDirty();
+      compPlot->SetDirty();
+      threshPlot->SetDirty();
+      GRplot->SetDirty();
+      mShadow->SetDirty();
+    }
   }
-  
+#endif
 }
 
 void DComp::Reset()
@@ -293,6 +390,9 @@ void DComp::OnParamChange(int paramIdx)
       
     case kThreshold:
       mThreshold = GetParam(kThreshold)->Value();
+      mComp.setThreshold(mThresholdSmoother.process(mThreshold));
+      compPlot->calc();
+      threshPlot->SetDirty();
       break;
       
     case kAttack:
@@ -309,10 +409,14 @@ void DComp::OnParamChange(int paramIdx)
       
     case kRatio:
       mRatio = GetParam(kRatio)->Value();
+      mComp.setRatio(mRatioSmoother.process(mRatio));
+      compPlot->calc();
       break;
       
     case kKnee:
       mKnee = GetParam(kKnee)->Value() * 2.;
+      mComp.setKnee(mKneeSmoother.process(mKnee));
+      compPlot->calc();
       break;
       
     case kMode:
