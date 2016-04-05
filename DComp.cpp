@@ -90,10 +90,6 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   mLPSmoother.init(5., GetSampleRate());
   mKneeSmoother.init(5., GetSampleRate());
   
-  //Envelope Followers
-  envPlotIn.init(compressor::kPeak, 15, 100, 15, GetSampleRate());
-  envPlotOut.init(compressor::kPeak, 15, 100, 15, GetSampleRate());
-  mComp.init(10., 100., 0., 4, .5, GetSampleRate());
 
 
   //Parameters
@@ -123,6 +119,12 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   GetParam(kMode)->InitEnum("Mode", 0, 1);
   GetParam(kMode)->SetDisplayText(0, "Clean");
   GetParam(kMode)->SetDisplayText(1, "Opto");
+
+  
+  //Envelope Followers
+  envPlotIn.init(compressor::kPeak, 15, 100, 15, GetSampleRate());
+  envPlotOut.init(compressor::kPeak, 15, 100, 15, GetSampleRate());
+  mComp.init(mAttack, mRelease, mHold, mRatio, mKnee, GetSampleRate());
 
   
   //Filters
@@ -186,7 +188,6 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   threshPlot= new IThresholdPlotControl(this, plotRECT, -1, &threshLineColor, &mComp);
   threshPlot->setLineWeight(2.);
   pGraphics->AttachControl(threshPlot);
-  
   
   
   mShadow = new IBitmapControl(this, plotRECT.L , plotRECT.T, &shadow);

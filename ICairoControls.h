@@ -65,7 +65,7 @@ public:
         
         mVals = new valarray<double>(0., mWidth);
         
-        surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth * 10, mHeight * 10);
+        surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
         cr = cairo_create(surface);
     }
     
@@ -135,8 +135,8 @@ public:
         cairo_paint(cr);
         cairo_restore(cr);
         
-        surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
-        cr = cairo_create(surface);
+        //surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
+        //cr = cairo_create(surface);
         
         cairo_set_line_width(cr, mLineWeight);
         
@@ -178,12 +178,13 @@ public:
         
         unsigned int *data = (unsigned int*)cairo_image_surface_get_data(surface);
         //Bind to LICE
-        LICE_WrapperBitmap WrapperBitmap = LICE_WrapperBitmap(data, this->mRECT.W(), this->mRECT.H(), this->mRECT.W(), false);
+        LICE_WrapperBitmap WrapperBitmap = LICE_WrapperBitmap(data, mWidth, mHeight, mWidth, false);
         
         //Render
 #ifndef IPLUG_RETINA_SUPPORT
         IBitmap result(&WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
 #else
+        
         IBitmap result(&WrapperBitmap, &WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
 #endif
         return pGraphics->DrawBitmap(&result, &this->mRECT);
@@ -214,7 +215,7 @@ protected:
 };
 
 
-
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 class ILevelPlotControl : public ICairoPlotControl
@@ -360,11 +361,10 @@ public:
         cairo_paint(cr);
         cairo_restore(cr);
         
-        surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
-        cr = cairo_create(surface);
+        //surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
+        //cr = cairo_create(surface);
         
         cairo_set_line_width(cr, mLineWeight);
-        cairo_set_antialias(cr, CAIRO_ANTIALIAS_FAST);
         
         
         //        if(mGridLines){
@@ -499,9 +499,9 @@ public:
         mBufferPre = new valarray<double>(0., mTimeScale * sr / (double)mXRes);
         mBufferPost = new valarray<double>(0., mTimeScale * sr / (double)mXRes);
 
-        mEnvPre.init(0, 75, 75, sr);
-        mEnvPost.init(0, 75, 75, sr);
-        mEnvGR.init(0, 75, 85, sr);
+        mEnvPre.init(compressor::kPeak, 0, 75, 75, sr);
+        mEnvPost.init(compressor::kPeak, 0, 75, 75, sr);
+        mEnvGR.init(compressor::kPeak, 0, 75, 85, sr);
 
         setResolution(kHighRes);
         setLineWeight(2.);
@@ -616,8 +616,8 @@ public:
         cairo_paint(cr);
         cairo_restore(cr);
         
-        surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
-        cr = cairo_create(surface);
+        //surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
+        //cr = cairo_create(surface);
         
         cairo_set_line_width(cr, mLineWeight);
         cairo_set_antialias(cr, CAIRO_ANTIALIAS_FAST);
@@ -805,8 +805,8 @@ public:
         cairo_paint(cr);
         cairo_restore(cr);
         
-        surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
-        cr = cairo_create(surface);
+        //surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
+        //cr = cairo_create(surface);
         
         cairo_set_line_width(cr, mLineWeight);
         cairo_set_antialias(cr, CAIRO_ANTIALIAS_FAST);
@@ -875,8 +875,8 @@ public:
         cairo_paint(cr);
         cairo_restore(cr);
         
-        surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
-        cr = cairo_create(surface);
+        //surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
+        //cr = cairo_create(surface);
         
         cairo_set_line_width(cr, mLineWeight);
         cairo_set_antialias(cr, CAIRO_ANTIALIAS_FAST);
