@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ICairoControls.h"
-            timestampString = "481576089.521875"
+            timestampString = "481578319.230719"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
             landmarkName = "Draw(IGraphics* pGraphics)"
             landmarkType = "5">
          </BreakpointContent>

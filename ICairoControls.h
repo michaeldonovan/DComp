@@ -88,7 +88,11 @@ public:
     }
     
     void setLineWeight(double w){
+#ifdef IPLUG_RETINA_SUPPORT
+        mLineWeight = 2 * w;
+#else
         mLineWeight = w;
+#endif
     }
     
     void setRange(double range){
@@ -276,18 +280,34 @@ public:
     void setResolution(int res){
         switch (res) {
             case kLowRes:
+#ifdef IPLUG_RETINA_SUPPORT
+                mXRes = mWidth / 16.;
+#else
                 mXRes = mWidth / 8.;
+#endif
                 break;
             case kMidRes:
+#ifdef IPLUG_RETINA_SUPPORT
+                mXRes = mWidth / 8.;
+#else
                 mXRes = mWidth / 4.;
+#endif
                 break;
                 
             case kHighRes:
+#ifdef IPLUG_RETINA_SUPPORT
+                mXRes = mWidth / 4.;
+#else
                 mXRes = mWidth / 2.;
+#endif
                 break;
                 
             case kMaxRes:
+#ifdef IPLUG_RETINA_SUPPORT
+                mXRes = mWidth / 2.;
+#else
                 mXRes = mWidth;
+#endif
                 break;
                 
             default:
@@ -373,10 +393,10 @@ public:
         
         //Starting point in bottom left corner.
         if(mReverseFill){
-            cairo_move_to(cr, -3, -2);
+            cairo_move_to(cr, -8, -8);
         }
         else{
-            cairo_move_to(cr, -2, mHeight+2);
+            cairo_move_to(cr, -4, mHeight+4);
         }
         
         //Draw data points
@@ -385,13 +405,13 @@ public:
             x += mSpacing;
         }
         
-        cairo_line_to(cr, mWidth+1, mDrawVals->operator[](mDrawVals->size()-1));
+        cairo_line_to(cr, mWidth+8, mDrawVals->operator[](mDrawVals->size()-1));
         //Endpoint in bottom right corner
         if(mReverseFill){
-            cairo_line_to(cr, mWidth+2, -2);
+            cairo_line_to(cr, mWidth+8, -8);
         }
         else{
-            cairo_line_to(cr, mWidth+2, mHeight+2);
+            cairo_line_to(cr, mWidth+8, mHeight+8);
         }
         
         cairo_close_path(cr);
@@ -448,7 +468,7 @@ public:
         
         unsigned int *data = (unsigned int*)cairo_image_surface_get_data(surface);
         //Bind to LICE
-        LICE_WrapperBitmap WrapperBitmap = LICE_WrapperBitmap(data, this->mRECT.W(), this->mRECT.H(), this->mRECT.W(), false);
+        LICE_WrapperBitmap WrapperBitmap = LICE_WrapperBitmap(data, mWidth, mHeight, mWidth, false);
         
         //Render
         //}
@@ -685,7 +705,7 @@ public:
         ////////////////////////////////////////////////////////////////////////////////POST
         
         //Starting point in top left corner.
-        cairo_move_to(cr, -1, -1);
+        cairo_move_to(cr, -2, -2);
         
         //Draw data points
         for (int i = 0, x = 0; x < mWidth && i < mDrawValsGR->size(); i++) {
@@ -693,10 +713,10 @@ public:
             x += mSpacing;
         }
         
-        cairo_line_to(cr, mWidth+1, mDrawValsGR->operator[](mDrawValsGR->size()-1));
+        cairo_line_to(cr, mWidth+4, mDrawValsGR->operator[](mDrawValsGR->size()-1));
         
         //Endpoint in top right corner
-        cairo_line_to(cr, mWidth+1, -1);
+        cairo_line_to(cr, mWidth+4, -4);
         
         cairo_close_path(cr);
         
@@ -740,7 +760,7 @@ public:
         
         unsigned int *data = (unsigned int*)cairo_image_surface_get_data(surface);
         //Bind to LICE
-        LICE_WrapperBitmap WrapperBitmap = LICE_WrapperBitmap(data, this->mRECT.W(), this->mRECT.H(), this->mRECT.W(), false);
+        LICE_WrapperBitmap WrapperBitmap = LICE_WrapperBitmap(data, mWidth, mHeight, mWidth, false);
         
         //Render
         //}
@@ -837,7 +857,7 @@ public:
         
         unsigned int *data = (unsigned int*)cairo_image_surface_get_data(surface);
         //Bind to LICE
-        LICE_WrapperBitmap WrapperBitmap = LICE_WrapperBitmap(data, this->mRECT.W(), this->mRECT.H(), this->mRECT.W(), false);
+        LICE_WrapperBitmap WrapperBitmap = LICE_WrapperBitmap(data, mWidth, mHeight, mWidth, false);
         
         //Render
         //}
@@ -922,7 +942,7 @@ public:
         
         unsigned int *data = (unsigned int*)cairo_image_surface_get_data(surface);
         //Bind to LICE
-        LICE_WrapperBitmap WrapperBitmap = LICE_WrapperBitmap(data, this->mRECT.W(), this->mRECT.H(), this->mRECT.W(), false);
+        LICE_WrapperBitmap WrapperBitmap = LICE_WrapperBitmap(data, mWidth, mHeight, mWidth, false);
         
         //Render
         //}

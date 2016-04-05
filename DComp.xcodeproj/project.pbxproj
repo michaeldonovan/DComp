@@ -3304,7 +3304,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = "$(APP_FOLDER)";
-				GCC_PREPROCESSOR_DEFINITIONS = "$(DEBUG_DEFS)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(DEBUG_DEFS)",
+					IPLUG_RETINA_SUPPORT,
+				);
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
 					"$(APP_DEFS)",
 					"$(inherited)",
