@@ -91,8 +91,8 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   mKneeSmoother.init(5., GetSampleRate());
   
   //Envelope Followers
-  envPlotIn.init(15, 100, 15, GetSampleRate());
-  envPlotOut.init(15, 100, 15, GetSampleRate());
+  envPlotIn.init(compressor::kPeak, 15, 100, 15, GetSampleRate());
+  envPlotOut.init(compressor::kPeak, 15, 100, 15, GetSampleRate());
   mComp.init(10., 100., 0., 4, .5, GetSampleRate());
 
 

@@ -9,25 +9,43 @@
 #define envFollower_h
 
 #include <algorithm>
+#include <vector>
+
+using std::vector;
+
 
 class envFollower{
 public:
+
+    const enum kMode{
+        kPeak,
+        kRMS
+    };
+
     envFollower(){
-        init(5, 50, 0, 44100);
+        init(kPeak, 5, 50, 0, 44100);
     }
+    
+    ~envFollower(){}
     
     envFollower(double attackMS, double releaseMS, double holdMS, double SampleRate){
-        init(attackMS, releaseMS, holdMS, SampleRate);
+        init(kPeak, attackMS, releaseMS, holdMS, SampleRate);
     }
     
-    virtual void init(double attackMS, double releaseMS, double holdMS, double SampleRate){
+    virtual void init(int detectMode, double attackMS, double releaseMS, double holdMS, double SampleRate){
+        mode = detectMode;
         sr = SampleRate;
         attack = pow(0.01, 1.0/(attackMS * sr * 0.001));
         release = pow(0.01, 1.0/(releaseMS * sr * 0.001));
         hold = holdMS / 1000. * sr;
         env = 0;
         timer = 0;
+        rmsWindowLength = SampleRate * 0.2;
+        buffer.resize(rmsWindowLength);
+        index = 0;
     }
+    
+    
     
     void setAttack(double attackMS){
         attack = attackMS;
@@ -41,8 +59,18 @@ public:
         hold = holdMS;
     }
     
+    void setMode(int detectorMode){
+        mode = detectorMode;
+    }
+    
     virtual double process(double sample){
-        double mag = fabs(sample);
+        double mag;
+        if(mode == kRMS){
+            
+        }
+        else{
+            mag = fabs(sample);
+        }
         if(mag > env){
             env = attack * (env - mag) + mag;
             timer=0;
@@ -59,7 +87,8 @@ public:
     
 protected:
     double attack, release, env, sr;
-    int timer, hold;
+    int index, timer, hold, mode, rmsWindowLength;
+    vector<double> buffer;
 };
 
 
@@ -78,8 +107,10 @@ public:
         init(attackMS, releaseMS, holdMS, ratio, knee, SampleRate);
     }
     
+    ~compressor(){};
+    
     void init(double attackMS, double releaseMS, double holdMS, double ratio, double knee, double SampleRate){
-        envFollower::init(attackMS, releaseMS, holdMS, SampleRate);
+        envFollower::init(kPeak, attackMS, releaseMS, holdMS, SampleRate);
         mMode = 0;
         gainReduction = 0;
         mKnee = knee;
@@ -119,11 +150,6 @@ public:
         calcSlope();
     }
     
-    void setMode(int mode){
-        mMode = mode;
-        calcKnee();
-        calcSlope();
-    }
     
     double getThreshold(){ return mThreshold; }
     double getAttack(){ return attack; }
