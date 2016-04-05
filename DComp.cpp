@@ -66,6 +66,9 @@ enum ELayout
   kLPy = 318,
   kHPy = kLPy + 56,
   
+  kModeX = 335,
+  kModeY = 282,
+  
   kKnobFrames = 63,
   kSliderFrames = 68
 };
@@ -116,9 +119,9 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   GetParam(kSidechain)->InitBool("Sidechain", false);
   GetParam(kSCAudition)->InitBool("Audition Sidechain", false);
   
-  GetParam(kMode)->InitEnum("Mode", 0, 1);
-  GetParam(kMode)->SetDisplayText(0, "Clean");
-  GetParam(kMode)->SetDisplayText(1, "Opto");
+  GetParam(kMode)->InitEnum("Detector Mode", 0, 1);
+  GetParam(kMode)->SetDisplayText(0, "Peak");
+  GetParam(kMode)->SetDisplayText(1, "RMS");
 
   
   //Envelope Followers
@@ -180,15 +183,16 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   pGraphics->AttachControl(GRplot);
   
   
-  compPlot = new ICompressorPlotControl(this, IRECT(plotRECT.L, plotRECT.T, plotRECT.L + plotRECT.H(), plotRECT.T + plotRECT.H()), -1, &plotPreFillColor, &plotCompLineColor, &mComp);
-  compPlot->calc();
-  compPlot->setLineWeight(3.);
-  pGraphics->AttachControl(compPlot);
-  
   threshPlot= new IThresholdPlotControl(this, plotRECT, -1, &threshLineColor, &mComp);
   threshPlot->setLineWeight(2.);
   pGraphics->AttachControl(threshPlot);
   
+  
+  compPlot = new ICompressorPlotControl(this, IRECT(plotRECT.L, plotRECT.T, plotRECT.L + plotRECT.H(), plotRECT.T + plotRECT.H()), -1, &plotPreFillColor, &plotCompLineColor, &mComp);
+  compPlot->calc();
+  compPlot->setLineWeight(3.);
+  pGraphics->AttachControl(compPlot);
+
   
   mShadow = new IBitmapControl(this, plotRECT.L , plotRECT.T, &shadow);
   pGraphics->AttachControl(new IFaderControlText(this, kThresholdX, kSlidersY, kThreshold, &slider, &sliderCaption, true, kSliderCaptionOffset));
@@ -207,6 +211,8 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   pGraphics->AttachControl(new ISwitchControl(this, kHPx, kLPy, kLPEnable, &LPButton));
   pGraphics->AttachControl(new ISwitchControl(this, kSCBypassX, kSCBypassY, kSidechain, &Bypass));
   pGraphics->AttachControl(new ISwitchControl(this, kSCAudX, kSCAudY, kSCAudition, &Audition));
+  pGraphics->AttachControl(new ITextControl(this, IRECT(kModeX - 50, kModeY+1, kModeX, kModeY+40), &popUpLabel, "Mode: "));
+  pGraphics->AttachControl(new IPopUpMenuControl(this, IRECT(kModeX, kModeY, kModeX + 100, kModeY + 25), COLOR_WHITE, COLOR_WHITE, plotPostFillColor, kMode));
   pGraphics->AttachControl(mShadow);
   
  // mKnob = new IKnobMultiControl(this, 50, 50, kKnob, &knob);
