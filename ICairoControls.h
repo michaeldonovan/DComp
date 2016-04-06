@@ -17,11 +17,18 @@
 
 using std::valarray;
 
-
+/**
+ *  A struct for storing color data for use with Cairo
+ *  Can be initialized with a pointer to an IColor
+ */
 struct CColor{
 public:
     double A, R, G, B;
     
+    /**
+     *  Constructor
+     *  @param ic A pointer to an IColor
+     */
     CColor(IColor* ic){
         A = ic->A / 255.;
         R = ic->R / 255.;
@@ -29,8 +36,20 @@ public:
         B = ic->B / 255.;
     }
     
-    CColor(double a = 1., double r = 0., double g = 0., double b = 0.);
-    
+    /**
+     *  Constructor
+     *  @param a Alpha value in range [0,1]
+     *  @param r Red value in range [0,1]
+     *  @param g Green value in range [0,1]
+     *  @param b Blue value in range [0,1]
+     */
+    CColor(double a = 1., double r = 0., double g = 0., double b = 0.){
+        A = a;
+        R = r;
+        G = g;
+        B = b;
+        Clamp();
+    }
     
     bool operator==(const CColor& rhs) { return (rhs.A == A && rhs.R == R && rhs.G == G && rhs.B == B); }
     
@@ -41,167 +60,103 @@ public:
     void Clamp() { A = IPMIN(A, 1.); R = IPMIN(R, 1.); G = IPMIN(G, 1.); B = IPMIN(B, 1.); }
     
     void setFromIColor(IColor* ic){
-        A = ic->A / 255;
-        R = ic->R / 255;
-        G = ic->G / 255;
-        B = ic->B / 255;
+        A = ic->A / 255.;
+        R = ic->R / 255.;
+        G = ic->G / 255.;
+        B = ic->B / 255.;
     }
 };
 
 
+/**
+ * An IControl that plots a set of data points using Cairo
+ */
 class ICairoPlotControl : public IControl
 {
 public:
-    ICairoPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, bool fillEnable=true) : IControl(pPlug, pR), mColorFill(fillColor), mColorLine(lineColor), mFill(fillEnable), mRange(1), mLineWeight(2.)
-    {
-#ifndef IPLUG_RETINA_SUPPORT
-        mWidth = mRECT.W();
-        mHeight = mRECT.H();
-#else
-        mWidth = mRECT.W() * 2;
-        mHeight = mRECT.H() * 2;
-#endif
-       
-        
-        mVals = new valarray<double>(0., mWidth);
-        
-        surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
-        cr = cairo_create(surface);
-    }
+    /**
+     Antialiasing quality options
+     */
+    enum AAQuality{
+        kNone,
+        kFast,
+        kGood,
+        kBest
+    };
     
-    ~ICairoPlotControl(){
-        delete mVals;
-        cairo_destroy(cr);
-        cairo_surface_destroy(surface);
-    }
+
+    ICairoPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, bool fillEnable=true);
     
-    void setFillEnable(bool b){
-        mFill = b;
-    }
+    ~ICairoPlotControl();
     
-    void setLineColor(IColor* color){
-        mColorLine.setFromIColor(color);
-    }
+    /**
+     *  Set whether or not a fill will be drawn under the plot points
+     *
+     *  @param b True=Enabled, False=Disabled
+     */
+    void setFillEnable(bool b);
     
-    void setFillColor(IColor* color){
-        mColorFill.setFromIColor(color);
-    }
+    /**
+     *  Set the color of the plot line
+     *
+     *  @param color A Pointer to an IColor
+     */
+    void setLineColor(IColor* color);
     
-    void setLineWeight(double w){
-#ifdef IPLUG_RETINA_SUPPORT
-        mLineWeight = 2 * w;
-#else
-        mLineWeight = w;
-#endif
-    }
+    /**
+     *  Set the color of the fill
+     *
+     *  @param color A pointer to an IColor
+     */
+    void setFillColor(IColor* color);
     
-    void setRange(double range){
-        mRange = range;
-    }
+    /**
+     *  Set antialiasing quality
+     *
+     *  @see AAQualtiy
+     *  @param quality An int in range [0,4]
+     */
+    void setAAquality(int quality);
     
-    void setVals(valarray<double>* vals){
-        delete mVals;
-        
-        mVals = vals;
-        
-        SetDirty(true);
-    }
+    /**
+     *  Set the line weight of the plot
+     *
+     *  @param w Line weight in pixels
+     */
+    void setLineWeight(double w);
+    
+    /**
+     *  Set the Y-axis range
+     *
+     *  @param range The Y-axis range
+     */
+    void setRange(double range);
     
     /*
-     * plotVals
-     * arg: valarray<double>* vals - a pointer to a valarray of values to plot. Points will be evenly spaced along the x-axis, connected by lines.
+     *  Plot a set of values
+     *  Points will be evenly spaced along the horizontal axis
+     *
+     *  @param vals Pointer to a valarray of doubles to be plotted
+     *  @param normalize If true, values will be scaled so that the max value is at the top of the plot. Default = false
      */
-    void plotVals(valarray<double>* vals, bool normalize=false){
-        double scalar;
-        
-        delete mVals;
-        
-        mVals = vals;
-        
-        if (normalize) {
-            scalar = 1. / mVals->max();
-        }
-        else{
-            scalar = 1. / mRange;
-        }
-        
-        if(scalar != 1.) *mVals *= scalar;
-        
-        SetDirty(true);
-    }
+    void plotVals(valarray<double>* vals, bool normalize=false);
     
-    bool Draw(IGraphics* pGraphics){
-        double mSpacing = (double)mWidth / mVals->size()  ;
-        
-        cairo_save(cr);
-        cairo_set_source_rgba(cr, 0, 0, 0, 0);
-        cairo_set_operator(cr, CAIRO_OPERATOR_SOURCE);
-        cairo_paint(cr);
-        cairo_restore(cr);
-        
-        //surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
-        //cr = cairo_create(surface);
-        
-        cairo_set_line_width(cr, mLineWeight);
-        
-        //Starting point in bottom left corner.
-        cairo_move_to(cr, 0, mHeight);
-        
-        //Draw data points
-        for (int i = 0, x = 0; x < mWidth && i < mVals->size(); i++, x += mSpacing) {
-            cairo_line_to(cr, x, mVals->operator[](i));
-        }
-        
-        //Endpoint in bottom right corner
-        cairo_line_to(cr, mWidth, mHeight);
-        
-        cairo_close_path(cr);
-        
-        if(mFill){
-            cairo_set_source_rgba(cr, mColorFill.R, mColorFill.G, mColorFill.B, mColorFill.A);
-            
-            cairo_path_t* path = cairo_copy_path(cr);
-            
-            cairo_fill(cr);
-            
-            
-            cairo_append_path(cr, path);
-            
-            cairo_set_source_rgba(cr, mColorLine.R, mColorLine.G, mColorLine.B, mColorLine.A);
-            
-            cairo_stroke(cr);
-            
-            cairo_path_destroy(path);
-        }
-        else{
-            cairo_set_source_rgba(cr, mColorLine.R, mColorLine.G, mColorLine.B, mColorLine.A);
-            cairo_stroke(cr);
-        }
-        
-        cairo_surface_flush(surface);
-        
-        unsigned int *data = (unsigned int*)cairo_image_surface_get_data(surface);
-        //Bind to LICE
-        LICE_WrapperBitmap WrapperBitmap = LICE_WrapperBitmap(data, mWidth, mHeight, mWidth, false);
-        
-        //Render
-#ifndef IPLUG_RETINA_SUPPORT
-        IBitmap result(&WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
-#else
-        
-        IBitmap result(&WrapperBitmap, &WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
-#endif
-        return pGraphics->DrawBitmap(&result, &this->mRECT);
-    }
-    
+    /**
+     *  Draw the plot. To be called by IGraphics.
+     *
+     *  @param pGraphics Pointer to IGraphics
+     *
+     *  @return True if drawm
+     */
+    bool Draw(IGraphics* pGraphics);
     
     //Accessors//
-    CColor getColorFill(){ return mColorFill; }
-    CColor getColorLine(){ return mColorLine; }
-    bool getFill(){ return mFill; }
-    int getWidth(){ return mWidth; }
-    int getHeight(){ return mHeight; }
-    double getRange() { return mRange; }
+    CColor getColorFill();
+    CColor getColorLine();
+    bool getFill();
+    int getWidth();
+    int getHeight();
+    double getRange();
     
 protected:
     CColor mColorFill;
@@ -213,9 +168,23 @@ protected:
     cairo_surface_t *surface;
     cairo_t *cr;
     
-    inline double scaleValue(double inValue, double inMin, double inMax, double outMin, double outMax){
-        return ((outMax - outMin) * (inValue - inMin)) / (inMax - inMin) + outMin;
-    }
+    
+    /**
+     *  Scale a value from range [inMin, inMax] to [outMin, outMax]
+     *
+     *  @param inValue Value to be scaled
+     *  @param inMin   Min of input range
+     *  @param inMax   Max of input range
+     *  @param outMin  Min of output range
+     *  @param outMax  Max of output range
+     *
+     *  @return Scaled value
+     */
+    inline double scaleValue(double inValue, double inMin, double inMax, double outMin, double outMax);
+    
+    
+    inline double percentToCoordinates(double value);
+
 };
 
 
@@ -225,6 +194,13 @@ protected:
 class ILevelPlotControl : public ICairoPlotControl
 {
 public:
+    /**
+     *  Resolution settings, determines number of data points to be plotted
+     *  kLowRes -> mRECT.W() / 8.
+     *  kMidRes -> mRECT.W() / 4.
+     *  kHighRes -> mRECT.W() / 2.
+     *  kMaxRes -> mRECT.W()
+     */
     enum kResolution{
         kLowRes,
         kMidRes,
@@ -232,265 +208,89 @@ public:
         kMaxRes
     };
     
+    
+    /**
+     *  Y-axis range settings. Determines min value of Y-axis
+     */
     enum kYRange{
         k16dB,
         k32dB,
         k48dB
     };
     
-    enum AAQuality{
-        kFast,
-        kGood,
-        kBest
-    };
-    
-    ILevelPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, double timeScale=5., bool fillEnable=true) : ICairoPlotControl(pPlug, pR, paramIdx, fillColor, lineColor, fillEnable), mTimeScale(timeScale), mBufferLength(0.), mYRange(-32), mStroke(true), mHeadroom(2), mReverseFill(false), mGradientFill(false)
-    {
 
-        mXRes = mWidth/2.;
-        mDrawVals = new valarray<double>(mHeight, mXRes);
-        mBuffer = new valarray<double>(0., mTimeScale * mPlug->GetSampleRate() / (double)mXRes);
-        setResolution(kHighRes);
-        setLineWeight(2.);
-    }
+    /**
+     *  Constructor
+     *
+     *  @param pPlug        Pointer to IPlugBase
+     *  @param pR           IRECT for the plot
+     *  @param fillColor    Pointer to an IColor for plot fill
+     *  @param lineColor    Pointer to an IColor for plot line
+     *  @param timeScale    X-Axis range in seconds (Default = 5)
+     *  @param paramIdx     Parameter index for IControl (Default = -1)
+     */
+    ILevelPlotControl(IPlugBase* pPlug, IRECT pR, IColor* fillColor, IColor* lineColor, double timeScale=5., bool fillEnable=true, int paramIdx=-1);
     
-    ~ILevelPlotControl(){
-        delete mDrawVals;
-        delete mBuffer;
-    }
+    ~ILevelPlotControl();
     
-    void setAAquality(int quality){
-        switch(quality){
-            case kFast:
-                cairo_set_antialias(cr, CAIRO_ANTIALIAS_FAST);
-                break;
-            case kGood:
-                cairo_set_antialias(cr, CAIRO_ANTIALIAS_GOOD);
-                break;
-            case kBest:
-                cairo_set_antialias(cr, CAIRO_ANTIALIAS_BEST);
-                break;
-        }
-    }
+    /**
+     *  If enabled, fill will be drawn above line instead of below
+     *
+     *  @param rev True = reverse fill
+     */
+    void setReverseFill(bool rev);
     
-    void setReverseFill(bool rev){
-        mReverseFill = rev;
-    }
+    /**
+     *  Set the horizontal resolution of the plot (number of points to be plotted)
+     * 
+     *  @see kResolution
+     *  @param res Resolution value in range [0,3]
+     */
+    void setResolution(int res);
     
-    void setResolution(int res){
-        switch (res) {
-            case kLowRes:
-#ifdef IPLUG_RETINA_SUPPORT
-                mXRes = mWidth / 16.;
-#else
-                mXRes = mWidth / 8.;
-#endif
-                break;
-            case kMidRes:
-#ifdef IPLUG_RETINA_SUPPORT
-                mXRes = mWidth / 8.;
-#else
-                mXRes = mWidth / 4.;
-#endif
-                break;
-                
-            case kHighRes:
-#ifdef IPLUG_RETINA_SUPPORT
-                mXRes = mWidth / 4.;
-#else
-                mXRes = mWidth / 2.;
-#endif
-                break;
-                
-            case kMaxRes:
-#ifdef IPLUG_RETINA_SUPPORT
-                mXRes = mWidth / 2.;
-#else
-                mXRes = mWidth;
-#endif
-                break;
-                
-            default:
-                mXRes = mWidth / 2.;
-                break;
-        }
-        mBuffer->resize(mTimeScale * mPlug->GetSampleRate() / (double)mXRes, -48.);
-        mBufferLength = 0;
-        if(mReverseFill){
-            mDrawVals->resize(mXRes, -2);
-        }
-        else{
-            mDrawVals->resize(mXRes, mHeight);
-        }
-        mSpacing = mWidth / mXRes;
-        
-    }
+    /**
+     *  Set the minimum value of the Y-Axis
+     *
+     *  @see   kYRange
+     *  @param yRangeDB Range value
+     */
+    void setYRange(int yRangeDB);
     
-    void setYRange(int yRangeDB){
-        switch (yRangeDB) {
-            case k16dB:
-                mYRange = -16;
-                break;
-                
-            case k32dB:
-                mYRange = -32;
-                break;
-                
-            case k48dB:
-                mYRange = -48;
-                break;
-                
-            default:
-                break;
-        }
-    }
+    /**
+     *  Set whether or not the plot line will be drawn
+     *
+     *  @param stroke True = enabled
+     */
+    void setStroke(bool stroke);
     
-    void setStroke(bool stroke){
-        mStroke = stroke;
-    }
+    /**
+     *  If true, plot fill will be a vertical, linear gradient from mColorFill to transparent
+     *
+     *  @param grad True = gradient fill enabled
+     */
+    void setGradientFill(bool grad);
     
-    void setGradientFill(bool grad){
-        mGradientFill = grad;
-    }
-    void process(double sample){
-        mBuffer->operator[](mBufferLength) = sample;
-        mBufferLength++;
-        
-        if(mBufferLength >= mBuffer->size()){
-            double average;
-            
-            *mDrawVals = mDrawVals->shift(1);
-            
-            average = mBuffer->sum() / (double)mBuffer->size();
-            average = scaleValue(average, mYRange, 2, 0, 1);
-            mDrawVals->operator[](mDrawVals->size() - 1) = percentToCoordinates(average);
-            
-            mBufferLength = 0;
-        }
-    }
+    /**
+     *  Takes a sample of audio to be added to the plot
+     *  For a smooth plot, sample should be processed by an envelope follower
+     *  @param sample A sample of audio
+     */
+    void process(double sample);
     
-    virtual bool IsDirty(){
-        return false;
-    }
-    
-    bool Draw(IGraphics* pGraphics){
-        
-        cairo_save(cr);
-        cairo_set_source_rgba(cr, 0, 0, 0, 0);
-        cairo_set_operator(cr, CAIRO_OPERATOR_SOURCE);
-        cairo_paint(cr);
-        cairo_restore(cr);
-        
-        //surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
-        //cr = cairo_create(surface);
-        
-        cairo_set_line_width(cr, mLineWeight);
-        
-        
-        //        if(mGridLines){
-        //            drawDBLines(cr);
-        //        }
-        
-        //Starting point in bottom left corner.
-        if(mReverseFill){
-            cairo_move_to(cr, -8, -8);
-        }
-        else{
-            cairo_move_to(cr, -4, mHeight+4);
-        }
-        
-        //Draw data points
-        for (int i = 0, x = 0; x < mWidth && i < mDrawVals->size(); i++) {
-            cairo_line_to(cr, x, mDrawVals->operator[](i));
-            x += mSpacing;
-        }
-        
-        cairo_line_to(cr, mWidth+8, mDrawVals->operator[](mDrawVals->size()-1));
-        //Endpoint in bottom right corner
-        if(mReverseFill){
-            cairo_line_to(cr, mWidth+8, -8);
-        }
-        else{
-            cairo_line_to(cr, mWidth+8, mHeight+8);
-        }
-        
-        cairo_close_path(cr);
-        
-        if(mFill && mStroke){
-            cairo_path_t* path = cairo_copy_path(cr);
-            
-            if(mGradientFill){
-                cairo_pattern_t* grad = cairo_pattern_create_linear(0, 0, 0, mHeight);
-                
-                cairo_pattern_add_color_stop_rgba(grad, .75, mColorFill.R, mColorFill.G, mColorFill.B, mColorFill.A);
-                cairo_pattern_add_color_stop_rgba(grad, 1, mColorFill.R, mColorFill.G, mColorFill.B, .3);
-                
-                cairo_set_source(cr, grad);
-                cairo_fill(cr);
-                cairo_pattern_destroy(grad);
-            }
-            else{
-                cairo_set_source_rgba(cr, mColorFill.R, mColorFill.G, mColorFill.B, mColorFill.A);
-                cairo_fill(cr);
-            }
-            
-            cairo_append_path(cr, path);
-            
-            cairo_set_source_rgba(cr, mColorLine.R, mColorLine.G, mColorLine.B, mColorLine.A);
-            
-            
-            cairo_stroke(cr);
-            
-            cairo_path_destroy(path);
-        }
-        else if(mStroke){
-            cairo_set_source_rgba(cr, mColorLine.R, mColorLine.G, mColorLine.B, mColorLine.A);
-            cairo_stroke(cr);
-        }
-        else if(mFill){
-            if(mGradientFill){
-                cairo_pattern_t* grad = cairo_pattern_create_linear(0, 0, 0, mHeight);
-                
-                cairo_pattern_add_color_stop_rgba(grad, .75, mColorFill.R, mColorFill.G, mColorFill.B, mColorFill.A);
-                cairo_pattern_add_color_stop_rgba(grad, 1, mColorFill.R, mColorFill.G, mColorFill.B, .3);
-                
-                cairo_set_source(cr, grad);
-                cairo_fill(cr);
-                
-                cairo_pattern_destroy(grad);
-            }
-            else{
-                cairo_set_source_rgba(cr, mColorFill.R, mColorFill.G, mColorFill.B, mColorFill.A);
-                cairo_fill(cr);
-            }
-        }
-        cairo_surface_flush(surface);
-        
-        unsigned int *data = (unsigned int*)cairo_image_surface_get_data(surface);
-        //Bind to LICE
-        LICE_WrapperBitmap WrapperBitmap = LICE_WrapperBitmap(data, mWidth, mHeight, mWidth, false);
-        
-        //Render
-        //}
-#ifndef IPLUG_RETINA_SUPPORT
-        IBitmap result(&WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
-#else
-        IBitmap result(&WrapperBitmap, &WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
-#endif
-        return pGraphics->DrawBitmap(&result, &this->mRECT);
-    }
+    /**
+     *  Draws the plot
+     *
+     *  @param pGraphics Pointer to IGraphics
+     *
+     *  @return True if drawn
+     */
+    bool Draw(IGraphics* pGraphics);
     
 protected:
     double mTimeScale;
     int mBufferLength, mXRes, mSpacing, mYRange, mHeadroom;
     valarray<double> *mBuffer, *mDrawVals;
     bool mStroke, mReverseFill, mGradientFill;
-    
-    
-    inline double percentToCoordinates(double value) {
-        return getHeight() - value * getHeight();
-    }
-
 };
 
 
@@ -509,268 +309,18 @@ public:
         k48dB
     };
     
-    IGRPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* preFillColor, IColor* postFillColor, IColor* postLineColor, IColor* GRFillColor, IColor* GRLineColor, double timeScale=5.) : ICairoPlotControl(pPlug, pR, paramIdx, postFillColor, postLineColor, true), mTimeScale(timeScale), mBufferLength(0.), mYRange(-32), mHeadroom(2), sr(mPlug->GetSampleRate()), mPreFillColor(preFillColor), mGRFillColor(GRFillColor), mGRLineColor(GRLineColor)
-    {
-        mXRes = mWidth/2.;
-        mDrawValsPre = new valarray<double>(mHeight, mXRes);
-        mDrawValsPost = new valarray<double>(mHeight, mXRes);
-        mDrawValsGR = new valarray<double>(mHeight, mXRes);
-
-        mBufferPre = new valarray<double>(0., mTimeScale * sr / (double)mXRes);
-        mBufferPost = new valarray<double>(0., mTimeScale * sr / (double)mXRes);
-
-        mEnvPre.init(compressor::kPeak, 0, 75, 75, sr);
-        mEnvPost.init(compressor::kPeak, 0, 75, 75, sr);
-        mEnvGR.init(compressor::kPeak, 0, 75, 85, sr);
-
-        setResolution(kHighRes);
-        setLineWeight(2.);
-    }
+    IGRPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* preFillColor, IColor* postFillColor, IColor* postLineColor, IColor* GRFillColor, IColor* GRLineColor, double timeScale=5.);
     
-    ~IGRPlotControl(){
-        delete mDrawValsPre;
-        delete mDrawValsPost;
-        delete mDrawValsGR;
-        delete mBufferPre;
-        delete mBufferPost;
-    }
+    ~IGRPlotControl();
+    
+    void setResolution(int res);
+    
+    void setYRange(int yRangeDB);
     
     
+    void process(double sampleIn, double sampleOut);
     
-    void setResolution(int res){
-        switch (res) {
-            case kLowRes:
-                mXRes = mWidth / 8.;
-                break;
-            case kMidRes:
-                mXRes = mWidth / 4.;
-                break;
-                
-            case kHighRes:
-                mXRes = mWidth / 2.;
-                break;
-                
-            case kMaxRes:
-                mXRes = mWidth;
-                break;
-                
-            default:
-                mXRes = mWidth / 2.;
-                break;
-        }
-        mBufferPre->resize(mTimeScale * sr / (double)mXRes, -48.);
-        mBufferPost->resize(mTimeScale * sr / (double)mXRes, -48.);
-        mDrawValsPre->resize(mXRes, mHeight);
-        mDrawValsPost->resize(mXRes, mHeight);
-        mDrawValsGR->resize(mXRes, mHeight);
-
-        mBufferLength = 0;
-
-        mSpacing = mWidth / mXRes;
-        
-    }
-    
-    void setYRange(int yRangeDB){
-        switch (yRangeDB) {
-            case k16dB:
-                mYRange = -16;
-                break;
-                
-            case k32dB:
-                mYRange = -32;
-                break;
-                
-            case k48dB:
-                mYRange = -48;
-                break;
-                
-            default:
-                break;
-        }
-    }
-    
-    void process(double sampleIn, double sampleOut){
-        mBufferPre->operator[](mBufferLength) = mEnvPre.process(sampleIn);
-        mBufferPost->operator[](mBufferLength) = mEnvPre.process(sampleOut);
-
-        
-        
-        //plotOut->process(AmpToDB(envPlotOut.process(std::max(sample1, sample2))));
-       // double gr = envGR.process(std::max(GR1,GR2));
-       // GRplot->process(scaleValue(AmpToDB(gr), -32, 2, 2, -32));
-
-        
-        mBufferLength++;
-        
-        if(mBufferLength >= mBufferPre->size()){
-            double averagePre, averagePost, GR;
-            
-            *mDrawValsPre = mDrawValsPre->shift(1);
-            *mDrawValsPost = mDrawValsPost->shift(1);
-            *mDrawValsGR = mDrawValsGR->shift(1);
-
-            averagePre = mBufferPre->sum() / (double)mBufferPre->size();
-            averagePost = mBufferPost->sum() / (double)mBufferPost->size();
-
-            GR = averagePost - averagePre;
-            
-            averagePre = AmpToDB(scaleValue(averagePre, mYRange, mHeadroom, 0, 1));
-            mDrawValsPre->operator[](mDrawValsPre->size() - 1) = percentToCoordinates(averagePre);
-            
-            averagePost = AmpToDB(scaleValue(averagePost, mYRange, mHeadroom, 0, 1));
-            mDrawValsPost->operator[](mDrawValsPost->size() - 1) = percentToCoordinates(averagePost);
-
-            GR = scaleValue(AmpToDB(GR), mYRange, mHeadroom, mHeadroom, mYRange);
-            mDrawValsGR->operator[](mDrawValsGR->size() - 1) = percentToCoordinates(GR);
-
-            
-            mBufferLength = 0;
-        }
-    }
-    
-    bool Draw(IGraphics* pGraphics){
-        
-        cairo_save(cr);
-        cairo_set_source_rgba(cr, 0, 0, 0, 0);
-        cairo_set_operator(cr, CAIRO_OPERATOR_SOURCE);
-        cairo_paint(cr);
-        cairo_restore(cr);
-        
-        //surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
-        //cr = cairo_create(surface);
-        
-        cairo_set_line_width(cr, mLineWeight);
-        cairo_set_antialias(cr, CAIRO_ANTIALIAS_FAST);
-        
-        ////////////////////////////////////////////////////////////////////////////////PRE
-        
-        //Starting point in bottom left corner.
-        cairo_move_to(cr, -1, mHeight+1);
-
-        //Draw data points
-        for (int i = 0, x = 0; x < mWidth && i < mDrawValsPre->size(); i++) {
-            cairo_line_to(cr, x, mDrawValsPre->operator[](i));
-            x += mSpacing;
-        }
-        
-        cairo_line_to(cr, mWidth+1, mDrawValsPre->operator[](mDrawValsPre->size()-1));
-        //Endpoint in bottom right corner
-        cairo_line_to(cr, mWidth+1, mHeight+1);
-        
-        cairo_close_path(cr);
-        
-        cairo_path_t* pathPre = cairo_copy_path(cr);
-        
-        ////////////////////////////////////////////////////////////////////////////////PRE
-
-        ////////////////////////////////////////////////////////////////////////////////POST
-
-        //Starting point in bottom left corner.
-        cairo_move_to(cr, -1, mHeight+1);
-        
-        //Draw data points
-        for (int i = 0, x = 0; x < mWidth && i < mDrawValsPost->size(); i++) {
-            cairo_line_to(cr, x, mDrawValsPost->operator[](i));
-            x += mSpacing;
-        }
-        
-        cairo_line_to(cr, mWidth+1, mDrawValsPost->operator[](mDrawValsPost->size()-1));
-        //Endpoint in bottom right corner
-        cairo_line_to(cr, mWidth+1, mHeight+1);
-        
-        cairo_close_path(cr);
-        
-        cairo_path_t* pathPost = cairo_copy_path(cr);
-        
-        //Starting point in bottom left corner.
-        cairo_move_to(cr, -1, -1);
-        
-        //Draw data points
-        for (int i = 0, x = 0; x < mWidth && i < mDrawValsPost->size(); i++) {
-            cairo_line_to(cr, x, mDrawValsPost->operator[](i));
-            x += mSpacing;
-        }
-        
-        cairo_line_to(cr, mWidth+1, mDrawValsPost->operator[](mDrawValsPost->size()-1));
-        //Endpoint in bottom right corner
-        cairo_line_to(cr, mWidth+1, -1);
-        
-        cairo_close_path(cr);
-        
-        cairo_path_t* pathClip = cairo_copy_path(cr);
-
-        ////////////////////////////////////////////////////////////////////////////////POST
-
-        
-        ////////////////////////////////////////////////////////////////////////////////POST
-        
-        //Starting point in top left corner.
-        cairo_move_to(cr, -2, -2);
-        
-        //Draw data points
-        for (int i = 0, x = 0; x < mWidth && i < mDrawValsGR->size(); i++) {
-            cairo_line_to(cr, x, mDrawValsGR->operator[](i));
-            x += mSpacing;
-        }
-        
-        cairo_line_to(cr, mWidth+4, mDrawValsGR->operator[](mDrawValsGR->size()-1));
-        
-        //Endpoint in top right corner
-        cairo_line_to(cr, mWidth+4, -4);
-        
-        cairo_close_path(cr);
-        
-        cairo_path_t* pathGR = cairo_copy_path(cr);
-        
-        ////////////////////////////////////////////////////////////////////////////////POST
-        
-        
-        cairo_new_path(cr);
-        
-        cairo_append_path(cr, pathClip);
-        cairo_clip(cr);
-        cairo_new_path(cr);
-        cairo_append_path(cr, pathPre);
-        cairo_set_source_rgba(cr, mPreFillColor.R, mPreFillColor.G, mPreFillColor.B, mPreFillColor.A);
-        cairo_fill(cr);
-        
-        cairo_reset_clip(cr);
-        cairo_append_path(cr, pathPost);
-        cairo_set_source_rgba(cr, mColorFill.R, mColorFill.G, mColorFill.B, mColorFill.A);
-        cairo_fill(cr);
-        cairo_append_path(cr, pathPost);
-        cairo_set_source_rgba(cr, mColorLine.R, mColorLine.G, mColorLine.B, mColorLine.A);
-        cairo_set_line_width(cr, mLineWeight);
-        cairo_stroke(cr);
-
-        cairo_append_path(cr, pathGR);
-        cairo_set_source_rgba(cr, mGRFillColor.R, mGRFillColor.G, mGRFillColor.B, mGRFillColor.A);
-        cairo_fill(cr);
-        cairo_append_path(cr, pathGR);
-        cairo_set_source_rgba(cr, mGRLineColor.R, mGRLineColor.G, mGRLineColor.B, mGRLineColor.A);
-        cairo_set_line_width(cr, 1.5);
-        cairo_stroke(cr);
-        
-        cairo_path_destroy(pathClip);
-        cairo_path_destroy(pathPre);
-        cairo_path_destroy(pathPost);
-        cairo_path_destroy(pathGR);
-
-        cairo_surface_flush(surface);
-        
-        unsigned int *data = (unsigned int*)cairo_image_surface_get_data(surface);
-        //Bind to LICE
-        LICE_WrapperBitmap WrapperBitmap = LICE_WrapperBitmap(data, mWidth, mHeight, mWidth, false);
-        
-        //Render
-        //}
-#ifndef IPLUG_RETINA_SUPPORT
-        IBitmap result(&WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
-#else
-        IBitmap result(&WrapperBitmap, &WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
-#endif        
-        return pGraphics->DrawBitmap(&result, &this->mRECT);
-    }
+    bool Draw(IGraphics* pGraphics);
     
 protected:
     double mTimeScale, sr;
@@ -779,181 +329,80 @@ protected:
     envFollower mEnvPre, mEnvPost, mEnvGR;
     
     CColor mPreFillColor, mGRLineColor, mGRFillColor;
-    
-    inline double percentToCoordinates(double value) {
-        return mHeight - value * mHeight;
-    }
-    
-    inline double scaleValue(double inValue, double inMin, double inMax, double outMin, double outMax){
-        return ((outMax - outMin) * (inValue - inMin)) / (inMax - inMin) + outMin;
-    }
 };
 
 
+/**
+ *  An ICairoPlotControl class for plotting response curve of a compressor
+ *  Designed to be overlayed on an ILevelPlotControl
+ *
+ *  @see compressor
+ *  @see ICairoPlotControl
+ *  @see ILevelPlotControl
+ */
 class ICompressorPlotControl : public ICairoPlotControl
 {
 public:
-    ICompressorPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* fillColor, IColor* lineColor, compressor* comp, bool fillEnable=false) : ICairoPlotControl(pPlug, pR, paramIdx, fillColor, lineColor, fillEnable), mYRange(-32), mHeadroom(2.){
-        setLineWeight(2.);
-        mComp = comp;
-    }
+    /**
+     *  Constructor
+     *
+     *  @param pPlug        Pointer to IPlugBase
+     *  @param pR           IRECT
+     *  @param lineColor    Pointer to an IColor
+     *  @param fillColor    Pointer to an IColor
+     *  @param comp         Pointer to a compressor
+     *  @param paramIdx     Parameter index (Default = -1)
+     */
+    ICompressorPlotControl(IPlugBase* pPlug, IRECT pR, IColor* lineColor, IColor* fillColor, compressor* comp, int paramIdx=-1);
     
-    void calc(){
-        double threshCoord = scaleValue(mComp->getThreshold(), mYRange, mHeadroom, 0, mWidth);
-        
-        x1  = scaleValue(mComp->getKneeBoundL(), mYRange, mHeadroom, 0, mWidth) ;
-        y1 = mHeight - x1;
-        
-        xCP = threshCoord;
-        yCP = mHeight - threshCoord;
-        
-        x2 = scaleValue(mComp->getKneeBoundU(), mYRange, mHeadroom, 0, mWidth);
-        y2 = yCP - ((x2 - xCP) / mComp->getRatio());
-        
-        x3 = mWidth+2;
-        
-        y3 = yCP - ((mWidth + 2 - xCP) / mComp->getRatio());
-        
-        SetDirty();
-    }
+    /**
+     *  Update the compressor response curve. Call when compressor settings are changed.
+     */
+    void calc();
     
-    bool Draw(IGraphics* pGraphics){
-        
-        cairo_save(cr);
-        cairo_set_source_rgba(cr, 0, 0, 0, 0);
-        cairo_set_operator(cr, CAIRO_OPERATOR_SOURCE);
-        cairo_paint(cr);
-        cairo_restore(cr);
-        
-        //surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
-        //cr = cairo_create(surface);
-        
-        cairo_set_line_width(cr, mLineWeight);
-        cairo_set_antialias(cr, CAIRO_ANTIALIAS_FAST);
-        
-        //fill background
-        cairo_set_source_rgba(cr, mColorFill.R, mColorFill.G, mColorFill.B, mColorFill.A);
-        cairo_rectangle(cr, 0, 0, mWidth, mHeight);
-        cairo_fill(cr);
-        
-        cairo_set_source_rgba(cr, mColorLine.R, mColorLine.G, mColorLine.B, mColorLine.A);
-
-        //Starting point in bottom left corner.
-        cairo_move_to(cr, -1, mHeight + 1);
- 
-        if(mComp->getKnee() > 0.){
-            cairo_line_to(cr, x1, y1);
-            cairo_curve_to(cr, xCP, yCP, xCP, yCP, x2, y2);
-            cairo_line_to(cr, x3, y3);
-        }
-        else{
-            cairo_line_to(cr, xCP, yCP);
-            cairo_line_to(cr, x3, y3);
-        }
-        
-        cairo_stroke(cr);
-        
-        cairo_surface_flush(surface);
-        
-        unsigned int *data = (unsigned int*)cairo_image_surface_get_data(surface);
-        //Bind to LICE
-        LICE_WrapperBitmap WrapperBitmap = LICE_WrapperBitmap(data, mWidth, mHeight, mWidth, false);
-        
-        //Render
-        //}
-#ifndef IPLUG_RETINA_SUPPORT
-        IBitmap result(&WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
-#else
-        IBitmap result(&WrapperBitmap, &WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
-#endif
-        return pGraphics->DrawBitmap(&result, &this->mRECT);
-    }
+    /**
+     *  Draw the plot
+     *
+     *  @param pGraphics Pointer to IGraphics
+     *
+     *  @return True if drawn
+     */
+    bool Draw(IGraphics* pGraphics);
     
 private:
-    double mThreshold, mKnee, mRatio, mKneeBoundL, mKneeBoundU, mHeadroom;
-    double x1, y1, xCP, yCP, x2, y2, x3, y3;
+    double mHeadroom;
+    
+    /**
+     *  Coordinates of lower bound of knee
+     */
+    double x1, y1;
+    
+    /**
+     *  Coordinates of control point for knee bezier curve
+     */
+    double xCP, yCP;
+    
+    /**
+     *  Coordinates of upper bound of knee
+     */
+    double x2, y2;
+    
+    /**
+     *  Coordinates where response curve exits mRECT
+     */
+    double x3, y3;
     int mYRange;
     compressor *mComp;
 };
 
 
+
 class IThresholdPlotControl : public ICairoPlotControl
 {
 public:
-    IThresholdPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* lineColor, compressor* comp) : ICairoPlotControl(pPlug, pR, paramIdx, (IColor*)&COLOR_BLACK, lineColor, false), mYRange(-32), mHeadroom(2)
-    {
-        mComp = comp;
-    }
-
+    IThresholdPlotControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IColor* lineColor, compressor* comp);
     
-    
-    bool Draw(IGraphics* pGraphics){
-        
-        cairo_save(cr);
-        cairo_set_source_rgba(cr, 0, 0, 0, 0);
-        cairo_set_operator(cr, CAIRO_OPERATOR_SOURCE);
-        cairo_paint(cr);
-        cairo_restore(cr);
-        
-        //surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, mWidth, mHeight);
-        //cr = cairo_create(surface);
-        
-        cairo_set_line_width(cr, mLineWeight);
-        cairo_set_antialias(cr, CAIRO_ANTIALIAS_FAST);
-        
-        cairo_set_source_rgba(cr, mColorLine.R, mColorLine.G, mColorLine.B, mColorLine.A);
-        
-        double dashes[] = {6.0,  /* ink */
-            3.0,  /* skip */
-            6.0,  /* ink */
-            3.0   /* skip*/
-        };
-        int    ndash  = sizeof (dashes)/sizeof(dashes[0]);
-        double offset = -5.0;
-        
-        cairo_set_dash (cr, dashes, ndash, offset);
-        
-        double threshCoord = scaleValue(mComp->getThreshold(), mYRange, mHeadroom, 0, mHeight);
-        
-        cairo_move_to(cr, threshCoord, 0);
-        
-        cairo_line_to(cr, threshCoord, mHeight);
-        
-        cairo_stroke(cr);
-        
-        cairo_move_to(cr, 0, mHeight - threshCoord);
-        cairo_line_to(cr, mWidth, mHeight-threshCoord);
-        
-        cairo_stroke(cr);
-        
-        cairo_pattern_t* grad = cairo_pattern_create_linear(mHeight, 0, mHeight+5, 0);
-        
-        cairo_pattern_add_color_stop_rgba(grad, 0, .1, .1, .1, .4);
-        cairo_pattern_add_color_stop_rgba(grad, 1, .1, .1, .1, 0);
-        
-        cairo_set_source(cr, grad);
-   
-        cairo_rectangle(cr, mHeight, 0, mWidth, mHeight);
-
-        cairo_fill(cr);
-        cairo_pattern_destroy(grad);
-        
-        cairo_surface_flush(surface);
-        
-        unsigned int *data = (unsigned int*)cairo_image_surface_get_data(surface);
-        //Bind to LICE
-        LICE_WrapperBitmap WrapperBitmap = LICE_WrapperBitmap(data, mWidth, mHeight, mWidth, false);
-        
-        //Render
-        //}
-#ifndef IPLUG_RETINA_SUPPORT
-        IBitmap result(&WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
-#else
-        IBitmap result(&WrapperBitmap, &WrapperBitmap, WrapperBitmap.getWidth(), WrapperBitmap.getHeight());
-#endif
-        return pGraphics->DrawBitmap(&result, &this->mRECT);
-    }
-    
+    bool Draw(IGraphics* pGraphics);
     
 private:
     int mYRange;

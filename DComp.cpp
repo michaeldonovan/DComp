@@ -81,7 +81,9 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
 {
   TRACE;
   
+  ///////////////////////////////////////////////////////////////////////////////////////
   //Param Smoothers
+  
   mGainSmoother.init(5., GetSampleRate());
   mThresholdSmoother.init(5., GetSampleRate());
   mAttackSmoother.init(5., GetSampleRate());
@@ -93,10 +95,13 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   mLPSmoother.init(5., GetSampleRate());
   mKneeSmoother.init(5., GetSampleRate());
   
+  ///////////////////////////////////////////////////////////////////////////////////////
 
 
+  ///////////////////////////////////////////////////////////////////////////////////////
   //Parameters
   //arguments are: name, defaultVal, minVal, maxVal, step, label
+  
   GetParam(kGain)->InitDouble("Gain", 0., kGainMin, kGainMax, 0.1, "dB");
   GetParam(kThreshold)->InitDouble("Threshold", -4., kThresholdMin, kThresholdMax, 0.1, "dB");
   GetParam(kAttack)->InitDouble("Attack", 10., 0., 250., .1, "ms");
@@ -122,27 +127,28 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   GetParam(kMode)->InitEnum("Detector Mode", 0, 1);
   GetParam(kMode)->SetDisplayText(0, "Peak");
   GetParam(kMode)->SetDisplayText(1, "RMS");
+  
+  ///////////////////////////////////////////////////////////////////////////////////////
 
   
-  //Envelope Followers
+  //Initialize envelope Followers
   envPlotIn.init(compressor::kPeak, 15, 100, 15, GetSampleRate());
   envPlotOut.init(compressor::kPeak, 15, 100, 15, GetSampleRate());
   mComp.init(mAttack, mRelease, mHold, mRatio, mKnee, GetSampleRate());
 
   
-  //Filters
+  //Initalize filters
   mHighpass.setSampleRate(GetSampleRate());
   mHighpass.setFilter(SVFHighpass, mCuttoffHP, 0.707, 0.);
   mLowpass.setSampleRate(GetSampleRate());
   mLowpass.setFilter(SVFLowpass, mCuttoffLP, 0.707, 0.);
-  
-  
-  
-  
+
+  //Create graphics context
   IGraphics* pGraphics = MakeGraphics(this, kWidth, kHeight, 30);
   
+  ///////////////////////////////////////////////////////////////////////////////////////
+  //Load bitmaps
   IBitmap slider = pGraphics->LoadIBitmap(SLIDER_ID, SLIDER_FN, kSliderFrames);
-  IBitmap sliderRev = pGraphics->LoadIBitmap(SLIDERREV_ID, SLIDERREV_FN, kSliderFrames);
   IBitmap shadow = pGraphics->LoadIBitmap(SHADOW_ID, SHADOW_FN);
   IBitmap knob = pGraphics->LoadIBitmap(KNOB_ID, KNOB_FN, kKnobFrames);
   IBitmap smallKnob = pGraphics->LoadIBitmap(SMALLKNOB_ID, SMALLKNOB_FN, kKnobFrames);
@@ -150,76 +156,122 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   IBitmap LPButton = pGraphics->LoadIBitmap(LPBUTTON_ID, LPBUTTON_FN, 2);
   IBitmap Audition = pGraphics->LoadIBitmap(AUDITION_ID, AUDITION_FN, 2);
   IBitmap Bypass = pGraphics->LoadIBitmap(BYPASS_ID, BYPASS_FN, 2);
-  
+  ///////////////////////////////////////////////////////////////////////////////////////
+
   pGraphics->AttachBackground(BACKGROUND_ID, BACKGROUND_FN);
-  
+ 
+  //IRECT for plots
   //374 x 183
   IRECT plotRECT = IRECT(101, 71, 475, 254);
   
-  plot = new ILevelPlotControl(this, plotRECT, -1, &plotPreFillColor, &plotPreLineColor, kPlotTimeScale);
+  //Input level plot
+  plot = new ILevelPlotControl(this, plotRECT, &plotPreFillColor, &plotPreLineColor, kPlotTimeScale);
   plot->setResolution(ILevelPlotControl::kHighRes);
   plot->setYRange(ILevelPlotControl::k32dB);
   plot->setGradientFill(true);
   plot->setStroke(false);
+  plot->setAAquality(ICairoPlotControl::kNone);
   pGraphics->AttachControl(plot);
   
-  plotOut = new ILevelPlotControl(this, plotRECT, -1, &plotPostFillColor, &plotPostLineColor, kPlotTimeScale);
+  //Output level plot
+  plotOut = new ILevelPlotControl(this, plotRECT, &plotPostFillColor, &plotPostLineColor, kPlotTimeScale);
   plotOut->setStroke(true);
   plotOut->setResolution(ILevelPlotControl::kMaxRes);
   plotOut->setLineWeight(2.);
   plotOut->setYRange(ILevelPlotControl::k32dB);
   plotOut->setGradientFill(true);
+  plot->setAAquality(ICairoPlotControl::kNone);
+
   pGraphics->AttachControl(plotOut);
 
-  
-  GRplot = new ILevelPlotControl(this, plotRECT, -1, &grFillColor, &grLineColor, kPlotTimeScale);
+  //Gain reduction plot
+  GRplot = new ILevelPlotControl(this, plotRECT, &grFillColor, &grLineColor, kPlotTimeScale);
   GRplot->setLineWeight(3.);
   GRplot->setReverseFill(true);
   GRplot->setFillEnable(false);
-  //GRplot->setStroke(false);
   GRplot->setResolution(ILevelPlotControl::kHighRes);
   GRplot->setAAquality(ILevelPlotControl::kGood);
   GRplot->setYRange(ILevelPlotControl::k32dB);
+  plot->setAAquality(ICairoPlotControl::kNone);
+
   pGraphics->AttachControl(GRplot);
   
-  
+  //Threshold plot
   threshPlot= new IThresholdPlotControl(this, plotRECT, -1, &threshLineColor, &mComp);
-  threshPlot->setLineWeight(2.);
+  threshPlot->setLineWeight(3.);
+  plot->setAAquality(ICairoPlotControl::kNone);
+
   pGraphics->AttachControl(threshPlot);
   
-  
-  compPlot = new ICompressorPlotControl(this, IRECT(plotRECT.L, plotRECT.T, plotRECT.L + plotRECT.H(), plotRECT.T + plotRECT.H()), -1, &plotPreFillColor, &plotCompLineColor, &mComp);
+  //Compressor ratio plot
+  compPlot = new ICompressorPlotControl(this, IRECT(plotRECT.L, plotRECT.T, plotRECT.L + plotRECT.H(), plotRECT.T + plotRECT.H()), &plotCompLineColor, &plotPreFillColor, &mComp);
   compPlot->calc();
   compPlot->setLineWeight(3.);
-  pGraphics->AttachControl(compPlot);
+  plot->setAAquality(ICairoPlotControl::kNone);
 
-  
+  pGraphics->AttachControl(compPlot);
+ 
+  //Inner shadow for plot
   mShadow = new IBitmapControl(this, plotRECT.L , plotRECT.T, &shadow);
+  
+  //Threshold slider
   pGraphics->AttachControl(new IFaderControlText(this, kThresholdX, kSlidersY, kThreshold, &slider, &sliderCaption, true, kSliderCaptionOffset));
+  
+  //Gain slider
   pGraphics->AttachControl(new IFaderControlText(this, kGainX, kSlidersY, kGain, &slider, &sliderCaption, true, kSliderCaptionOffset));
+  
+  //Mix slider
   pGraphics->AttachControl(new IFaderControlText(this, kMixX, kSlidersY, kMix, &slider, &sliderCaption, true, kSliderCaptionOffset));
+  
+  //Attack knob
   pGraphics->AttachControl(new IKnobMultiControlText(this, kAttackX, kBigKnobsY, kAttack, &knob, &caption));
+  
+  //Release knob
   pGraphics->AttachControl(new IKnobMultiControlText(this, kReleaseX, kBigKnobsY, kRelease, &knob, &caption));
+  
+  //Hold knob
   pGraphics->AttachControl(new IKnobMultiControlText(this, kHoldX, kSmallKnobsY, kHold, &smallKnob, &caption, true, kSmallKnobCaptionOffset));
+  
+  //Ratio knob
   pGraphics->AttachControl(new IKnobMultiControlText(this, kRatioX, kSmallKnobsY, kRatio, &smallKnob, &caption, true, kSmallKnobCaptionOffset));
+  
+  //Knee knob
   pGraphics->AttachControl(new IKnobMultiControlText(this, kKneeX, kSmallKnobsY, kKnee, &smallKnob, &caption, true, kSmallKnobCaptionOffset));
+  
+  //Lowpass cutoff knob
   pGraphics->AttachControl(new IKnobMultiControl(this, kSCKnobsX, kSCKnobY, kCutoffLP, &smallKnob));
+  
+  //Highpass cutoff knob
   pGraphics->AttachControl(new IKnobMultiControl(this, kSCKnobsX, kSCKnob2Y, kCutoffHP, &smallKnob));
+ 
+  //Lowpass cutoff caption
   pGraphics->AttachControl(new ICaptionControl(this, IRECT(kLPCaptionX, kLPCaptionY, kLPCaptionX + 63, kLPCaptionY + 21), kCutoffLP, &cutoffCaption));
-    pGraphics->AttachControl(new ICaptionControl(this, IRECT(kLPCaptionX, kHPCaptionY, kLPCaptionX + 63, kHPCaptionY + 21), kCutoffHP, &cutoffCaption));
+  
+  //Highpass cutoff caption
+  pGraphics->AttachControl(new ICaptionControl(this, IRECT(kLPCaptionX, kHPCaptionY, kLPCaptionX + 63, kHPCaptionY + 21), kCutoffHP, &cutoffCaption));
+  
+  //Highpass enable button
   pGraphics->AttachControl(new ISwitchControl(this, kHPx, kHPy, kHPEnable, &HPButton));
+  
+  //Lowpass enable button
   pGraphics->AttachControl(new ISwitchControl(this, kHPx, kLPy, kLPEnable, &LPButton));
+  
+  //External sidechain enable button
   pGraphics->AttachControl(new ISwitchControl(this, kSCBypassX, kSCBypassY, kSidechain, &Bypass));
+  
+  //Sidechain audition button
   pGraphics->AttachControl(new ISwitchControl(this, kSCAudX, kSCAudY, kSCAudition, &Audition));
+  
+  //Mode selector label
   pGraphics->AttachControl(new ITextControl(this, IRECT(kModeX - 50, kModeY+1, kModeX, kModeY+40), &popUpLabel, "Mode: "));
+  
+  //Mode selector popup
   pGraphics->AttachControl(new IPopUpMenuControl(this, IRECT(kModeX, kModeY, kModeX + 100, kModeY + 25), COLOR_WHITE, COLOR_WHITE, plotPostFillColor, kMode));
+  
+  //Attach shadow
   pGraphics->AttachControl(mShadow);
   
- // mKnob = new IKnobMultiControl(this, 50, 50, kKnob, &knob);
- // pGraphics->AttachControl(mKnob);
- // pGraphics->AttachControl(new IKnobMultiControl(this, 150,150, kGain, &knob));
-  
-  
+  //Label I/O channels
   if (GetAPI() == kAPIVST2) // for VST2 we name individual outputs
   {
     SetInputLabel(0, "main input L");
@@ -236,17 +288,16 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
     SetOutputBusLabel(0, "output");
   }
   
-  
-  
+  //Attach graphics context
   AttachGraphics(pGraphics);
 
   //MakePreset("preset 1", ... );
   MakeDefaultPreset((char *) "-", kNumPrograms);
 }
 
-DComp::~DComp() {
-
-}
+//Destructor
+//Don't need to delete plots/controls, as ownership has been passed to pGraphics
+DComp::~DComp() {}
 
 void DComp::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrames)
 {
@@ -257,8 +308,10 @@ void DComp::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
   bool in3ic = IsInChannelConnected(2);
   bool in4ic = IsInChannelConnected(3);
   
+  //Print which channels are connected
   printf("%i %i %i %i, ------------------------- \n", in1ic, in2ic, in3ic, in4ic);
   
+  //RTAS only supports one sidechain channel
 #ifdef RTAS_API
   double* in1 = inputs[0];
   double* in2 = inputs[1];
@@ -275,8 +328,6 @@ void DComp::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
   double* out1 = outputs[0];
   double* out2 = outputs[1];
 
-
-
   //Stupid hack because logic connects the sidechain bus to the main bus when no sidechain is connected
   //see coreaudio mailing list
 #ifdef AU_API
@@ -290,14 +341,14 @@ void DComp::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
   }
 #endif
 
-
+  //Main processing loop
   for (int s = 0; s < nFrames; ++s, ++scin1, ++scin2, ++in1, ++in2, ++out1, ++out2)
   {
     double sampleFiltered1, sampleFiltered2, sampleDry1, sampleDry2, gr, gainSmoothed, mixSmoothed;
 
-    gainSmoothed = mGainSmoother.process(mGain);
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+    //Parameter smoothing
     
-
     if(gainSmoothed != mGain) gainSmoothed = mGainSmoother.process(mGain);
     if(mComp.getAttack() != mAttack) mComp.setAttack(mAttackSmoother.process(mAttack));
     if(mComp.getRelease() != mRelease) mComp.setRelease(mReleaseSmoother.process(mRelease));
@@ -318,11 +369,16 @@ void DComp::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
     if(mLowpass.getCutoff() != mCuttoffLP) mLowpass.setCutoffFreq(mLPSmoother.process(mCuttoffLP));
     if(mHighpass.getCutoff() != mCuttoffHP) mHighpass.setCutoffFreq(mHPSmoother.process(mCuttoffHP));
     
+    //end parameter smoothing
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+
     sampleDry1 = *in1;
     sampleDry2 = *in2;
     sampleFiltered1 = *in1;
     sampleFiltered2 = *in2;
     
+    
+    //Filter sample for compressor envelope detector
     if(!mSidechainEnable){
       if(mLPEnable) {
         sampleFiltered1 = mLowpass.processAudioSample(sampleFiltered1, 0);
@@ -348,12 +404,15 @@ void DComp::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
       gr = mComp.processStereo(*scin1, *scin2);
     }
     
+    //Apply gain reduction from compressor
     *in1 *= DBToAmp(gr);
     *in2 *= DBToAmp(gr);
     
+    //Apply makeup gain
     *in1 *= DBToAmp(gainSmoothed);
     *in2 *= DBToAmp(gainSmoothed);
     
+    //If sidechain audition enabled, output sidechain signal
     if(!mSCAudition){
       *out1 = *in1 * mixSmoothed + sampleDry1 * (1 - mixSmoothed);
       *out2 = *in2 * mixSmoothed + sampleDry2 * (1 - mixSmoothed);
@@ -367,12 +426,12 @@ void DComp::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
       *out2 = sampleFiltered2;
     }
 
-    
+    //Update plots
     plot->process(AmpToDB(envPlotIn.process(max(sampleDry1, sampleDry2))));
     plotOut->process(AmpToDB(envPlotOut.process(max(*in1, *in2))));
-    GRplot->process(scaleValue(gr, 2, -32, 2, -32));
+    GRplot->process(scaleValue(gr, 2, -32, 2, -32));  //Scale value to match level plot range
 
-  
+    //Tell graphics context to redraw plots + shadow
     if(GetGUI()) {
       plot->SetDirty();
       plotOut->SetDirty();
@@ -468,6 +527,7 @@ void DComp::OnParamChange(int paramIdx)
       break;
   }
 }
+
 
 inline double DComp::scaleValue(double inValue, double inMin, double inMax, double outMin, double outMax){
   return ((outMax - outMin) * (inValue - inMin)) / (inMax - inMin) + outMin;
