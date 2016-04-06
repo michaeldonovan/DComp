@@ -2,12 +2,12 @@
 #define __DCOMP__
 
 #include "IPlug_include_in_plug_hdr.h"
-#include "EnvelopeFollower.h"
-#include "ICairoControls.h"
-#include "CParamSmooth.h"
+//#include "EnvelopeFollower.h"
+//#include "ICairoControls.h"
+//#include "CParamSmooth.h"
 #include "IPopupMenuControl.h"
-#include "IKnobMultiControlText.h"
-#include "VAStateVariableFilter.h"
+//#include "IKnobMultiControlText.h"
+//#include "VAStateVariableFilter.h"
 
 class DComp : public IPlug
 {

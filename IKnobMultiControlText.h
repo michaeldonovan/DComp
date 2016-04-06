@@ -95,6 +95,11 @@ public:
     
 };
 
+
+/**
+ *  An IKnobMultiControl with mouse snapping functionality for use as a fader.
+ *
+ */
 class IFaderControlText : public IKnobMultiControl
 {
 private:
@@ -111,8 +116,6 @@ public:
         mImgRECT = IRECT(mRECT.L, mRECT.T, &mBitmap);
         mDisablePrompt = false;
     }
-    
-    
     
     ~IFaderControlText() {}
     
