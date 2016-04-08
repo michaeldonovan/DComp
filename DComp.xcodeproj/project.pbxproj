@@ -26,30 +26,12 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		4C2FCEE51CB1EFE50037AFE4 /* HPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE11CB1EFE50037AFE4 /* HPButton.png */; };
-		4C2FCEE61CB1EFE50037AFE4 /* HPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE11CB1EFE50037AFE4 /* HPButton.png */; };
-		4C2FCEE71CB1EFE50037AFE4 /* HPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE11CB1EFE50037AFE4 /* HPButton.png */; };
-		4C2FCEE81CB1EFE50037AFE4 /* HPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE11CB1EFE50037AFE4 /* HPButton.png */; };
-		4C2FCEE91CB1EFE50037AFE4 /* HPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE11CB1EFE50037AFE4 /* HPButton.png */; };
-		4C2FCEEA1CB1EFE50037AFE4 /* HPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE11CB1EFE50037AFE4 /* HPButton.png */; };
-		4C2FCEEB1CB1EFE50037AFE4 /* HPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE21CB1EFE50037AFE4 /* HPButton@2x.png */; };
-		4C2FCEEC1CB1EFE50037AFE4 /* HPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE21CB1EFE50037AFE4 /* HPButton@2x.png */; };
-		4C2FCEED1CB1EFE50037AFE4 /* HPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE21CB1EFE50037AFE4 /* HPButton@2x.png */; };
-		4C2FCEEE1CB1EFE50037AFE4 /* HPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE21CB1EFE50037AFE4 /* HPButton@2x.png */; };
-		4C2FCEEF1CB1EFE50037AFE4 /* HPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE21CB1EFE50037AFE4 /* HPButton@2x.png */; };
-		4C2FCEF01CB1EFE50037AFE4 /* HPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE21CB1EFE50037AFE4 /* HPButton@2x.png */; };
-		4C2FCEF11CB1EFE50037AFE4 /* LPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE31CB1EFE50037AFE4 /* LPButton.png */; };
-		4C2FCEF21CB1EFE50037AFE4 /* LPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE31CB1EFE50037AFE4 /* LPButton.png */; };
-		4C2FCEF31CB1EFE50037AFE4 /* LPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE31CB1EFE50037AFE4 /* LPButton.png */; };
-		4C2FCEF41CB1EFE50037AFE4 /* LPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE31CB1EFE50037AFE4 /* LPButton.png */; };
-		4C2FCEF51CB1EFE50037AFE4 /* LPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE31CB1EFE50037AFE4 /* LPButton.png */; };
-		4C2FCEF61CB1EFE50037AFE4 /* LPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE31CB1EFE50037AFE4 /* LPButton.png */; };
-		4C2FCEF71CB1EFE50037AFE4 /* LPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE41CB1EFE50037AFE4 /* LPButton@2x.png */; };
-		4C2FCEF81CB1EFE50037AFE4 /* LPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE41CB1EFE50037AFE4 /* LPButton@2x.png */; };
-		4C2FCEF91CB1EFE50037AFE4 /* LPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE41CB1EFE50037AFE4 /* LPButton@2x.png */; };
-		4C2FCEFA1CB1EFE50037AFE4 /* LPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE41CB1EFE50037AFE4 /* LPButton@2x.png */; };
-		4C2FCEFB1CB1EFE50037AFE4 /* LPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE41CB1EFE50037AFE4 /* LPButton@2x.png */; };
-		4C2FCEFC1CB1EFE50037AFE4 /* LPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEE41CB1EFE50037AFE4 /* LPButton@2x.png */; };
+		4C15DB931CB4D023004C072C /* DSPUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DB921CB4D023004C072C /* DSPUtilities.cpp */; };
+		4C15DB941CB4D023004C072C /* DSPUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DB921CB4D023004C072C /* DSPUtilities.cpp */; };
+		4C15DB951CB4D023004C072C /* DSPUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DB921CB4D023004C072C /* DSPUtilities.cpp */; };
+		4C15DB961CB4D023004C072C /* DSPUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DB921CB4D023004C072C /* DSPUtilities.cpp */; };
+		4C15DB971CB4D023004C072C /* DSPUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DB921CB4D023004C072C /* DSPUtilities.cpp */; };
+		4C15DB981CB4D023004C072C /* DSPUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DB921CB4D023004C072C /* DSPUtilities.cpp */; };
 		4C2FCF031CB3088A0037AFE4 /* Audition.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEFF1CB3088A0037AFE4 /* Audition.png */; };
 		4C2FCF041CB3088A0037AFE4 /* Audition.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEFF1CB3088A0037AFE4 /* Audition.png */; };
 		4C2FCF051CB3088A0037AFE4 /* Audition.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEFF1CB3088A0037AFE4 /* Audition.png */; };
@@ -138,6 +120,31 @@
 		4C88C18E1CB0D7A200176B1C /* SmallKnob@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C88C1841CB0D7A200176B1C /* SmallKnob@2x.png */; };
 		4C88C18F1CB0D7A200176B1C /* SmallKnob@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C88C1841CB0D7A200176B1C /* SmallKnob@2x.png */; };
 		4C88C1901CB0D7A200176B1C /* SmallKnob@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C88C1841CB0D7A200176B1C /* SmallKnob@2x.png */; };
+		4C9442751CB828300096AAF4 /* LPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442711CB828300096AAF4 /* LPButton@2x.png */; };
+		4C9442761CB828300096AAF4 /* LPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442711CB828300096AAF4 /* LPButton@2x.png */; };
+		4C9442771CB828300096AAF4 /* LPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442711CB828300096AAF4 /* LPButton@2x.png */; };
+		4C9442781CB828300096AAF4 /* LPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442711CB828300096AAF4 /* LPButton@2x.png */; };
+		4C9442791CB828300096AAF4 /* LPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442711CB828300096AAF4 /* LPButton@2x.png */; };
+		4C94427A1CB828300096AAF4 /* LPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442711CB828300096AAF4 /* LPButton@2x.png */; };
+		4C94427B1CB828300096AAF4 /* HPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442721CB828300096AAF4 /* HPButton.png */; };
+		4C94427C1CB828300096AAF4 /* HPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442721CB828300096AAF4 /* HPButton.png */; };
+		4C94427D1CB828300096AAF4 /* HPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442721CB828300096AAF4 /* HPButton.png */; };
+		4C94427E1CB828300096AAF4 /* HPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442721CB828300096AAF4 /* HPButton.png */; };
+		4C94427F1CB828300096AAF4 /* HPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442721CB828300096AAF4 /* HPButton.png */; };
+		4C9442801CB828300096AAF4 /* HPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442721CB828300096AAF4 /* HPButton.png */; };
+		4C9442811CB828300096AAF4 /* HPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442731CB828300096AAF4 /* HPButton@2x.png */; };
+		4C9442821CB828300096AAF4 /* HPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442731CB828300096AAF4 /* HPButton@2x.png */; };
+		4C9442831CB828300096AAF4 /* HPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442731CB828300096AAF4 /* HPButton@2x.png */; };
+		4C9442841CB828300096AAF4 /* HPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442731CB828300096AAF4 /* HPButton@2x.png */; };
+		4C9442851CB828300096AAF4 /* HPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442731CB828300096AAF4 /* HPButton@2x.png */; };
+		4C9442861CB828300096AAF4 /* HPButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442731CB828300096AAF4 /* HPButton@2x.png */; };
+		4C9442871CB828300096AAF4 /* LPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442741CB828300096AAF4 /* LPButton.png */; };
+		4C9442881CB828300096AAF4 /* LPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442741CB828300096AAF4 /* LPButton.png */; };
+		4C9442891CB828300096AAF4 /* LPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442741CB828300096AAF4 /* LPButton.png */; };
+		4C94428A1CB828300096AAF4 /* LPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442741CB828300096AAF4 /* LPButton.png */; };
+		4C94428B1CB828300096AAF4 /* LPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442741CB828300096AAF4 /* LPButton.png */; };
+		4C94428C1CB828300096AAF4 /* LPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442741CB828300096AAF4 /* LPButton.png */; };
+		4C94428D1CB82F750096AAF4 /* libcairo.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0B1CB4C3D100C094ED /* libcairo.2.dylib */; };
 		4CCC3DDA1CB4C1E300C094ED /* CParamSmooth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC3DD81CB4C1E300C094ED /* CParamSmooth.cpp */; };
 		4CCC3DDB1CB4C1E300C094ED /* CParamSmooth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC3DD81CB4C1E300C094ED /* CParamSmooth.cpp */; };
 		4CCC3DDC1CB4C1E300C094ED /* CParamSmooth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC3DD81CB4C1E300C094ED /* CParamSmooth.cpp */; };
@@ -164,9 +171,7 @@
 		4CCC3E411CB4C3D100C094ED /* cairo-fdr.0.so in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3DFC1CB4C3D100C094ED /* cairo-fdr.0.so */; };
 		4CCC3E421CB4C3D100C094ED /* cairo-fdr.0.so in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3DFC1CB4C3D100C094ED /* cairo-fdr.0.so */; };
 		4CCC3E431CB4C3D100C094ED /* cairo-fdr.0.so in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3DFC1CB4C3D100C094ED /* cairo-fdr.0.so */; };
-		4CCC3E451CB4C3D100C094ED /* cairo-fdr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3DFD1CB4C3D100C094ED /* cairo-fdr.a */; };
 		4CCC3E461CB4C3D100C094ED /* cairo-fdr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3DFD1CB4C3D100C094ED /* cairo-fdr.a */; };
-		4CCC3E471CB4C3D100C094ED /* cairo-fdr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3DFD1CB4C3D100C094ED /* cairo-fdr.a */; };
 		4CCC3E481CB4C3D100C094ED /* cairo-fdr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3DFD1CB4C3D100C094ED /* cairo-fdr.a */; };
 		4CCC3E491CB4C3D100C094ED /* cairo-fdr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3DFD1CB4C3D100C094ED /* cairo-fdr.a */; };
 		4CCC3E4A1CB4C3D100C094ED /* cairo-fdr.so in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3DFE1CB4C3D100C094ED /* cairo-fdr.so */; };
@@ -181,9 +186,7 @@
 		4CCC3E531CB4C3D100C094ED /* cairo-sphinx.0.so in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3DFF1CB4C3D100C094ED /* cairo-sphinx.0.so */; };
 		4CCC3E541CB4C3D100C094ED /* cairo-sphinx.0.so in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3DFF1CB4C3D100C094ED /* cairo-sphinx.0.so */; };
 		4CCC3E551CB4C3D100C094ED /* cairo-sphinx.0.so in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3DFF1CB4C3D100C094ED /* cairo-sphinx.0.so */; };
-		4CCC3E571CB4C3D100C094ED /* cairo-sphinx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E001CB4C3D100C094ED /* cairo-sphinx.a */; };
 		4CCC3E581CB4C3D100C094ED /* cairo-sphinx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E001CB4C3D100C094ED /* cairo-sphinx.a */; };
-		4CCC3E591CB4C3D100C094ED /* cairo-sphinx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E001CB4C3D100C094ED /* cairo-sphinx.a */; };
 		4CCC3E5A1CB4C3D100C094ED /* cairo-sphinx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E001CB4C3D100C094ED /* cairo-sphinx.a */; };
 		4CCC3E5B1CB4C3D100C094ED /* cairo-sphinx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E001CB4C3D100C094ED /* cairo-sphinx.a */; };
 		4CCC3E5C1CB4C3D100C094ED /* cairo-sphinx.so in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3E011CB4C3D100C094ED /* cairo-sphinx.so */; };
@@ -192,64 +195,40 @@
 		4CCC3E5F1CB4C3D100C094ED /* cairo-sphinx.so in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3E011CB4C3D100C094ED /* cairo-sphinx.so */; };
 		4CCC3E601CB4C3D100C094ED /* cairo-sphinx.so in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3E011CB4C3D100C094ED /* cairo-sphinx.so */; };
 		4CCC3E611CB4C3D100C094ED /* cairo-sphinx.so in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3E011CB4C3D100C094ED /* cairo-sphinx.so */; };
-		4CCC3E631CB4C3D100C094ED /* libcairo-trace.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E021CB4C3D100C094ED /* libcairo-trace.0.dylib */; };
 		4CCC3E641CB4C3D100C094ED /* libcairo-trace.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E021CB4C3D100C094ED /* libcairo-trace.0.dylib */; };
-		4CCC3E651CB4C3D100C094ED /* libcairo-trace.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E021CB4C3D100C094ED /* libcairo-trace.0.dylib */; };
 		4CCC3E661CB4C3D100C094ED /* libcairo-trace.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E021CB4C3D100C094ED /* libcairo-trace.0.dylib */; };
 		4CCC3E671CB4C3D100C094ED /* libcairo-trace.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E021CB4C3D100C094ED /* libcairo-trace.0.dylib */; };
-		4CCC3E691CB4C3D100C094ED /* libcairo-trace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E031CB4C3D100C094ED /* libcairo-trace.a */; };
 		4CCC3E6A1CB4C3D100C094ED /* libcairo-trace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E031CB4C3D100C094ED /* libcairo-trace.a */; };
-		4CCC3E6B1CB4C3D100C094ED /* libcairo-trace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E031CB4C3D100C094ED /* libcairo-trace.a */; };
 		4CCC3E6C1CB4C3D100C094ED /* libcairo-trace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E031CB4C3D100C094ED /* libcairo-trace.a */; };
 		4CCC3E6D1CB4C3D100C094ED /* libcairo-trace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E031CB4C3D100C094ED /* libcairo-trace.a */; };
-		4CCC3E6F1CB4C3D100C094ED /* libcairo-trace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E041CB4C3D100C094ED /* libcairo-trace.dylib */; };
 		4CCC3E701CB4C3D100C094ED /* libcairo-trace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E041CB4C3D100C094ED /* libcairo-trace.dylib */; };
-		4CCC3E711CB4C3D100C094ED /* libcairo-trace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E041CB4C3D100C094ED /* libcairo-trace.dylib */; };
 		4CCC3E721CB4C3D100C094ED /* libcairo-trace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E041CB4C3D100C094ED /* libcairo-trace.dylib */; };
 		4CCC3E731CB4C3D100C094ED /* libcairo-trace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E041CB4C3D100C094ED /* libcairo-trace.dylib */; };
-		4CCC3E751CB4C3D100C094ED /* libcairo-gobject.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E051CB4C3D100C094ED /* libcairo-gobject.2.dylib */; };
 		4CCC3E761CB4C3D100C094ED /* libcairo-gobject.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E051CB4C3D100C094ED /* libcairo-gobject.2.dylib */; };
-		4CCC3E771CB4C3D100C094ED /* libcairo-gobject.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E051CB4C3D100C094ED /* libcairo-gobject.2.dylib */; };
 		4CCC3E781CB4C3D100C094ED /* libcairo-gobject.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E051CB4C3D100C094ED /* libcairo-gobject.2.dylib */; };
 		4CCC3E791CB4C3D100C094ED /* libcairo-gobject.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E051CB4C3D100C094ED /* libcairo-gobject.2.dylib */; };
-		4CCC3E7B1CB4C3D100C094ED /* libcairo-gobject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E061CB4C3D100C094ED /* libcairo-gobject.a */; };
 		4CCC3E7C1CB4C3D100C094ED /* libcairo-gobject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E061CB4C3D100C094ED /* libcairo-gobject.a */; };
-		4CCC3E7D1CB4C3D100C094ED /* libcairo-gobject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E061CB4C3D100C094ED /* libcairo-gobject.a */; };
 		4CCC3E7E1CB4C3D100C094ED /* libcairo-gobject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E061CB4C3D100C094ED /* libcairo-gobject.a */; };
 		4CCC3E7F1CB4C3D100C094ED /* libcairo-gobject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E061CB4C3D100C094ED /* libcairo-gobject.a */; };
-		4CCC3E811CB4C3D100C094ED /* libcairo-gobject.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E071CB4C3D100C094ED /* libcairo-gobject.dylib */; };
 		4CCC3E821CB4C3D100C094ED /* libcairo-gobject.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E071CB4C3D100C094ED /* libcairo-gobject.dylib */; };
-		4CCC3E831CB4C3D100C094ED /* libcairo-gobject.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E071CB4C3D100C094ED /* libcairo-gobject.dylib */; };
 		4CCC3E841CB4C3D100C094ED /* libcairo-gobject.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E071CB4C3D100C094ED /* libcairo-gobject.dylib */; };
 		4CCC3E851CB4C3D100C094ED /* libcairo-gobject.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E071CB4C3D100C094ED /* libcairo-gobject.dylib */; };
-		4CCC3E871CB4C3D100C094ED /* libcairo-script-interpreter.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E081CB4C3D100C094ED /* libcairo-script-interpreter.2.dylib */; };
 		4CCC3E881CB4C3D100C094ED /* libcairo-script-interpreter.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E081CB4C3D100C094ED /* libcairo-script-interpreter.2.dylib */; };
-		4CCC3E891CB4C3D100C094ED /* libcairo-script-interpreter.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E081CB4C3D100C094ED /* libcairo-script-interpreter.2.dylib */; };
 		4CCC3E8A1CB4C3D100C094ED /* libcairo-script-interpreter.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E081CB4C3D100C094ED /* libcairo-script-interpreter.2.dylib */; };
 		4CCC3E8B1CB4C3D100C094ED /* libcairo-script-interpreter.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E081CB4C3D100C094ED /* libcairo-script-interpreter.2.dylib */; };
-		4CCC3E8D1CB4C3D100C094ED /* libcairo-script-interpreter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E091CB4C3D100C094ED /* libcairo-script-interpreter.a */; };
 		4CCC3E8E1CB4C3D100C094ED /* libcairo-script-interpreter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E091CB4C3D100C094ED /* libcairo-script-interpreter.a */; };
-		4CCC3E8F1CB4C3D100C094ED /* libcairo-script-interpreter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E091CB4C3D100C094ED /* libcairo-script-interpreter.a */; };
 		4CCC3E901CB4C3D100C094ED /* libcairo-script-interpreter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E091CB4C3D100C094ED /* libcairo-script-interpreter.a */; };
 		4CCC3E911CB4C3D100C094ED /* libcairo-script-interpreter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E091CB4C3D100C094ED /* libcairo-script-interpreter.a */; };
-		4CCC3E931CB4C3D100C094ED /* libcairo-script-interpreter.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0A1CB4C3D100C094ED /* libcairo-script-interpreter.dylib */; };
 		4CCC3E941CB4C3D100C094ED /* libcairo-script-interpreter.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0A1CB4C3D100C094ED /* libcairo-script-interpreter.dylib */; };
-		4CCC3E951CB4C3D100C094ED /* libcairo-script-interpreter.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0A1CB4C3D100C094ED /* libcairo-script-interpreter.dylib */; };
 		4CCC3E961CB4C3D100C094ED /* libcairo-script-interpreter.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0A1CB4C3D100C094ED /* libcairo-script-interpreter.dylib */; };
 		4CCC3E971CB4C3D100C094ED /* libcairo-script-interpreter.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0A1CB4C3D100C094ED /* libcairo-script-interpreter.dylib */; };
-		4CCC3E991CB4C3D100C094ED /* libcairo.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0B1CB4C3D100C094ED /* libcairo.2.dylib */; };
 		4CCC3E9A1CB4C3D100C094ED /* libcairo.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0B1CB4C3D100C094ED /* libcairo.2.dylib */; };
-		4CCC3E9B1CB4C3D100C094ED /* libcairo.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0B1CB4C3D100C094ED /* libcairo.2.dylib */; };
 		4CCC3E9C1CB4C3D100C094ED /* libcairo.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0B1CB4C3D100C094ED /* libcairo.2.dylib */; };
 		4CCC3E9D1CB4C3D100C094ED /* libcairo.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0B1CB4C3D100C094ED /* libcairo.2.dylib */; };
-		4CCC3E9F1CB4C3D100C094ED /* libcairo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0C1CB4C3D100C094ED /* libcairo.a */; };
 		4CCC3EA01CB4C3D100C094ED /* libcairo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0C1CB4C3D100C094ED /* libcairo.a */; };
-		4CCC3EA11CB4C3D100C094ED /* libcairo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0C1CB4C3D100C094ED /* libcairo.a */; };
 		4CCC3EA21CB4C3D100C094ED /* libcairo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0C1CB4C3D100C094ED /* libcairo.a */; };
 		4CCC3EA31CB4C3D100C094ED /* libcairo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0C1CB4C3D100C094ED /* libcairo.a */; };
-		4CCC3EA51CB4C3D100C094ED /* libcairo.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0D1CB4C3D100C094ED /* libcairo.dylib */; };
 		4CCC3EA61CB4C3D100C094ED /* libcairo.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0D1CB4C3D100C094ED /* libcairo.dylib */; };
-		4CCC3EA71CB4C3D100C094ED /* libcairo.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0D1CB4C3D100C094ED /* libcairo.dylib */; };
 		4CCC3EA81CB4C3D100C094ED /* libcairo.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0D1CB4C3D100C094ED /* libcairo.dylib */; };
 		4CCC3EA91CB4C3D100C094ED /* libcairo.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0D1CB4C3D100C094ED /* libcairo.dylib */; };
 		4CCC3EAA1CB4C42B00C094ED /* libcairo.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0B1CB4C3D100C094ED /* libcairo.2.dylib */; };
@@ -291,12 +270,6 @@
 		4CCC3EE01CB4C45900C094ED /* cairo.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CCC3EBC1CB4C45900C094ED /* cairo.h */; };
 		4CEA891C1CB4BA1000694DE7 /* EnvelopeFollower.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CEA89141CB4BA1000694DE7 /* EnvelopeFollower.h */; };
 		4CEA891D1CB4BA1000694DE7 /* EnvelopeFollower.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CEA89141CB4BA1000694DE7 /* EnvelopeFollower.h */; };
-		4CEA89241CB4BA1000694DE7 /* DSPUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA89171CB4BA1000694DE7 /* DSPUtilities.cpp */; };
-		4CEA89251CB4BA1000694DE7 /* DSPUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA89171CB4BA1000694DE7 /* DSPUtilities.cpp */; };
-		4CEA89261CB4BA1000694DE7 /* DSPUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA89171CB4BA1000694DE7 /* DSPUtilities.cpp */; };
-		4CEA89271CB4BA1000694DE7 /* DSPUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA89171CB4BA1000694DE7 /* DSPUtilities.cpp */; };
-		4CEA89281CB4BA1000694DE7 /* DSPUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA89171CB4BA1000694DE7 /* DSPUtilities.cpp */; };
-		4CEA89291CB4BA1000694DE7 /* DSPUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA89171CB4BA1000694DE7 /* DSPUtilities.cpp */; };
 		4CEA892A1CB4BA1000694DE7 /* DSPUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CEA89181CB4BA1000694DE7 /* DSPUtilities.h */; };
 		4CEA892B1CB4BA1000694DE7 /* DSPUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CEA89181CB4BA1000694DE7 /* DSPUtilities.h */; };
 		4CEA89321CB4BA1000694DE7 /* VAStateVariableFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA891A1CB4BA1000694DE7 /* VAStateVariableFilter.cpp */; };
@@ -715,10 +688,7 @@
 		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		4C2FCEE11CB1EFE50037AFE4 /* HPButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HPButton.png; sourceTree = "<group>"; };
-		4C2FCEE21CB1EFE50037AFE4 /* HPButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HPButton@2x.png"; sourceTree = "<group>"; };
-		4C2FCEE31CB1EFE50037AFE4 /* LPButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LPButton.png; sourceTree = "<group>"; };
-		4C2FCEE41CB1EFE50037AFE4 /* LPButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LPButton@2x.png"; sourceTree = "<group>"; };
+		4C15DB921CB4D023004C072C /* DSPUtilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DSPUtilities.cpp; sourceTree = "<group>"; };
 		4C2FCEFF1CB3088A0037AFE4 /* Audition.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Audition.png; path = resources/img/Audition.png; sourceTree = "<group>"; };
 		4C2FCF001CB3088A0037AFE4 /* Audition@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Audition@2x.png"; path = "resources/img/Audition@2x.png"; sourceTree = "<group>"; };
 		4C2FCF011CB3088A0037AFE4 /* Bypass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Bypass.png; path = resources/img/Bypass.png; sourceTree = "<group>"; };
@@ -735,6 +705,10 @@
 		4C88C1761CB0D23500176B1C /* Knob@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Knob@2x.png"; path = "resources/img/Knob@2x.png"; sourceTree = "<group>"; };
 		4C88C1831CB0D7A200176B1C /* SmallKnob.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SmallKnob.png; path = resources/img/SmallKnob.png; sourceTree = "<group>"; };
 		4C88C1841CB0D7A200176B1C /* SmallKnob@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SmallKnob@2x.png"; path = "resources/img/SmallKnob@2x.png"; sourceTree = "<group>"; };
+		4C9442711CB828300096AAF4 /* LPButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LPButton@2x.png"; path = "resources/img/LPButton@2x.png"; sourceTree = "<group>"; };
+		4C9442721CB828300096AAF4 /* HPButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HPButton.png; path = resources/img/HPButton.png; sourceTree = "<group>"; };
+		4C9442731CB828300096AAF4 /* HPButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HPButton@2x.png"; path = "resources/img/HPButton@2x.png"; sourceTree = "<group>"; };
+		4C9442741CB828300096AAF4 /* LPButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LPButton.png; path = resources/img/LPButton.png; sourceTree = "<group>"; };
 		4CCC3DD81CB4C1E300C094ED /* CParamSmooth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CParamSmooth.cpp; path = ../../WDL/IPlug/CParamSmooth.cpp; sourceTree = "<group>"; };
 		4CCC3DD91CB4C1E300C094ED /* CParamSmooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CParamSmooth.h; path = ../../WDL/IPlug/CParamSmooth.h; sourceTree = "<group>"; };
 		4CCC3DE41CB4C3D100C094ED /* cairo-sphinx */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "cairo-sphinx"; sourceTree = "<group>"; };
@@ -776,7 +750,6 @@
 		4CCC3EBB1CB4C45900C094ED /* cairo-xml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "cairo-xml.h"; sourceTree = "<group>"; };
 		4CCC3EBC1CB4C45900C094ED /* cairo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cairo.h; sourceTree = "<group>"; };
 		4CEA89141CB4BA1000694DE7 /* EnvelopeFollower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvelopeFollower.h; sourceTree = "<group>"; };
-		4CEA89171CB4BA1000694DE7 /* DSPUtilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DSPUtilities.cpp; path = "/Users/michael/PluginDev/wdl-ol-michaeldonovan -- CAIRO TEST/WDL/IPlug/DSP/VAStateVariableFilter/DSPUtilities.cpp"; sourceTree = "<absolute>"; };
 		4CEA89181CB4BA1000694DE7 /* DSPUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPUtilities.h; sourceTree = "<group>"; };
 		4CEA891A1CB4BA1000694DE7 /* VAStateVariableFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VAStateVariableFilter.cpp; sourceTree = "<group>"; };
 		4CEA891B1CB4BA1000694DE7 /* VAStateVariableFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAStateVariableFilter.h; sourceTree = "<group>"; };
@@ -1000,22 +973,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F8D4C2F13E97806004F7633 /* lice.a in Frameworks */,
-				4CCC3E7B1CB4C3D100C094ED /* libcairo-gobject.a in Frameworks */,
-				4CCC3E6F1CB4C3D100C094ED /* libcairo-trace.dylib in Frameworks */,
-				4CCC3E691CB4C3D100C094ED /* libcairo-trace.a in Frameworks */,
-				4CCC3E991CB4C3D100C094ED /* libcairo.2.dylib in Frameworks */,
-				4CCC3E811CB4C3D100C094ED /* libcairo-gobject.dylib in Frameworks */,
 				4F20EF2D132C69FE0030E34C /* Cocoa.framework in Frameworks */,
-				4CCC3E571CB4C3D100C094ED /* cairo-sphinx.a in Frameworks */,
 				4F20EF2E132C69FE0030E34C /* Carbon.framework in Frameworks */,
-				4CCC3E931CB4C3D100C094ED /* libcairo-script-interpreter.dylib in Frameworks */,
-				4CCC3E871CB4C3D100C094ED /* libcairo-script-interpreter.2.dylib in Frameworks */,
-				4CCC3E9F1CB4C3D100C094ED /* libcairo.a in Frameworks */,
-				4CCC3E631CB4C3D100C094ED /* libcairo-trace.0.dylib in Frameworks */,
-				4CCC3E751CB4C3D100C094ED /* libcairo-gobject.2.dylib in Frameworks */,
-				4CCC3E8D1CB4C3D100C094ED /* libcairo-script-interpreter.a in Frameworks */,
-				4CCC3E451CB4C3D100C094ED /* cairo-fdr.a in Frameworks */,
-				4CCC3EA51CB4C3D100C094ED /* libcairo.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1024,26 +983,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F8D4C2813E9778D004F7633 /* lice.a in Frameworks */,
-				4CCC3E7D1CB4C3D100C094ED /* libcairo-gobject.a in Frameworks */,
-				4CCC3E711CB4C3D100C094ED /* libcairo-trace.dylib in Frameworks */,
 				4F3AE1D412C0E5E2001FD7A4 /* Carbon.framework in Frameworks */,
 				4F3AE1D512C0E5E2001FD7A4 /* Cocoa.framework in Frameworks */,
-				4CCC3E6B1CB4C3D100C094ED /* libcairo-trace.a in Frameworks */,
-				4CCC3E9B1CB4C3D100C094ED /* libcairo.2.dylib in Frameworks */,
 				4F3AE1D612C0E5E2001FD7A4 /* AudioToolbox.framework in Frameworks */,
-				4CCC3E831CB4C3D100C094ED /* libcairo-gobject.dylib in Frameworks */,
 				4F3AE1D712C0E5E2001FD7A4 /* AudioUnit.framework in Frameworks */,
-				4CCC3E591CB4C3D100C094ED /* cairo-sphinx.a in Frameworks */,
 				4F3AE1D812C0E5E2001FD7A4 /* CoreServices.framework in Frameworks */,
-				4CCC3E951CB4C3D100C094ED /* libcairo-script-interpreter.dylib in Frameworks */,
 				4F3AE1D912C0E5E2001FD7A4 /* CoreAudio.framework in Frameworks */,
-				4CCC3E891CB4C3D100C094ED /* libcairo-script-interpreter.2.dylib in Frameworks */,
-				4CCC3EA11CB4C3D100C094ED /* libcairo.a in Frameworks */,
-				4CCC3E651CB4C3D100C094ED /* libcairo-trace.0.dylib in Frameworks */,
-				4CCC3E771CB4C3D100C094ED /* libcairo-gobject.2.dylib in Frameworks */,
-				4CCC3E8F1CB4C3D100C094ED /* libcairo-script-interpreter.a in Frameworks */,
-				4CCC3E471CB4C3D100C094ED /* cairo-fdr.a in Frameworks */,
-				4CCC3EA71CB4C3D100C094ED /* libcairo.dylib in Frameworks */,
+				4C94428D1CB82F750096AAF4 /* libcairo.2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1310,7 +1256,7 @@
 		4CEA89151CB4BA1000694DE7 /* VAStateVariableFilter */ = {
 			isa = PBXGroup;
 			children = (
-				4CEA89171CB4BA1000694DE7 /* DSPUtilities.cpp */,
+				4C15DB921CB4D023004C072C /* DSPUtilities.cpp */,
 				4CEA89181CB4BA1000694DE7 /* DSPUtilities.h */,
 				4CEA891A1CB4BA1000694DE7 /* VAStateVariableFilter.cpp */,
 				4CEA891B1CB4BA1000694DE7 /* VAStateVariableFilter.h */,
@@ -1774,16 +1720,16 @@
 				4C2FCF001CB3088A0037AFE4 /* Audition@2x.png */,
 				4C2FCF011CB3088A0037AFE4 /* Bypass.png */,
 				4C2FCF021CB3088A0037AFE4 /* Bypass@2x.png */,
-				4C2FCEE11CB1EFE50037AFE4 /* HPButton.png */,
-				4C2FCEE21CB1EFE50037AFE4 /* HPButton@2x.png */,
-				4C2FCEE31CB1EFE50037AFE4 /* LPButton.png */,
-				4C2FCEE41CB1EFE50037AFE4 /* LPButton@2x.png */,
 				4C75CE291CAC78A900DA81A8 /* Background.png */,
 				4C75CE2A1CAC78A900DA81A8 /* Background@2x.png */,
 				4C75CE371CAC813B00DA81A8 /* Slider.png */,
 				4C75CE381CAC813B00DA81A8 /* Slider@2x.png */,
 				4C75CE7C1CACD7D300DA81A8 /* PlotShadow.png */,
 				4C75CE7D1CACD7D300DA81A8 /* PlotShadow@2x.png */,
+				4C9442711CB828300096AAF4 /* LPButton@2x.png */,
+				4C9442721CB828300096AAF4 /* HPButton.png */,
+				4C9442731CB828300096AAF4 /* HPButton@2x.png */,
+				4C9442741CB828300096AAF4 /* LPButton.png */,
 				4C88C1751CB0D23500176B1C /* Knob.png */,
 				4C88C1761CB0D23500176B1C /* Knob@2x.png */,
 				4C88C1831CB0D7A200176B1C /* SmallKnob.png */,
@@ -2237,8 +2183,8 @@
 			files = (
 				4CCC3E5D1CB4C3D100C094ED /* cairo-sphinx.so in Resources */,
 				4C2FCF0A1CB3088A0037AFE4 /* Audition@2x.png in Resources */,
-				4C2FCEE61CB1EFE50037AFE4 /* HPButton.png in Resources */,
 				4C88C1861CB0D7A200176B1C /* SmallKnob.png in Resources */,
+				4C9442821CB828300096AAF4 /* HPButton@2x.png in Resources */,
 				4C88C18C1CB0D7A200176B1C /* SmallKnob@2x.png in Resources */,
 				4CCC3E0F1CB4C3D100C094ED /* cairo-sphinx in Resources */,
 				4CCC3E151CB4C3D100C094ED /* cairo-trace in Resources */,
@@ -2246,13 +2192,13 @@
 				4C88C17E1CB0D23500176B1C /* Knob@2x.png in Resources */,
 				4C75CE321CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4C2FCF041CB3088A0037AFE4 /* Audition.png in Resources */,
+				4C9442761CB828300096AAF4 /* LPButton@2x.png in Resources */,
 				4C75CE2C1CAC78A900DA81A8 /* Background.png in Resources */,
-				4C2FCEEC1CB1EFE50037AFE4 /* HPButton@2x.png in Resources */,
-				4C2FCEF21CB1EFE50037AFE4 /* LPButton.png in Resources */,
-				4C2FCEF81CB1EFE50037AFE4 /* LPButton@2x.png in Resources */,
 				4C2FCF101CB3088A0037AFE4 /* Bypass.png in Resources */,
 				4C75CE401CAC813B00DA81A8 /* Slider@2x.png in Resources */,
+				4C9442881CB828300096AAF4 /* LPButton.png in Resources */,
 				4CCC3E3F1CB4C3D100C094ED /* cairo-fdr.0.so in Resources */,
+				4C94427C1CB828300096AAF4 /* HPButton.png in Resources */,
 				4CCC3E511CB4C3D100C094ED /* cairo-sphinx.0.so in Resources */,
 				4C2FCF161CB3088A0037AFE4 /* Bypass@2x.png in Resources */,
 				4C88C1781CB0D23500176B1C /* Knob.png in Resources */,
@@ -2268,8 +2214,8 @@
 			files = (
 				4CCC3E5F1CB4C3D100C094ED /* cairo-sphinx.so in Resources */,
 				4C2FCF0C1CB3088A0037AFE4 /* Audition@2x.png in Resources */,
-				4C2FCEE81CB1EFE50037AFE4 /* HPButton.png in Resources */,
 				4C88C1881CB0D7A200176B1C /* SmallKnob.png in Resources */,
+				4C9442841CB828300096AAF4 /* HPButton@2x.png in Resources */,
 				4C88C18E1CB0D7A200176B1C /* SmallKnob@2x.png in Resources */,
 				4CCC3E111CB4C3D100C094ED /* cairo-sphinx in Resources */,
 				4CCC3E171CB4C3D100C094ED /* cairo-trace in Resources */,
@@ -2277,13 +2223,13 @@
 				4C88C1801CB0D23500176B1C /* Knob@2x.png in Resources */,
 				4C75CE341CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4C2FCF061CB3088A0037AFE4 /* Audition.png in Resources */,
+				4C9442781CB828300096AAF4 /* LPButton@2x.png in Resources */,
 				4C75CE2E1CAC78A900DA81A8 /* Background.png in Resources */,
-				4C2FCEEE1CB1EFE50037AFE4 /* HPButton@2x.png in Resources */,
-				4C2FCEF41CB1EFE50037AFE4 /* LPButton.png in Resources */,
-				4C2FCEFA1CB1EFE50037AFE4 /* LPButton@2x.png in Resources */,
 				4C2FCF121CB3088A0037AFE4 /* Bypass.png in Resources */,
 				4C75CE421CAC813B00DA81A8 /* Slider@2x.png in Resources */,
+				4C94428A1CB828300096AAF4 /* LPButton.png in Resources */,
 				4CCC3E411CB4C3D100C094ED /* cairo-fdr.0.so in Resources */,
+				4C94427E1CB828300096AAF4 /* HPButton.png in Resources */,
 				4CCC3E531CB4C3D100C094ED /* cairo-sphinx.0.so in Resources */,
 				4C2FCF181CB3088A0037AFE4 /* Bypass@2x.png in Resources */,
 				4C88C17A1CB0D23500176B1C /* Knob.png in Resources */,
@@ -2299,8 +2245,8 @@
 			files = (
 				4CCC3E601CB4C3D100C094ED /* cairo-sphinx.so in Resources */,
 				4C2FCF0D1CB3088A0037AFE4 /* Audition@2x.png in Resources */,
-				4C2FCEE91CB1EFE50037AFE4 /* HPButton.png in Resources */,
 				4C88C1891CB0D7A200176B1C /* SmallKnob.png in Resources */,
+				4C9442851CB828300096AAF4 /* HPButton@2x.png in Resources */,
 				4C88C18F1CB0D7A200176B1C /* SmallKnob@2x.png in Resources */,
 				4CCC3E121CB4C3D100C094ED /* cairo-sphinx in Resources */,
 				4CCC3E181CB4C3D100C094ED /* cairo-trace in Resources */,
@@ -2308,13 +2254,13 @@
 				4C88C1811CB0D23500176B1C /* Knob@2x.png in Resources */,
 				4C75CE351CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4C2FCF071CB3088A0037AFE4 /* Audition.png in Resources */,
+				4C9442791CB828300096AAF4 /* LPButton@2x.png in Resources */,
 				4C75CE2F1CAC78A900DA81A8 /* Background.png in Resources */,
-				4C2FCEEF1CB1EFE50037AFE4 /* HPButton@2x.png in Resources */,
-				4C2FCEF51CB1EFE50037AFE4 /* LPButton.png in Resources */,
-				4C2FCEFB1CB1EFE50037AFE4 /* LPButton@2x.png in Resources */,
 				4C2FCF131CB3088A0037AFE4 /* Bypass.png in Resources */,
 				4C75CE431CAC813B00DA81A8 /* Slider@2x.png in Resources */,
+				4C94428B1CB828300096AAF4 /* LPButton.png in Resources */,
 				4CCC3E421CB4C3D100C094ED /* cairo-fdr.0.so in Resources */,
+				4C94427F1CB828300096AAF4 /* HPButton.png in Resources */,
 				4CCC3E541CB4C3D100C094ED /* cairo-sphinx.0.so in Resources */,
 				4C2FCF191CB3088A0037AFE4 /* Bypass@2x.png in Resources */,
 				4C88C17B1CB0D23500176B1C /* Knob.png in Resources */,
@@ -2330,8 +2276,8 @@
 			files = (
 				4CCC3E5E1CB4C3D100C094ED /* cairo-sphinx.so in Resources */,
 				4C2FCF0B1CB3088A0037AFE4 /* Audition@2x.png in Resources */,
-				4C2FCEE71CB1EFE50037AFE4 /* HPButton.png in Resources */,
 				4C88C1871CB0D7A200176B1C /* SmallKnob.png in Resources */,
+				4C9442831CB828300096AAF4 /* HPButton@2x.png in Resources */,
 				4C88C18D1CB0D7A200176B1C /* SmallKnob@2x.png in Resources */,
 				4CCC3E101CB4C3D100C094ED /* cairo-sphinx in Resources */,
 				4CCC3E161CB4C3D100C094ED /* cairo-trace in Resources */,
@@ -2339,13 +2285,13 @@
 				4C88C17F1CB0D23500176B1C /* Knob@2x.png in Resources */,
 				4C75CE331CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4C2FCF051CB3088A0037AFE4 /* Audition.png in Resources */,
+				4C9442771CB828300096AAF4 /* LPButton@2x.png in Resources */,
 				4C75CE2D1CAC78A900DA81A8 /* Background.png in Resources */,
-				4C2FCEED1CB1EFE50037AFE4 /* HPButton@2x.png in Resources */,
-				4C2FCEF31CB1EFE50037AFE4 /* LPButton.png in Resources */,
-				4C2FCEF91CB1EFE50037AFE4 /* LPButton@2x.png in Resources */,
 				4C2FCF111CB3088A0037AFE4 /* Bypass.png in Resources */,
 				4C75CE411CAC813B00DA81A8 /* Slider@2x.png in Resources */,
+				4C9442891CB828300096AAF4 /* LPButton.png in Resources */,
 				4CCC3E401CB4C3D100C094ED /* cairo-fdr.0.so in Resources */,
+				4C94427D1CB828300096AAF4 /* HPButton.png in Resources */,
 				4CCC3E521CB4C3D100C094ED /* cairo-sphinx.0.so in Resources */,
 				4C2FCF171CB3088A0037AFE4 /* Bypass@2x.png in Resources */,
 				4C88C1791CB0D23500176B1C /* Knob.png in Resources */,
@@ -2361,8 +2307,8 @@
 			files = (
 				4CCC3E611CB4C3D100C094ED /* cairo-sphinx.so in Resources */,
 				4C2FCF0E1CB3088A0037AFE4 /* Audition@2x.png in Resources */,
-				4C2FCEEA1CB1EFE50037AFE4 /* HPButton.png in Resources */,
 				4C88C18A1CB0D7A200176B1C /* SmallKnob.png in Resources */,
+				4C9442861CB828300096AAF4 /* HPButton@2x.png in Resources */,
 				4C88C1901CB0D7A200176B1C /* SmallKnob@2x.png in Resources */,
 				4CCC3E131CB4C3D100C094ED /* cairo-sphinx in Resources */,
 				4CCC3E191CB4C3D100C094ED /* cairo-trace in Resources */,
@@ -2370,13 +2316,13 @@
 				4C88C1821CB0D23500176B1C /* Knob@2x.png in Resources */,
 				4C75CE361CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4C2FCF081CB3088A0037AFE4 /* Audition.png in Resources */,
+				4C94427A1CB828300096AAF4 /* LPButton@2x.png in Resources */,
 				4C75CE301CAC78A900DA81A8 /* Background.png in Resources */,
-				4C2FCEF01CB1EFE50037AFE4 /* HPButton@2x.png in Resources */,
-				4C2FCEF61CB1EFE50037AFE4 /* LPButton.png in Resources */,
-				4C2FCEFC1CB1EFE50037AFE4 /* LPButton@2x.png in Resources */,
 				4C2FCF141CB3088A0037AFE4 /* Bypass.png in Resources */,
 				4C75CE441CAC813B00DA81A8 /* Slider@2x.png in Resources */,
+				4C94428C1CB828300096AAF4 /* LPButton.png in Resources */,
 				4CCC3E431CB4C3D100C094ED /* cairo-fdr.0.so in Resources */,
+				4C9442801CB828300096AAF4 /* HPButton.png in Resources */,
 				4CCC3E551CB4C3D100C094ED /* cairo-sphinx.0.so in Resources */,
 				4C2FCF1A1CB3088A0037AFE4 /* Bypass@2x.png in Resources */,
 				4C88C17C1CB0D23500176B1C /* Knob.png in Resources */,
@@ -2392,22 +2338,22 @@
 			files = (
 				4F78D88613B6382B0032E0F3 /* DComp.icns in Resources */,
 				4C75CE2B1CAC78A900DA81A8 /* Background.png in Resources */,
-				4C2FCEEB1CB1EFE50037AFE4 /* HPButton@2x.png in Resources */,
 				4C75CE841CACD7D300DA81A8 /* PlotShadow@2x.png in Resources */,
 				4C75CE3F1CAC813B00DA81A8 /* Slider@2x.png in Resources */,
+				4C9442751CB828300096AAF4 /* LPButton@2x.png in Resources */,
 				4C2FCF0F1CB3088A0037AFE4 /* Bypass.png in Resources */,
+				4C9442871CB828300096AAF4 /* LPButton.png in Resources */,
+				4C9442811CB828300096AAF4 /* HPButton@2x.png in Resources */,
 				4C75CE311CAC78A900DA81A8 /* Background@2x.png in Resources */,
+				4C94427B1CB828300096AAF4 /* HPButton.png in Resources */,
 				4CCC3E141CB4C3D100C094ED /* cairo-trace in Resources */,
 				4C75CE7E1CACD7D300DA81A8 /* PlotShadow.png in Resources */,
 				4C88C17D1CB0D23500176B1C /* Knob@2x.png in Resources */,
 				4C88C1771CB0D23500176B1C /* Knob.png in Resources */,
-				4C2FCEF71CB1EFE50037AFE4 /* LPButton@2x.png in Resources */,
 				4C2FCF091CB3088A0037AFE4 /* Audition@2x.png in Resources */,
 				4C88C1851CB0D7A200176B1C /* SmallKnob.png in Resources */,
 				4C2FCF031CB3088A0037AFE4 /* Audition.png in Resources */,
 				4F78D89913B639100032E0F3 /* InfoPlist.strings in Resources */,
-				4C2FCEF11CB1EFE50037AFE4 /* LPButton.png in Resources */,
-				4C2FCEE51CB1EFE50037AFE4 /* HPButton.png in Resources */,
 				4C2FCF151CB3088A0037AFE4 /* Bypass@2x.png in Resources */,
 				4F78D89A13B639100032E0F3 /* MainMenu.xib in Resources */,
 				4CCC3E5C1CB4C3D100C094ED /* cairo-sphinx.so in Resources */,
@@ -2464,6 +2410,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C15DB941CB4D023004C072C /* DSPUtilities.cpp in Sources */,
 				4F20EECB132C69FE0030E34C /* DComp.cpp in Sources */,
 				4FD16D1213B634BF001D0217 /* swell-gdi.mm in Sources */,
 				4F78D9BB13B63BA50032E0F3 /* IPlugBase.cpp in Sources */,
@@ -2475,7 +2422,6 @@
 				4CCC3DDB1CB4C1E300C094ED /* CParamSmooth.cpp in Sources */,
 				4F78D9C213B63BA50032E0F3 /* IGraphicsCocoa.mm in Sources */,
 				4F78D9C313B63BA50032E0F3 /* Log.cpp in Sources */,
-				4CEA89251CB4BA1000694DE7 /* DSPUtilities.cpp in Sources */,
 				4F78D9C413B63BA50032E0F3 /* IPopupMenu.cpp in Sources */,
 				4F78D9C813B63BA50032E0F3 /* IParam.cpp in Sources */,
 				4F78D9C913B63BA50032E0F3 /* IControl.cpp in Sources */,
@@ -2501,13 +2447,13 @@
 				4F78D95013B63BA50032E0F3 /* IGraphicsCocoa.mm in Sources */,
 				4F78D95313B63BA50032E0F3 /* Log.cpp in Sources */,
 				4F78D95513B63BA50032E0F3 /* IPopupMenu.cpp in Sources */,
+				4C15DB961CB4D023004C072C /* DSPUtilities.cpp in Sources */,
 				4F78D95C13B63BA50032E0F3 /* IParam.cpp in Sources */,
 				4F78D96113B63BA50032E0F3 /* IControl.cpp in Sources */,
 				4F78DA0813B63CD90032E0F3 /* IPlugAU.cpp in Sources */,
 				4F78DA0A13B63CD90032E0F3 /* IPlugAU_ViewFactory.mm in Sources */,
 				4CEA89351CB4BA1000694DE7 /* VAStateVariableFilter.cpp in Sources */,
 				4FDA440813F3E4F2000B4551 /* IBitmapMonoText.cpp in Sources */,
-				4CEA89271CB4BA1000694DE7 /* DSPUtilities.cpp in Sources */,
 				4F296BDA1678E6C800C0F5C2 /* dfx-au-utilities.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2530,11 +2476,11 @@
 				4F7F5C5913E95EC8002918FD /* IPopupMenu.cpp in Sources */,
 				4F7F5C5A13E95EC8002918FD /* IParam.cpp in Sources */,
 				4F7F5C5B13E95EC8002918FD /* IControl.cpp in Sources */,
+				4C15DB971CB4D023004C072C /* DSPUtilities.cpp in Sources */,
 				4F7F5C7113E95FB2002918FD /* IPlugRTAS.cpp in Sources */,
 				4F7F5CAD13E9607A002918FD /* digicode1.cpp in Sources */,
 				4F7F5CAE13E9607A002918FD /* digicode2.cpp in Sources */,
 				4F7F5CAF13E9607A002918FD /* digicode3.cpp in Sources */,
-				4CEA89281CB4BA1000694DE7 /* DSPUtilities.cpp in Sources */,
 				4F7F5CB013E9607A002918FD /* IPlugCustomUI.cpp in Sources */,
 				4F7F5CB113E9607A002918FD /* IPlugGroup.cpp in Sources */,
 				4F7F5CB213E9607A002918FD /* IPlugProcess.cpp in Sources */,
@@ -2565,7 +2511,6 @@
 				4CCC3DDC1CB4C1E300C094ED /* CParamSmooth.cpp in Sources */,
 				4F9828C3140A9EB700F3FCC1 /* IBitmapMonoText.cpp in Sources */,
 				4F9828C4140A9EB700F3FCC1 /* IPlugVST3.cpp in Sources */,
-				4CEA89261CB4BA1000694DE7 /* DSPUtilities.cpp in Sources */,
 				4F9828C5140A9EB700F3FCC1 /* memorystream.cpp in Sources */,
 				4F9828C6140A9EB700F3FCC1 /* pluginview.cpp in Sources */,
 				4F9828C7140A9EB700F3FCC1 /* macmain.cpp in Sources */,
@@ -2577,6 +2522,7 @@
 				4F9828CE140A9EB700F3FCC1 /* vstinitiids.cpp in Sources */,
 				4CEA89341CB4BA1000694DE7 /* VAStateVariableFilter.cpp in Sources */,
 				4F9828CF140A9EB700F3FCC1 /* vstnoteexpressiontypes.cpp in Sources */,
+				4C15DB951CB4D023004C072C /* DSPUtilities.cpp in Sources */,
 				4F9828D0140A9EB700F3FCC1 /* vstparameters.cpp in Sources */,
 				4F9828D1140A9EB700F3FCC1 /* vstpresetfile.cpp in Sources */,
 				4F9828D2140A9EB700F3FCC1 /* vstrepresentation.cpp in Sources */,
@@ -2597,9 +2543,9 @@
 				4FB6001B1567CB0A0020189A /* IPlugStructs.cpp in Sources */,
 				4FB6001C1567CB0A0020189A /* Hosts.cpp in Sources */,
 				4FB6001D1567CB0A0020189A /* IGraphicsMac.mm in Sources */,
+				4C15DB981CB4D023004C072C /* DSPUtilities.cpp in Sources */,
 				4FB6001E1567CB0A0020189A /* IGraphics.cpp in Sources */,
 				4FB6001F1567CB0A0020189A /* IGraphicsCarbon.cpp in Sources */,
-				4CEA89291CB4BA1000694DE7 /* DSPUtilities.cpp in Sources */,
 				4FB600201567CB0A0020189A /* IGraphicsCocoa.mm in Sources */,
 				4FB600211567CB0A0020189A /* Log.cpp in Sources */,
 				4FB600221567CB0A0020189A /* IPopupMenu.cpp in Sources */,
@@ -2628,6 +2574,7 @@
 				4FD16D3E13B63595001D0217 /* swell-menu.mm in Sources */,
 				4FD16D4013B635A0001D0217 /* swell-misc.mm in Sources */,
 				4FD16D4213B635AB001D0217 /* swell-wnd.mm in Sources */,
+				4C15DB931CB4D023004C072C /* DSPUtilities.cpp in Sources */,
 				4FD16D4413B635B2001D0217 /* swell.cpp in Sources */,
 				4FD16D4713B635C8001D0217 /* swellappmain.mm in Sources */,
 				4F78D8C413B63A700032E0F3 /* RtAudio.cpp in Sources */,
@@ -2645,7 +2592,6 @@
 				4F78D91313B63BA50032E0F3 /* Log.cpp in Sources */,
 				4F78D91413B63BA50032E0F3 /* IPopupMenu.cpp in Sources */,
 				4F78D91813B63BA50032E0F3 /* IParam.cpp in Sources */,
-				4CEA89241CB4BA1000694DE7 /* DSPUtilities.cpp in Sources */,
 				4F78D91913B63BA50032E0F3 /* IControl.cpp in Sources */,
 				4F78DA5A13B63F150032E0F3 /* DComp.cpp in Sources */,
 				4FD16CA213B6327D001D0217 /* app_main.cpp in Sources */,
@@ -2916,6 +2862,7 @@
 		4F3AE1DD12C0E5E2001FD7A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				DSTROOT = "$(AU_FOLDER)";
 				EXPORTED_SYMBOLS_FILE = DComp.exp;
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
@@ -2942,6 +2889,7 @@
 		4F3AE1DE12C0E5E2001FD7A4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				DSTROOT = "$(AU_FOLDER)";
 				EXPORTED_SYMBOLS_FILE = DComp.exp;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2972,6 +2920,7 @@
 		4F3AE1DF12C0E5E2001FD7A4 /* Tracer */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				DSTROOT = "$(AU_FOLDER)";
 				EXPORTED_SYMBOLS_FILE = DComp.exp;
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
@@ -3392,7 +3341,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = "$(APP_FOLDER)";
-				GCC_PREPROCESSOR_DEFINITIONS = "$(DEBUG_DEFS)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(DEBUG_DEFS)",
+					IPLUG_RETINA_SUPPORT,
+				);
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
 					"$(APP_DEFS)",
 					"$(inherited)",

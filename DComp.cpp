@@ -43,18 +43,17 @@ enum ELayout
   
   kSliderCaptionOffset = 8,
   kSmallKnobCaptionOffset = 5,
-  kSmallKnobsY = 350,
-  kHoldX = 238,
+  kSmallKnobsY = 347,
+  kHoldX = 236,
   kRatioX = kHoldX + 68,
   kKneeX = kRatioX + 68,
   kSCKnobsX = 547,
-  kSCKnobY= 318,
+  kSCKnobY= 313,
   kSCKnob2Y = kSCKnobY + 57,
   kSCBypassX = 465,
   kSCBypassY = 282,
   kSCAudX = 581,
   kSCAudY = kSCBypassY + 1,
-  kFaderLength = 264,
   
   kLPCaptionX = 477,
   kLPCaptionY = 347,
@@ -124,7 +123,7 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   GetParam(kSidechain)->InitBool("Sidechain", false);
   GetParam(kSCAudition)->InitBool("Audition Sidechain", false);
   
-  GetParam(kMode)->InitEnum("Detector Mode", 0, 1);
+  GetParam(kMode)->InitEnum("Mode", 0, 1);
   GetParam(kMode)->SetDisplayText(0, "Peak");
   GetParam(kMode)->SetDisplayText(1, "RMS");
   
@@ -186,7 +185,7 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
 
   //Gain reduction plot
   GRplot = new ILevelPlotControl(this, plotRECT, &grFillColor, &grLineColor, kPlotTimeScale);
-  GRplot->setLineWeight(3.);
+  GRplot->setLineWeight(2.5);
   GRplot->setReverseFill(true);
   GRplot->setFillEnable(false);
   GRplot->setResolution(ILevelPlotControl::kHighRes);
@@ -204,7 +203,7 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   pGraphics->AttachControl(threshPlot);
   
   //Compressor ratio plot
-  compPlot = new ICompressorPlotControl(this, IRECT(plotRECT.L, plotRECT.T, plotRECT.L + plotRECT.H(), plotRECT.T + plotRECT.H()), &plotCompLineColor, &plotPreFillColor, &mComp);
+  compPlot = new ICompressorPlotControl(this, IRECT(plotRECT.L, plotRECT.T, plotRECT.L + plotRECT.H(), plotRECT.T + plotRECT.H()), &plotCompLineColor, &plotCompFillColor, &mComp);
   compPlot->calc();
   compPlot->setLineWeight(3.);
   plot->setAAquality(ICairoPlotControl::kNone);
@@ -266,7 +265,10 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   pGraphics->AttachControl(new ITextControl(this, IRECT(kModeX - 50, kModeY+1, kModeX, kModeY+40), &popUpLabel, "Mode: "));
   
   //Mode selector popup
-  pGraphics->AttachControl(new IPopUpMenuControl(this, IRECT(kModeX, kModeY, kModeX + 100, kModeY + 25), COLOR_WHITE, COLOR_WHITE, plotPostFillColor, kMode));
+  pGraphics->AttachControl(new IPopUpMenuControl(this, IRECT(kModeX, kModeY, kModeX + 100, kModeY + 25), COLOR_WHITE, COLOR_WHITE, modeColor, kMode));
+  
+  //Version String
+  pGraphics->AttachControl(new ITextControl(this, IRECT(106, 29, 175, 37), &versionText, versionString));
   
   //Attach shadow
   pGraphics->AttachControl(mShadow);
@@ -376,6 +378,7 @@ void DComp::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
     sampleDry2 = *in2;
     sampleFiltered1 = *in1;
     sampleFiltered2 = *in2;
+    
     
     
     //Filter sample for compressor envelope detector
