@@ -145,6 +145,12 @@
 		4C94428B1CB828300096AAF4 /* LPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442741CB828300096AAF4 /* LPButton.png */; };
 		4C94428C1CB828300096AAF4 /* LPButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442741CB828300096AAF4 /* LPButton.png */; };
 		4C94428D1CB82F750096AAF4 /* libcairo.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC3E0B1CB4C3D100C094ED /* libcairo.2.dylib */; };
+		4C9442911CB8325F0096AAF4 /* ToDo in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442901CB8325F0096AAF4 /* ToDo */; };
+		4C9442921CB8325F0096AAF4 /* ToDo in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442901CB8325F0096AAF4 /* ToDo */; };
+		4C9442931CB8325F0096AAF4 /* ToDo in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442901CB8325F0096AAF4 /* ToDo */; };
+		4C9442941CB8325F0096AAF4 /* ToDo in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442901CB8325F0096AAF4 /* ToDo */; };
+		4C9442951CB8325F0096AAF4 /* ToDo in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442901CB8325F0096AAF4 /* ToDo */; };
+		4C9442961CB8325F0096AAF4 /* ToDo in Resources */ = {isa = PBXBuildFile; fileRef = 4C9442901CB8325F0096AAF4 /* ToDo */; };
 		4CCC3DDA1CB4C1E300C094ED /* CParamSmooth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC3DD81CB4C1E300C094ED /* CParamSmooth.cpp */; };
 		4CCC3DDB1CB4C1E300C094ED /* CParamSmooth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC3DD81CB4C1E300C094ED /* CParamSmooth.cpp */; };
 		4CCC3DDC1CB4C1E300C094ED /* CParamSmooth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC3DD81CB4C1E300C094ED /* CParamSmooth.cpp */; };
@@ -709,6 +715,7 @@
 		4C9442721CB828300096AAF4 /* HPButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HPButton.png; path = resources/img/HPButton.png; sourceTree = "<group>"; };
 		4C9442731CB828300096AAF4 /* HPButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HPButton@2x.png"; path = "resources/img/HPButton@2x.png"; sourceTree = "<group>"; };
 		4C9442741CB828300096AAF4 /* LPButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LPButton.png; path = resources/img/LPButton.png; sourceTree = "<group>"; };
+		4C9442901CB8325F0096AAF4 /* ToDo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo; sourceTree = "<group>"; };
 		4CCC3DD81CB4C1E300C094ED /* CParamSmooth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CParamSmooth.cpp; path = ../../WDL/IPlug/CParamSmooth.cpp; sourceTree = "<group>"; };
 		4CCC3DD91CB4C1E300C094ED /* CParamSmooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CParamSmooth.h; path = ../../WDL/IPlug/CParamSmooth.h; sourceTree = "<group>"; };
 		4CCC3DE41CB4C3D100C094ED /* cairo-sphinx */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "cairo-sphinx"; sourceTree = "<group>"; };
@@ -1092,6 +1099,7 @@
 			children = (
 				4C2FCF271CB359200037AFE4 /* circular.h */,
 				52FBBED30D0CF143001C8B8A /* resource.h */,
+				4C9442901CB8325F0096AAF4 /* ToDo */,
 				52FBBED20D0CF13D001C8B8A /* DComp.h */,
 				52FBBED00D0CF139001C8B8A /* DComp.cpp */,
 				4C75CE8A1CACDC1400DA81A8 /* IPopupMenuControl.h */,
@@ -2192,6 +2200,7 @@
 				4C88C17E1CB0D23500176B1C /* Knob@2x.png in Resources */,
 				4C75CE321CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4C2FCF041CB3088A0037AFE4 /* Audition.png in Resources */,
+				4C9442921CB8325F0096AAF4 /* ToDo in Resources */,
 				4C9442761CB828300096AAF4 /* LPButton@2x.png in Resources */,
 				4C75CE2C1CAC78A900DA81A8 /* Background.png in Resources */,
 				4C2FCF101CB3088A0037AFE4 /* Bypass.png in Resources */,
@@ -2223,6 +2232,7 @@
 				4C88C1801CB0D23500176B1C /* Knob@2x.png in Resources */,
 				4C75CE341CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4C2FCF061CB3088A0037AFE4 /* Audition.png in Resources */,
+				4C9442941CB8325F0096AAF4 /* ToDo in Resources */,
 				4C9442781CB828300096AAF4 /* LPButton@2x.png in Resources */,
 				4C75CE2E1CAC78A900DA81A8 /* Background.png in Resources */,
 				4C2FCF121CB3088A0037AFE4 /* Bypass.png in Resources */,
@@ -2254,6 +2264,7 @@
 				4C88C1811CB0D23500176B1C /* Knob@2x.png in Resources */,
 				4C75CE351CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4C2FCF071CB3088A0037AFE4 /* Audition.png in Resources */,
+				4C9442951CB8325F0096AAF4 /* ToDo in Resources */,
 				4C9442791CB828300096AAF4 /* LPButton@2x.png in Resources */,
 				4C75CE2F1CAC78A900DA81A8 /* Background.png in Resources */,
 				4C2FCF131CB3088A0037AFE4 /* Bypass.png in Resources */,
@@ -2285,6 +2296,7 @@
 				4C88C17F1CB0D23500176B1C /* Knob@2x.png in Resources */,
 				4C75CE331CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4C2FCF051CB3088A0037AFE4 /* Audition.png in Resources */,
+				4C9442931CB8325F0096AAF4 /* ToDo in Resources */,
 				4C9442771CB828300096AAF4 /* LPButton@2x.png in Resources */,
 				4C75CE2D1CAC78A900DA81A8 /* Background.png in Resources */,
 				4C2FCF111CB3088A0037AFE4 /* Bypass.png in Resources */,
@@ -2316,6 +2328,7 @@
 				4C88C1821CB0D23500176B1C /* Knob@2x.png in Resources */,
 				4C75CE361CAC78A900DA81A8 /* Background@2x.png in Resources */,
 				4C2FCF081CB3088A0037AFE4 /* Audition.png in Resources */,
+				4C9442961CB8325F0096AAF4 /* ToDo in Resources */,
 				4C94427A1CB828300096AAF4 /* LPButton@2x.png in Resources */,
 				4C75CE301CAC78A900DA81A8 /* Background.png in Resources */,
 				4C2FCF141CB3088A0037AFE4 /* Bypass.png in Resources */,
@@ -2358,6 +2371,7 @@
 				4F78D89A13B639100032E0F3 /* MainMenu.xib in Resources */,
 				4CCC3E5C1CB4C3D100C094ED /* cairo-sphinx.so in Resources */,
 				4C88C18B1CB0D7A200176B1C /* SmallKnob@2x.png in Resources */,
+				4C9442911CB8325F0096AAF4 /* ToDo in Resources */,
 				4CCC3E0E1CB4C3D100C094ED /* cairo-sphinx in Resources */,
 				4C75CE391CAC813B00DA81A8 /* Slider.png in Resources */,
 				4CCC3E501CB4C3D100C094ED /* cairo-sphinx.0.so in Resources */,

@@ -126,13 +126,13 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   GetParam(kMode)->InitEnum("Mode", 0, 1);
   GetParam(kMode)->SetDisplayText(0, "Peak");
   GetParam(kMode)->SetDisplayText(1, "RMS");
-  
+      
   ///////////////////////////////////////////////////////////////////////////////////////
 
   
   //Initialize envelope Followers
-  envPlotIn.init(compressor::kPeak, 15, 100, 15, GetSampleRate());
-  envPlotOut.init(compressor::kPeak, 15, 100, 15, GetSampleRate());
+  envPlotIn.init(compressor::kPeak, 0, 75, 60, GetSampleRate());
+  envPlotOut.init(compressor::kPeak, 0, 75, 60, GetSampleRate());
   mComp.init(mAttack, mRelease, mHold, mRatio, mKnee, GetSampleRate());
 
   
@@ -170,7 +170,7 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   plot->setGradientFill(true);
   plot->setStroke(false);
   plot->setAAquality(ICairoPlotControl::kNone);
-  pGraphics->AttachControl(plot);
+  //pGraphics->AttachControl(plot);
   
   //Output level plot
   plotOut = new ILevelPlotControl(this, plotRECT, &plotPostFillColor, &plotPostLineColor, kPlotTimeScale);
@@ -179,9 +179,9 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   plotOut->setLineWeight(2.);
   plotOut->setYRange(ILevelPlotControl::k32dB);
   plotOut->setGradientFill(true);
-  plot->setAAquality(ICairoPlotControl::kNone);
+  plotOut->setAAquality(ICairoPlotControl::kNone);
 
-  pGraphics->AttachControl(plotOut);
+  //pGraphics->AttachControl(plotOut);
 
   //Gain reduction plot
   GRplot = new ILevelPlotControl(this, plotRECT, &grFillColor, &grLineColor, kPlotTimeScale);
@@ -191,14 +191,24 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   GRplot->setResolution(ILevelPlotControl::kHighRes);
   GRplot->setAAquality(ILevelPlotControl::kGood);
   GRplot->setYRange(ILevelPlotControl::k32dB);
-  plot->setAAquality(ICairoPlotControl::kNone);
+  GRplot->setAAquality(ICairoPlotControl::kFast);
 
-  pGraphics->AttachControl(GRplot);
+  //pGraphics->AttachControl(GRplot);
+  
+
+  
+  multiPlot = new IGRPlotControl(this, plotRECT, -1, &plotPreFillColor, &plotPostFillColor, &plotPostLineColor, &grFillColor, &grLineColor, kPlotTimeScale);
+  multiPlot->setResolution(IGRPlotControl::kHighRes);
+  multiPlot->setLineWeight(2.);
+  multiPlot->setAAquality(ICairoPlotControl::kFast);
+  multiPlot->setYRange(IGRPlotControl::k32dB);
+
+  pGraphics->AttachControl(multiPlot);
   
   //Threshold plot
   threshPlot= new IThresholdPlotControl(this, plotRECT, -1, &threshLineColor, &mComp);
   threshPlot->setLineWeight(3.);
-  plot->setAAquality(ICairoPlotControl::kNone);
+  threshPlot->setAAquality(ICairoPlotControl::kNone);
 
   pGraphics->AttachControl(threshPlot);
   
@@ -206,7 +216,7 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   compPlot = new ICompressorPlotControl(this, IRECT(plotRECT.L, plotRECT.T, plotRECT.L + plotRECT.H(), plotRECT.T + plotRECT.H()), &plotCompLineColor, &plotCompFillColor, &mComp);
   compPlot->calc();
   compPlot->setLineWeight(3.);
-  plot->setAAquality(ICairoPlotControl::kNone);
+  compPlot->setAAquality(ICairoPlotControl::kNone);
 
   pGraphics->AttachControl(compPlot);
  
@@ -430,10 +440,12 @@ void DComp::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
     }
 
     //Update plots
-    plot->process(AmpToDB(envPlotIn.process(max(sampleDry1, sampleDry2))));
-    plotOut->process(AmpToDB(envPlotOut.process(max(*in1, *in2))));
-    GRplot->process(scaleValue(gr, 2, -32, 2, -32));  //Scale value to match level plot range
+    //plot->process(AmpToDB(envPlotIn.process(max(sampleDry1, sampleDry2))));
+    //plotOut->process(AmpToDB(envPlotOut.process(max(*in1, *in2))));
+    //GRplot->process(scaleValue(gr, 2, -32, 2, -32));  //Scale value to match level plot range
 
+    multiPlot->process(AmpToDB(envPlotIn.process(max(sampleDry1, sampleDry2))), AmpToDB(envPlotOut.process(max(*in1, *in2))), scaleValue(gr, 2, -32, 2, -32));
+    
     //Tell graphics context to redraw plots + shadow
     if(GetGUI()) {
       plot->SetDirty();
