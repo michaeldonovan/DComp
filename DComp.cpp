@@ -65,7 +65,7 @@ enum ELayout
   kLPy = 318,
   kHPy = kLPy + 56,
   
-  kModeX = 335,
+  kModeX = 320,
   kModeY = 282,
   
   kKnobFrames = 63,
@@ -124,8 +124,8 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   GetParam(kSCAudition)->InitBool("Audition Sidechain", false);
   
   GetParam(kMode)->InitEnum("Mode", 0, 1);
-  GetParam(kMode)->SetDisplayText(0, "Peak");
-  GetParam(kMode)->SetDisplayText(1, "RMS");
+  GetParam(kMode)->SetDisplayText(0, "Clean");
+  GetParam(kMode)->SetDisplayText(1, "Colored");
       
   ///////////////////////////////////////////////////////////////////////////////////////
 
@@ -141,7 +141,6 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   mHighpass.setFilter(SVFHighpass, mCuttoffHP, 0.707, 0.);
   mLowpass.setSampleRate(GetSampleRate());
   mLowpass.setFilter(SVFLowpass, mCuttoffLP, 0.707, 0.);
-
   //Create graphics context
   IGraphics* pGraphics = MakeGraphics(this, kWidth, kHeight, 30);
   
@@ -194,8 +193,6 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   GRplot->setAAquality(ICairoPlotControl::kFast);
 
   //pGraphics->AttachControl(GRplot);
-  
-
   
   multiPlot = new IGRPlotControl(this, plotRECT, -1, &plotPreFillColor, &plotPostFillColor, &plotPostLineColor, &grFillColor, &grLineColor, kPlotTimeScale);
   multiPlot->setResolution(IGRPlotControl::kHighRes);
@@ -275,7 +272,7 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
   pGraphics->AttachControl(new ITextControl(this, IRECT(kModeX - 50, kModeY+1, kModeX, kModeY+40), &popUpLabel, "Mode: "));
   
   //Mode selector popup
-  pGraphics->AttachControl(new IPopUpMenuControl(this, IRECT(kModeX, kModeY, kModeX + 100, kModeY + 25), COLOR_WHITE, COLOR_WHITE, modeColor, kMode));
+  pGraphics->AttachControl(new IPopUpMenuControl(this, IRECT(kModeX, kModeY, kModeX + 75, kModeY + 25), COLOR_WHITE, COLOR_WHITE, modeColor, kMode));
   
   //Version String
   pGraphics->AttachControl(new ITextControl(this, IRECT(106, 29, 175, 37), &versionText, versionString));
@@ -310,6 +307,15 @@ DComp::DComp(IPlugInstanceInfo instanceInfo)
 //Destructor
 //Don't need to delete plots/controls, as ownership has been passed to pGraphics
 DComp::~DComp() {}
+
+
+double DComp::distort(double sample){
+  if(sample > DBToAmp(mThreshold* .9) || sample < -1 * DBToAmp(mThreshold))
+    return 1/5. * fastAtan(sample * 5);
+  else
+    return sample;
+}
+
 
 void DComp::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrames)
 {
@@ -389,7 +395,11 @@ void DComp::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
     sampleFiltered1 = *in1;
     sampleFiltered2 = *in2;
     
-    
+    //Apply Saturation
+    if(mMode == 1){
+      *in1 = distort(*in1);
+      *in2 = distort(*in2);
+    }
     
     //Filter sample for compressor envelope detector
     if(!mSidechainEnable){
@@ -421,6 +431,8 @@ void DComp::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
     *in1 *= DBToAmp(gr);
     *in2 *= DBToAmp(gr);
     
+
+
     //Apply makeup gain
     *in1 *= DBToAmp(gainSmoothed);
     *in2 *= DBToAmp(gainSmoothed);
@@ -444,16 +456,17 @@ void DComp::ProcessDoubleReplacing(double** inputs, double** outputs, int nFrame
     //plotOut->process(AmpToDB(envPlotOut.process(max(*in1, *in2))));
     //GRplot->process(scaleValue(gr, 2, -32, 2, -32));  //Scale value to match level plot range
 
-    multiPlot->process(AmpToDB(envPlotIn.process(max(sampleDry1, sampleDry2))), AmpToDB(envPlotOut.process(max(*in1, *in2))), scaleValue(gr, 2, -32, 2, -32));
     
     //Tell graphics context to redraw plots + shadow
     if(GetGUI()) {
-      plot->SetDirty();
-      plotOut->SetDirty();
-      compPlot->SetDirty();
-      threshPlot->SetDirty();
-      GRplot->SetDirty();
+      //plot->SetDirty();
+      //plotOut->SetDirty();
+      //compPlot->SetDirty();
+      //threshPlot->SetDirty();
+      //GRplot->SetDirty();
       mShadow->SetDirty();
+      multiPlot->process(AmpToDB(envPlotIn.process(max(sampleDry1, sampleDry2))), AmpToDB(envPlotOut.process(max(*in1, *in2))), scaleValue(gr, 2, -32, 2, -32));
+
     }
   }
 #endif
@@ -543,6 +556,9 @@ void DComp::OnParamChange(int paramIdx)
   }
 }
 
+inline double DComp::fastAtan(double x){
+  return (x / (1.0 + 0.28 * (x * x)));
+}
 
 inline double DComp::scaleValue(double inValue, double inMin, double inMax, double outMin, double outMax){
   return ((outMax - outMin) * (inValue - inMin)) / (inMax - inMin) + outMin;

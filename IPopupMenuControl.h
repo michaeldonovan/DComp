@@ -15,7 +15,7 @@ public:
         mDisablePrompt = false;
         mDblAsSingleClick = true;
         mColorText = textColor;
-        mText = IText(18,&mColorText,"Futura", IText::kStyleNormal, IText::kAlignNear);
+        mText = IText(18,&mColorText,"Futura", IText::kStyleNormal, IText::kAlignCenter);
         mColor = cBG;
         mColorFG = cFG;
         textRect= IRECT(pR.L+8, pR.T+1, pR.R, pR.B);
@@ -28,10 +28,10 @@ public:
         if(IsGrayed()){
             blend.mMethod=blend.kBlendColorDodge;
             blend.mWeight=.8;
-            mText = IText(18,&COLOR_GRAY,"Futura", IText::kStyleNormal, IText::kAlignNear);
+            mText = IText(18,&COLOR_GRAY,"Futura", IText::kStyleNormal, IText::kAlignCenter);
         }
         else{
-            mText = IText(18,&mColorText,"Futura", IText::kStyleNormal, IText::kAlignNear);
+            mText = IText(18,&mColorText,"Futura", IText::kStyleNormal, IText::kAlignCenter);
             blend = IChannelBlend();
         }
 
