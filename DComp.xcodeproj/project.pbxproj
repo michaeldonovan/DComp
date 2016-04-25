@@ -32,6 +32,38 @@
 		4C15DB961CB4D023004C072C /* DSPUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DB921CB4D023004C072C /* DSPUtilities.cpp */; };
 		4C15DB971CB4D023004C072C /* DSPUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DB921CB4D023004C072C /* DSPUtilities.cpp */; };
 		4C15DB981CB4D023004C072C /* DSPUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DB921CB4D023004C072C /* DSPUtilities.cpp */; };
+		4C27C84A1CCA9AAB00AA33F5 /* libcairo.2.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3E0B1CB4C3D100C094ED /* libcairo.2.dylib */; };
+		4C27C84D1CCA9CB500AA33F5 /* cairo-deprecated.h in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3EAB1CB4C45900C094ED /* cairo-deprecated.h */; };
+		4C27C84E1CCA9CB500AA33F5 /* cairo-features.h in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3EAC1CB4C45900C094ED /* cairo-features.h */; };
+		4C27C84F1CCA9CB500AA33F5 /* cairo-ft.h in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3EAD1CB4C45900C094ED /* cairo-ft.h */; };
+		4C27C8501CCA9CB500AA33F5 /* cairo-gobject.h in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3EAE1CB4C45900C094ED /* cairo-gobject.h */; };
+		4C27C8511CCA9CB500AA33F5 /* cairo-pdf.h in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3EAF1CB4C45900C094ED /* cairo-pdf.h */; };
+		4C27C8521CCA9CB500AA33F5 /* cairo-ps.h in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3EB01CB4C45900C094ED /* cairo-ps.h */; };
+		4C27C8531CCA9CB500AA33F5 /* cairo-quartz-image.h in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3EB11CB4C45900C094ED /* cairo-quartz-image.h */; };
+		4C27C8541CCA9CB500AA33F5 /* cairo-quartz.h in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3EB21CB4C45900C094ED /* cairo-quartz.h */; };
+		4C27C8551CCA9CB500AA33F5 /* cairo-script-interpreter.h in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3EB31CB4C45900C094ED /* cairo-script-interpreter.h */; };
+		4C27C8561CCA9CB500AA33F5 /* cairo-script.h in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3EB41CB4C45900C094ED /* cairo-script.h */; };
+		4C27C8571CCA9CB500AA33F5 /* cairo-svg.h in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3EB51CB4C45900C094ED /* cairo-svg.h */; };
+		4C27C8581CCA9CB500AA33F5 /* cairo-tee.h in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3EB61CB4C45900C094ED /* cairo-tee.h */; };
+		4C27C8591CCA9CB500AA33F5 /* cairo-version.h in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3EB71CB4C45900C094ED /* cairo-version.h */; };
+		4C27C85A1CCA9CB500AA33F5 /* cairo-xcb.h in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3EB81CB4C45900C094ED /* cairo-xcb.h */; };
+		4C27C85B1CCA9CB500AA33F5 /* cairo-xlib-xrender.h in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3EB91CB4C45900C094ED /* cairo-xlib-xrender.h */; };
+		4C27C85C1CCA9CB500AA33F5 /* cairo-xlib.h in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3EBA1CB4C45900C094ED /* cairo-xlib.h */; };
+		4C27C85D1CCA9CB500AA33F5 /* cairo-xml.h in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3EBB1CB4C45900C094ED /* cairo-xml.h */; };
+		4C27C85E1CCA9CB500AA33F5 /* cairo.h in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3EBC1CB4C45900C094ED /* cairo.h */; };
+		4C27C85F1CCA9CB500AA33F5 /* cairo-fdr.a in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3DFD1CB4C3D100C094ED /* cairo-fdr.a */; };
+		4C27C8601CCA9CB500AA33F5 /* cairo-sphinx.a in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3E001CB4C3D100C094ED /* cairo-sphinx.a */; };
+		4C27C8611CCA9CB500AA33F5 /* libcairo-trace.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3E021CB4C3D100C094ED /* libcairo-trace.0.dylib */; };
+		4C27C8621CCA9CB500AA33F5 /* libcairo-trace.a in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3E031CB4C3D100C094ED /* libcairo-trace.a */; };
+		4C27C8631CCA9CB500AA33F5 /* libcairo-trace.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3E041CB4C3D100C094ED /* libcairo-trace.dylib */; };
+		4C27C8641CCA9CB500AA33F5 /* libcairo-gobject.2.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3E051CB4C3D100C094ED /* libcairo-gobject.2.dylib */; };
+		4C27C8651CCA9CB500AA33F5 /* libcairo-gobject.a in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3E061CB4C3D100C094ED /* libcairo-gobject.a */; };
+		4C27C8661CCA9CB500AA33F5 /* libcairo-gobject.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3E071CB4C3D100C094ED /* libcairo-gobject.dylib */; };
+		4C27C8671CCA9CB500AA33F5 /* libcairo-script-interpreter.2.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3E081CB4C3D100C094ED /* libcairo-script-interpreter.2.dylib */; };
+		4C27C8681CCA9CB500AA33F5 /* libcairo-script-interpreter.a in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3E091CB4C3D100C094ED /* libcairo-script-interpreter.a */; };
+		4C27C8691CCA9CB500AA33F5 /* libcairo-script-interpreter.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3E0A1CB4C3D100C094ED /* libcairo-script-interpreter.dylib */; };
+		4C27C86A1CCA9CB500AA33F5 /* libcairo.a in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3E0C1CB4C3D100C094ED /* libcairo.a */; };
+		4C27C86B1CCA9CB500AA33F5 /* libcairo.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 4CCC3E0D1CB4C3D100C094ED /* libcairo.dylib */; };
 		4C2FCF031CB3088A0037AFE4 /* Audition.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEFF1CB3088A0037AFE4 /* Audition.png */; };
 		4C2FCF041CB3088A0037AFE4 /* Audition.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEFF1CB3088A0037AFE4 /* Audition.png */; };
 		4C2FCF051CB3088A0037AFE4 /* Audition.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FCEFF1CB3088A0037AFE4 /* Audition.png */; };
@@ -2223,6 +2255,38 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C27C84D1CCA9CB500AA33F5 /* cairo-deprecated.h in Resources */,
+				4C27C84E1CCA9CB500AA33F5 /* cairo-features.h in Resources */,
+				4C27C84F1CCA9CB500AA33F5 /* cairo-ft.h in Resources */,
+				4C27C8501CCA9CB500AA33F5 /* cairo-gobject.h in Resources */,
+				4C27C8511CCA9CB500AA33F5 /* cairo-pdf.h in Resources */,
+				4C27C8521CCA9CB500AA33F5 /* cairo-ps.h in Resources */,
+				4C27C8531CCA9CB500AA33F5 /* cairo-quartz-image.h in Resources */,
+				4C27C8541CCA9CB500AA33F5 /* cairo-quartz.h in Resources */,
+				4C27C8551CCA9CB500AA33F5 /* cairo-script-interpreter.h in Resources */,
+				4C27C8561CCA9CB500AA33F5 /* cairo-script.h in Resources */,
+				4C27C8571CCA9CB500AA33F5 /* cairo-svg.h in Resources */,
+				4C27C8581CCA9CB500AA33F5 /* cairo-tee.h in Resources */,
+				4C27C8591CCA9CB500AA33F5 /* cairo-version.h in Resources */,
+				4C27C85A1CCA9CB500AA33F5 /* cairo-xcb.h in Resources */,
+				4C27C85B1CCA9CB500AA33F5 /* cairo-xlib-xrender.h in Resources */,
+				4C27C85C1CCA9CB500AA33F5 /* cairo-xlib.h in Resources */,
+				4C27C85D1CCA9CB500AA33F5 /* cairo-xml.h in Resources */,
+				4C27C85E1CCA9CB500AA33F5 /* cairo.h in Resources */,
+				4C27C85F1CCA9CB500AA33F5 /* cairo-fdr.a in Resources */,
+				4C27C8601CCA9CB500AA33F5 /* cairo-sphinx.a in Resources */,
+				4C27C8611CCA9CB500AA33F5 /* libcairo-trace.0.dylib in Resources */,
+				4C27C8621CCA9CB500AA33F5 /* libcairo-trace.a in Resources */,
+				4C27C8631CCA9CB500AA33F5 /* libcairo-trace.dylib in Resources */,
+				4C27C8641CCA9CB500AA33F5 /* libcairo-gobject.2.dylib in Resources */,
+				4C27C8651CCA9CB500AA33F5 /* libcairo-gobject.a in Resources */,
+				4C27C8661CCA9CB500AA33F5 /* libcairo-gobject.dylib in Resources */,
+				4C27C8671CCA9CB500AA33F5 /* libcairo-script-interpreter.2.dylib in Resources */,
+				4C27C8681CCA9CB500AA33F5 /* libcairo-script-interpreter.a in Resources */,
+				4C27C8691CCA9CB500AA33F5 /* libcairo-script-interpreter.dylib in Resources */,
+				4C27C86A1CCA9CB500AA33F5 /* libcairo.a in Resources */,
+				4C27C86B1CCA9CB500AA33F5 /* libcairo.dylib in Resources */,
+				4C27C84A1CCA9AAB00AA33F5 /* libcairo.2.dylib in Resources */,
 				4CCC3E5F1CB4C3D100C094ED /* cairo-sphinx.so in Resources */,
 				4C2FCF0C1CB3088A0037AFE4 /* Audition@2x.png in Resources */,
 				4C88C1881CB0D7A200176B1C /* SmallKnob.png in Resources */,
