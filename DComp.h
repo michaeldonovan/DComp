@@ -3,6 +3,11 @@
 
 #include "IPlug_include_in_plug_hdr.h"
 #include "IPopupMenuControl.h"
+#include "DSP/CParamSmooth.h"
+#include "DSP/EnvelopeFollower.h"
+#include "DSP/VAStateVariableFilter/VAStateVariableFilter.h"
+#include "IControl.h"
+#include "CustomControls.h"
 
 class DComp : public IPlug
 {
@@ -15,7 +20,7 @@ public:
   void ProcessDoubleReplacing(double** inputs, double** outputs, int nFrames);
   
 private:
-  char* versionString = "v0.1.0";
+  char* versionString = "v0.1.1";
   
   double scaleValue(double inValue, double inMin, double inMax, double outMin, double outMax);
   inline double fastAtan(double x);

@@ -16,7 +16,7 @@
 #define VIEW_CLASS_STR "DComp_View"
 
 // Format        0xMAJR.MN.BG - in HEX! so version 10.1.5 would be 0x000A0105
-#define PLUG_VER 0x00000100
+#define PLUG_VER 0x00000101
 #define VST3_VER_STR "0.1.0"
 
 // http://service.steinberg.de/databases/plugin.nsf/plugIn?openForm

@@ -1,0 +1,3 @@
+[submodule "DSP/VAStateVariableFilter"]
+	path = DSP/VAStateVariableFilter
+	url = https://github.com/michaeldonovan/VAStateVariableFilter
